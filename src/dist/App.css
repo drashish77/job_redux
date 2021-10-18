@@ -1,0 +1,25 @@
+body {
+  background-color: #edf6ff;
+}
+
+.app {
+  background-image: linear-gradient(to right, #1a253c, #303f60);
+  height: 280px;
+  color: #ffffff;
+}
+
+/* Extra small devices (phones, 600px and down) */
+/* Small devices (portrait tablets and large phones, 600px and up) */
+/* Medium devices (landscape tablets, 768px and up) */
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .app {
+    height: 280px;
+  }
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1220px) {
+  .app {
+    height: 464px;
+  }
+}

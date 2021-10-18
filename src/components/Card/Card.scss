@@ -1,0 +1,20 @@
+@import '../../scss//variables/Variable.scss';
+.card {
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  margin: 20px;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 15px;
+  color: black;
+  width: 22vw;
+  h3 {
+    // display: inline-block;
+    font-weight: 600;
+    color: $skyBlueDark;
+    font-size: 20px;
+    width: 150px;
+  }
+  p {
+    color: $lightBlue;
+  }
+}

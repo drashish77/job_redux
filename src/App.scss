@@ -1,0 +1,46 @@
+$breakpoint-mobile: 600px;
+$breakpoint-tablet: 768px;
+$breakpoint-tablet: 768px;
+$breakpoint-laptop: 992px;
+$breakpoint-desktop: 1220px;
+@import './scss/variables/Variable.scss';
+body {
+  background-color: $skyBlueLight;
+}
+.app {
+  background-image: linear-gradient(to right, $darkBlue, $lightBlue);
+  height: 280px;
+  color: $white;
+}
+
+// @media (max-width: $breakpoint-tablet) {
+//   .app {
+//     width: 100%;
+//     height: 280px;
+//   }
+// }
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: $breakpoint-mobile) {
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: $breakpoint-mobile) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: $breakpoint-tablet) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: $breakpoint-laptop) {
+  .app {
+    height: 280px;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: $breakpoint-desktop) {
+  .app {
+    height: 464px;
+  }
+}

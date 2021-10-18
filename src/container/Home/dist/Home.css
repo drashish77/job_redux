@@ -1,0 +1,88 @@
+.home .main__section {
+  display: flex;
+  justify-content: space-around;
+}
+.home .main__section .left__section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.home .main__section .heading {
+  margin-top: 50px;
+}
+.home .main__section .heading p {
+  line-height: 0;
+  font-size: 60px;
+}
+.home .main__section .heading span {
+  color: #43afff;
+}
+.home .main__section button {
+  padding: 15px 25px;
+  letter-spacing: 0.5px;
+  font-size: 16px;
+}
+.home .right__section {
+  position: relative;
+  width: 600px;
+}
+.home .right__section img {
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  object-fit: contain;
+  width: 100%;
+  border-radius: 20px;
+}
+
+.section__two {
+  margin: 250px 100px 0;
+}
+
+.card__wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card__heading {
+  color: #303f60;
+  font-weight: bolder;
+}
+
+.section__three {
+  margin: 50px 100px 0;
+}
+
+.clients {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.clients .img {
+  width: 50px;
+}
+
+.clients img {
+  width: 100%;
+}
+
+.client {
+  flex-grow: 1;
+  width: 150px;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: gray;
+  font-size: 30px;
+}
+
+@media screen and (max-width: 500px) {
+  .left__section .heading {
+    font-size: 30px;
+  }
+
+  .right__section {
+    display: none;
+  }
+}
