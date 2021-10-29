@@ -17,10 +17,12 @@ const routes = {
   deleteJob: '/jobs/:id',
   //candidates
   candidates: '/candidates/jobs',
-  getAvailableJobs: '/candidates/jobs?',
+  applyForAJob: '/candidates/applyjob',
+  getAvailableJobs: '/candidates/availablejobs',
   getAlreadyAppliedJobs: '/candidates/jobs/applied',
   //recruiters
   getPostedJobs: '/recruiters/jobs',
+  createNewJob: '/job/',
   getOneJobCandidates: '/recruiters/jobs/:id',
   thanksRoute: '/thanks',
   admin: '/admin',

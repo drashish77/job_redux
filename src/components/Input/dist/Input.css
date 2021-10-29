@@ -1,0 +1,30 @@
+.input span {
+  font-size: 14px;
+  color: #303f60;
+  font-weight: bold;
+}
+.input input {
+  display: block;
+  margin: auto;
+  width: 100%;
+  display: block;
+  padding: 6px 10px;
+  border-color: #ffffff;
+  border: 1px solid #c6c6c6;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+input:focus::placeholder {
+  color: #c6c6c6;
+  background-color: #ffffff;
+  border: 1px solid #c6c6c6;
+  outline: none;
+}
+
+input::placeholder {
+  color: #c6c6c6;
+}
+
+input:focus {
+  outline: none;
+}

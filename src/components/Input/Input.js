@@ -1,3 +1,4 @@
+import './Input.scss'
 const Input = ({
   heading,
   name,
@@ -10,16 +11,15 @@ const Input = ({
 }) => {
   return (
     <div className='input'>
-      <span className=''>{heading}</span>
+      {heading && <span className=''>{heading}</span>}
       <input
         name={name}
         type={type}
         placeholder={placeholder}
-        className=''
         value={values}
         onChange={handleChange}
       />
-      {children}
+      {children && children}
     </div>
   )
 }

@@ -3,6 +3,7 @@ const Button = ({ title, color, onClick }) => {
   return (
     <div className=''>
       <button
+        type='submit'
         className={`button ${color === 'dark' ? 'btn-dark' : 'btn-light'}`}
         onClick={onClick}
       >

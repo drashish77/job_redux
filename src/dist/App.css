@@ -4,22 +4,26 @@ body {
 
 .app {
   background-image: linear-gradient(to right, #1a253c, #303f60);
-  height: 280px;
-  color: #ffffff;
+  height: 350px;
 }
 
 /* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .app {
+    height: 180px;
+  }
+}
 /* Small devices (portrait tablets and large phones, 600px and up) */
 /* Medium devices (landscape tablets, 768px and up) */
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
   .app {
-    height: 280px;
+    height: 350px;
   }
 }
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1220px) {
   .app {
-    height: 464px;
+    height: 350px;
   }
 }

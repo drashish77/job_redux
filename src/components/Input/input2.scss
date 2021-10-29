@@ -1,0 +1,24 @@
+@import '../../scss/variables/Variable.scss';
+
+.input {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+
+  span {
+    color: initial;
+  }
+  input {
+    padding: 15px 10px;
+    border-radius: 5px;
+    border: 1px solid $gray;
+    background-color: $grayLighter;
+  }
+}
+input::placeholder {
+  border-color: $gray;
+}
+input:focus {
+  outline: none;
+  border: 1px solid $skyBlueDark;
+}

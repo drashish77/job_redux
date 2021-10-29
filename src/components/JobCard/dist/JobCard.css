@@ -1,0 +1,24 @@
+.jobCard {
+  color: #1a253c;
+  background-color: #ffffff;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+.jobCard .jobCard__bottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 10px;
+}
+.jobCard .jobCard__bottom i {
+  color: #1a253c;
+}
+
+.multi-line-truncate {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}

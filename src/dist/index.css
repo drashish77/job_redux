@@ -1,0 +1,61 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.pageNumbers {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  /* margin-bottom: 50px; */
+}
+
+.pageNumbers li {
+  padding: 5px 10px;
+  margin: 2px;
+  border: 1px solid #1a253c;
+  background: #edf6ff;
+  color: black;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.pageNumbers li button {
+  padding: 0;
+  border: 0;
+  background-color: inherit;
+}
+.pageNumbers li button i {
+  color: black;
+}
+
+.pageNumbers li:hover {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+}
+.pageNumbers li:hover button {
+  padding: 0;
+  border: 0;
+  background-color: inherit;
+}
+.pageNumbers li:hover button i {
+  color: #ffffff;
+}
+
+.pageNumbers li.active {
+  background: white;
+  color: #43afff;
+  border: 1px solid #43afff;
+}
+
+.load_more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

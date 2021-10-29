@@ -1,0 +1,30 @@
+.modal_wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #557da526;
+}
+.modal_wrap .modal_wrap_inside {
+  padding: 10px;
+  flex-grow: 1;
+  border-radius: 5px;
+}
+
+.modal_close_button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: sticky;
+  top: 5%;
+  right: 0;
+}
+.modal_close_button .button {
+  background-color: #c6c6c6;
+}
+
+.header_button {
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,0 +1,79 @@
+@import '../../scss/variables/Variable.scss';
+.app {
+  height: 200px;
+}
+.jobs {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin: 10px 170px 20px;
+  .job__home_logo {
+    i {
+      font-size: 0.8rem;
+    }
+    color: #fff;
+    font-size: 0.8rem;
+  }
+  h2 {
+    color: $white;
+  }
+}
+.all__jobs {
+  display: flex;
+  flex-wrap: wrap;
+}
+.all__jobs-job {
+  width: 25%;
+}
+@media screen and (max-width: 1200px) {
+  .jobs {
+    margin: 10px 100px 20px;
+  }
+  .all__jobs {
+    display: flex;
+  }
+  .all__jobs-job {
+    width: 33%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .jobs {
+    margin: 20px;
+  }
+  .all__jobs {
+    display: flex;
+    flex-direction: column;
+  }
+  .all__jobs-job {
+    width: 100%;
+  }
+}
+.no_job_applied_wrap {
+  i {
+    color: $borderBlue;
+    text-align: center;
+    font-size: 5rem;
+  }
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.no_job_applied {
+  text-align: center;
+}
+button {
+  letter-spacing: normal !important;
+}
+// .jobs {
+//   position: relative;
+// }
+.pagination__block {
+  // position: absolute;
+  // bottom: 0%;
+  // left: 50%;
+  // transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

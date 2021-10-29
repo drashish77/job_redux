@@ -1,11 +1,16 @@
 import routes from '../../config/config'
 import { useHistory } from 'react-router-dom'
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import { useClickOutside } from '../../Hooks/useJobs'
 import './header.scss'
 import Button from '../Button/Button'
+import { useSelector, useDispatch } from 'react-redux'
+import { logOut } from '../../Redux/auth/authActions'
 const Header = (props) => {
   const [isActive, setIsActive] = useState(false)
+  const dispatch = useDispatch()
+
+  const { currentUser } = useSelector((state) => state.auth)
 
   let menuRef = useClickOutside(() => {
     setIsActive(false)
@@ -17,21 +22,18 @@ const Header = (props) => {
   const login = () => {
     history.push(routes.loginRoute)
   }
-  const admin = () => {
-    history.push(routes.jobsRoute)
-  }
-  const signup = () => {
-    history.push(routes.registerRoute)
-  }
 
   const logout = () => {
+    dispatch(logOut())
     localStorage.removeItem('token')
     localStorage.removeItem('userRole')
     localStorage.removeItem('email')
     localStorage.removeItem('name')
-    localStorage.removeItem('resetToken')
+    localStorage.removeItem('userData')
     history.push(routes.rootRoute)
   }
+  const postAJobHandler = () => history.push(routes.createNewJob)
+  const applyAJobHandler = () => history.push(routes.applyForAJob)
   return (
     <div>
       <div className='header' ref={menuRef}>
@@ -41,27 +43,58 @@ const Header = (props) => {
           </h2>
         </div>
 
-        <div className='navbar__left'>
-          {localStorage.getItem('name') ? (
-            <div className='menu__left'>{localStorage.getItem('name')[0]}</div>
-          ) : null}
+        {/* <div
+          className='burger'
+          onClick={() => setIsActive((isActive) => !isActive)}
+        >
+          <i className='fas fa-bars'></i>
+        </div> */}
 
-          {localStorage.getItem('token') ? (
-            <button className='menu__button' onClick={logout}>
-              <i className='fas fa-user-injured'></i>
-              <p className='header__text'>Logout</p>
-            </button>
-          ) : (
-            <>
-              <Button title='Login/Logout' color='dark' onClick={login}>
-                <i className='fas fa-sign-in-alt'></i>
-              </Button>
-            </>
-          )}
+        <div className={isActive ? 'button_active' : 'button_inActive'}>
+          <div className='navbar__left'>
+            {/* {state?.userLoginSuccess ? <div></div>} */}
+            {currentUser ? (
+              <div className='nav__left_wrap'>
+                <div className='nav__left_wrap_inner'>
+                  {currentUser &&
+                    currentUser.token &&
+                    (currentUser.userRole === 0 ? (
+                      <div className='nav_form'>
+                        <Button color='dark' title='Recruiter' />
+                        <Button
+                          color='dark'
+                          title='Post a Job'
+                          onClick={postAJobHandler}
+                        />
+                      </div>
+                    ) : (
+                      <div className='nav_form'>
+                        <Button color='dark' title='Candidate' />
+                        <Button
+                          color='dark'
+                          title='Applied Jobs'
+                          onClick={applyAJobHandler}
+                        />
+                      </div>
+                    ))}
+                </div>
+                <div className='menu__left'>
+                  {currentUser && currentUser.name[0]}
+                </div>
+              </div>
+            ) : null}
+
+            {currentUser && currentUser.token ? (
+              <Button title='Logout' color='dark' onClick={logout} />
+            ) : (
+              <>
+                <Button title='Login' color='dark' onClick={login} />
+              </>
+            )}
+          </div>
         </div>
-
         <div
-          className='hamburger'
+          className='burger'
           onClick={() => setIsActive((isActive) => !isActive)}
         >
           <i className='fas fa-bars'></i>

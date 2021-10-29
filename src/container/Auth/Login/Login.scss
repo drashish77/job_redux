@@ -1,0 +1,82 @@
+@import '../../../scss/variables/Variable.scss';
+.container {
+  margin: 0 20px;
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+form {
+  margin: auto;
+  padding: 20px;
+}
+.login {
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.1);
+  h2 {
+    color: $darkBlue;
+  }
+  .error {
+    color: red;
+    text-align: right;
+  }
+  width: 40%;
+  padding: 10px;
+  background: $white;
+  // border: 1px solid gray;
+  border-radius: 20px;
+  // width: 35%;
+  button {
+    padding: 15px 45px;
+    letter-spacing: 0.5px;
+    font-size: 16px;
+  }
+  .button_wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // margin: 10px 0;
+  }
+}
+@media screen and (max-width: 500px) {
+  form {
+    margin: auto;
+    max-width: 100%;
+  }
+}
+.after__password,
+.register {
+  label {
+    //block text-gray-500 font-bold my-4 mx-1
+    display: block;
+    color: $lightBlue;
+    font-weight: 500;
+    margin: 16px 4px;
+  }
+  a {
+    color: $skyBlueDark;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+  }
+}
+.after__password {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+}
+.register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width: 500px) {
+  .container {
+    margin: 0 20px;
+    padding: 20px 0;
+  }
+  .login {
+    padding: 0px;
+    width: 100%;
+  }
+}

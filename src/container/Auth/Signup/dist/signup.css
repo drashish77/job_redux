@@ -1,0 +1,63 @@
+.container {
+  margin: 50px 0;
+}
+.container button {
+  margin: 20px 0;
+}
+
+.password__section {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 30px;
+  flex-wrap: nowrap;
+}
+
+.password__section * {
+  flex-grow: 1;
+}
+
+@media screen and (max-width: 700px) {
+  .password__section {
+    flex-direction: column;
+  }
+}
+.buttongroup {
+  display: flex;
+  column-gap: 20px;
+}
+
+.buttongroup label {
+  border: 1px solid #c6c6c6;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #1a253c;
+  background-color: #557da526;
+  transition: all 0.2s;
+}
+
+.buttongroup label:hover {
+  background-color: #43afff;
+  color: #ffffff;
+}
+
+/* Hide the radio button */
+input[type=radio] {
+  display: none;
+}
+
+/* The checked buttons label style */
+input[name=userRole]:checked + label {
+  background-color: #43afff;
+  color: #ffffff;
+}
+
+@media screen and (max-width: 500px) {
+  .buttongroup {
+    justify-content: space-between;
+  }
+
+  .buttongroup label {
+    padding: 5px 10px;
+  }
+}

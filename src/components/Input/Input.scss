@@ -1,23 +1,30 @@
 @import '../../scss/variables/Variable.scss';
 .input {
   span {
-    font-size: 10px;
+    font-size: 14px;
     color: $lightBlue;
     font-weight: bold;
-    padding: 0 4px;
   }
   input {
-    //block px-3 py-2 rounded-lg w-full
-    // bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md
-    // focus:placeholder-gray-500  focus:bg-white focus:border-gray-600
-    // focus:outline-none
+    display: block;
+    margin: auto;
+    width: 100%;
     display: block;
     padding: 6px 10px;
-    border-color: $white-color;
-    border: 1px solid gray;
-    
+    border-color: $white;
+    border: 1px solid $gray;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   }
-  input::placeholder{
-   text
-  }
+}
+input:focus::placeholder {
+  color: $gray;
+  background-color: $white;
+  border: 1px solid $gray;
+  outline: none;
+}
+input::placeholder {
+  color: $gray;
+}
+input:focus {
+  outline: none;
 }

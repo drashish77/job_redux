@@ -13,3 +13,55 @@ code {
     monospace;
 }
 
+.pageNumbers {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  /* margin-bottom: 50px; */
+  // padding-bottom: 50px;
+}
+.pageNumbers li {
+  padding: 5px 10px;
+  margin: 2px;
+  border: 1px solid $darkBlue;
+  background: $skyBlueLight;
+  color: black;
+  cursor: pointer;
+  border-radius: 5px;
+  button {
+    padding: 0;
+    border: 0;
+    background-color: inherit;
+    i {
+      color: black;
+    }
+  }
+}
+.pageNumbers li:hover {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  button {
+    padding: 0;
+    border: 0;
+    background-color: inherit;
+    i {
+      color: $white;
+    }
+  }
+}
+.pageNumbers li.active {
+  background: white;
+  color: $skyBlueDark;
+  border: 1px solid $skyBlueDark;
+}
+// .pageNumbers li.active button:disabled {
+//   background-color: aqua;
+//   color: red;
+//   border: 1px solid red;
+// }
+.load_more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

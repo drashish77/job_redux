@@ -1,0 +1,23 @@
+.input {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+.input span {
+  color: initial;
+}
+.input input {
+  padding: 15px 10px;
+  border-radius: 5px;
+  border: 1px solid #c6c6c6;
+  background-color: #e8e8e833;
+}
+
+input::placeholder {
+  border-color: #c6c6c6;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid #43afff;
+}

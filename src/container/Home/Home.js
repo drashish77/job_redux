@@ -3,7 +3,23 @@ import Button from '../../components/Button/Button'
 import Card from '../../components/Card/Card'
 import Section3 from './Section3'
 import Section2 from './Section2'
+import { useHistory } from 'react-router'
+import routes from '../../config/config'
+import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
 const Home2 = () => {
+  const history = useHistory()
+  const { currentUser } = useSelector((state) => state.auth)
+
+  const fetchJobHandler = () => {
+    if (currentUser && currentUser.userRole === 1) {
+      history.push(routes.getAvailableJobs)
+    } else if (currentUser && currentUser.userRole === 0) {
+      history.push(routes.getPostedJobs)
+    } else {
+      history.push(routes.jobsRoute)
+    }
+  }
   return (
     <div className='home'>
       <div className='main__section'>
@@ -15,7 +31,11 @@ const Home2 = () => {
             </p>
           </div>
 
-          <Button title='Get Started' color='btn-light' />
+          <Button
+            title='Get Started'
+            color='btn-light'
+            onClick={fetchJobHandler}
+          />
         </div>
 
         <div className='right__section'>

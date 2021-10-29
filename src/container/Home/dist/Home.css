@@ -1,3 +1,8 @@
+.home {
+  background-image: linear-gradient(to right, #1a253c, #303f60);
+  height: 400px;
+  color: #ffffff;
+}
 .home .main__section {
   display: flex;
   justify-content: space-around;
@@ -12,7 +17,7 @@
 }
 .home .main__section .heading p {
   line-height: 0;
-  font-size: 60px;
+  font-size: 4rem;
 }
 .home .main__section .heading span {
   color: #43afff;
@@ -77,12 +82,72 @@
   font-size: 30px;
 }
 
+@media screen and (max-width: 1200px) {
+  .home .main__section {
+    display: flex;
+    justify-content: space-around;
+  }
+  .home .main__section .left__section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .home .main__section .heading {
+    margin-top: 50px;
+  }
+  .home .main__section .heading p {
+    line-height: 0;
+    font-size: 3rem;
+  }
+  .home .main__section .heading span {
+    color: #43afff;
+  }
+  .home .right__section {
+    position: relative;
+    width: 600px;
+  }
+  .home .right__section img {
+    position: absolute;
+    top: 30%;
+    right: 10%;
+    object-fit: contain;
+    width: 90%;
+    border-radius: 20px;
+  }
+}
 @media screen and (max-width: 500px) {
-  .left__section .heading {
-    font-size: 30px;
+  .home {
+    height: 200px;
+  }
+
+  .home .main__section .left__section {
+    display: block;
+  }
+  .home .main__section .left__section .heading {
+    font-size: 20px;
+  }
+
+  .home .main__section .heading p {
+    font-size: 40px;
   }
 
   .right__section {
     display: none;
+  }
+
+  .section__two,
+.section__three {
+    margin: 50px 20px 0;
+  }
+
+  .client {
+    flex-grow: 1;
+    width: 80px;
+    margin: 10px;
+    font-size: 15px;
+  }
+
+  .clients .img {
+    width: 20px;
   }
 }

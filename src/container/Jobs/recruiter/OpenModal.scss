@@ -1,0 +1,36 @@
+//flex flex-col flex-wrap items-center justify-evenly lg:flex-row px-1 py-4 rounded-lg
+@import '../../../scss/variables/Variable.scss';
+
+.modal_wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  background-color: $grayLight;
+  .modal_wrap_inside {
+    // background: gainsboro;
+    padding: 10px;
+    flex-grow: 1;
+    border-radius: 5px;
+  }
+}
+
+.modal_close_button {
+  //flex justify-end items-start sticky top-10 right-0
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: sticky;
+  top: 5%;
+  right: 0;
+  .button {
+    // border-radius: 50%;
+    background-color: $gray;
+  }
+}
+//border px-5 py-5 w-48 md:w-96 lg:80 text-left rounded-lg bg-white m-2
+.header_button {
+  display: flex;
+  justify-content: space-between;
+}

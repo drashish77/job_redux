@@ -1,5 +1,13 @@
 @import '../../scss/variables/Variable.scss';
+// .app {
+//   background-image: linear-gradient(to right, $darkBlue, $lightBlue);
+//   height: 280px;
+//   color: $white;
+// }
 .home {
+  background-image: linear-gradient(to right, $darkBlue, $lightBlue);
+  height: 400px;
+  color: $white;
   .main__section {
     display: flex;
     justify-content: space-around;
@@ -14,7 +22,7 @@
       margin-top: 50px;
       p {
         line-height: 0;
-        font-size: 60px;
+        font-size: 4rem;
       }
       span {
         color: $skyBlueDark;
@@ -73,13 +81,73 @@
   color: gray;
   font-size: 30px;
 }
+
+@media screen and (max-width: 1200px) {
+  .home {
+    .main__section {
+      display: flex;
+      justify-content: space-around;
+      // align-items: center;
+      .left__section {
+        // height: 25vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+      .heading {
+        margin-top: 50px;
+        p {
+          line-height: 0;
+          font-size: 3rem;
+        }
+        span {
+          color: $skyBlueDark;
+        }
+      }
+    }
+    .right__section {
+      position: relative;
+      width: 600px;
+      img {
+        position: absolute;
+        top: 30%;
+        right: 10%;
+        object-fit: contain;
+        width: 90%;
+        border-radius: 20px;
+      }
+    }
+  }
+}
 @media screen and (max-width: 500px) {
-  .left__section {
+  .home {
+    height: 200px;
+  }
+  .home .main__section .left__section {
+    display: block;
     .heading {
-      font-size: 30px;
+      font-size: 20px;
+    }
+  }
+  .home .main__section {
+    .heading p {
+      font-size: 40px;
     }
   }
   .right__section {
     display: none;
+  }
+  .section__two,
+  .section__three {
+    margin: 50px 20px 0;
+  }
+  .client {
+    flex-grow: 1;
+    width: 80px;
+    margin: 10px;
+    font-size: 15px;
+  }
+  .clients .img {
+    width: 20px;
   }
 }

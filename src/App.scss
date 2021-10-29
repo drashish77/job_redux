@@ -9,8 +9,7 @@ body {
 }
 .app {
   background-image: linear-gradient(to right, $darkBlue, $lightBlue);
-  height: 280px;
-  color: $white;
+  height: 350px;
 }
 
 // @media (max-width: $breakpoint-tablet) {
@@ -21,6 +20,10 @@ body {
 // }
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: $breakpoint-mobile) {
+  .app {
+    // height: 464px;
+    height: 180px;
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -34,13 +37,14 @@ body {
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: $breakpoint-laptop) {
   .app {
-    height: 280px;
+    height: 350px;
   }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: $breakpoint-desktop) {
   .app {
-    height: 464px;
+    // height: 464px;
+    height: 350px;
   }
 }

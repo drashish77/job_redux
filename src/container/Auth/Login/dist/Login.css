@@ -1,0 +1,83 @@
+.container {
+  margin: 0 20px;
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+form {
+  margin: auto;
+  padding: 20px;
+}
+
+.login {
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.1);
+  width: 40%;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 20px;
+}
+.login h2 {
+  color: #1a253c;
+}
+.login .error {
+  color: red;
+  text-align: right;
+}
+.login button {
+  padding: 15px 45px;
+  letter-spacing: 0.5px;
+  font-size: 16px;
+}
+.login .button_wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 500px) {
+  form {
+    margin: auto;
+    max-width: 100%;
+  }
+}
+.after__password label,
+.register label {
+  display: block;
+  color: #303f60;
+  font-weight: 500;
+  margin: 16px 4px;
+}
+.after__password a,
+.register a {
+  color: #43afff;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
+.after__password {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+}
+
+.register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    margin: 0 20px;
+    padding: 20px 0;
+  }
+
+  .login {
+    padding: 0px;
+    width: 100%;
+  }
+}
