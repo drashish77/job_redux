@@ -66,6 +66,26 @@ const postJOB = async (body, token) => {
   // return getApiResponse(url, { method, headers })
 }
 
+const fetchAppliedJOBS = async (token) => {
+  console.log(token)
+  let url = `${BASE_URL}/candidates/jobs/applied`
+  let headers = {
+    'Content-Type': 'application/json',
+    Authorization: token,
+  }
+  return await axios.get(url, {
+    headers: headers,
+  })
+}
+export function* fetchAppliedJobs({ payload }) {
+  console.log(payload)
+  try {
+    const response = yield call(fetchAppliedJOBS, payload.token)
+    yield put(fetchAppliedJobsSuccess(response.data.data))
+  } catch (error) {
+    yield put(fetchAppliedJobsFailure(error))
+  }
+}
 export function* fetchJobs({ payload }) {
   try {
     const response = yield call(fetchJOBS, payload.page)
@@ -166,6 +186,9 @@ function* onFetchAvailableJobsStart() {
 function* onFetchPostedJobsStart() {
   yield takeLatest(types.FETCH_RECRUITER_JOBS_START, fetchRecruiterPostedJobs)
 }
+function* onFetchApplyJobsStart() {
+  yield takeLatest(types.FETCH_APPLIED_JOBS_START, fetchAppliedJobs)
+}
 
 export function* jobSagas() {
   yield all([
@@ -174,6 +197,7 @@ export function* jobSagas() {
     call(onFetchPostedJobsStart),
     call(onPostJobsStart),
     call(onApplyJobStart),
+    call(onFetchApplyJobsStart),
   ])
 }
 

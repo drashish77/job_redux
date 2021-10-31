@@ -8,6 +8,7 @@ import {
 } from '../../../Redux/jobs/jobActions'
 import '../Job.scss'
 import PaginationCard from '../Pagination/PaginationCard'
+
 const AvailableJobs = () => {
   const history = useHistory()
   const dispatch = useDispatch()
@@ -94,6 +95,9 @@ const AvailableJobs = () => {
             const body = { jobId: job.id, token: token }
             const jobClickHandler = () => {
               dispatch(applyNewJobBegin({ body, currentPage }))
+              dispatch(
+                fetchCandidateJobsBegin({ page: currentPage, token: token })
+              )
             }
             return (
               <div className='all__jobs-job' key={Math.random()}>

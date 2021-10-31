@@ -1,17 +1,23 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import jobsall from '../../../assets/allJobs'
 import Button from '../../../components/Button/Button'
 import JobCard from '../../../components/JobCard/JobCard'
 import routes from '../../../config/config'
+import { fetchAppliedJobsBegin } from '../../../Redux/jobs/jobActions'
 import '../Job.scss'
 import PaginationCard from '../Pagination/PaginationCard'
 const Jobs = () => {
   const history = useHistory()
-  const [jobs] = useState(jobsall)
+  const dispatch = useDispatch()
   const [currentPage, setCurrentPage] = useState(1)
-  const [itemsPerPage] = useState(2)
+  const [itemsPerPage] = useState(4)
   const [pageNumberLimit] = useState(4)
+  const { totalAppliedJobs } = useSelector((state) => state.jobs)
+  // console.log(totalAppliedJobs)
+  const [jobs] = useState(totalAppliedJobs)
+
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(4)
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0)
 
@@ -63,8 +69,13 @@ const Jobs = () => {
   if (minPageNumberLimit >= 1) {
     pageDecrementBtn = <li onClick={handlePrevButton}> &hellip; </li>
   }
+  const token = localStorage.getItem('token')
   const jobClickHandler = () => console.log('jobClicked')
-  
+
+  useEffect(() => {
+    dispatch(fetchAppliedJobsBegin({ token: token }))
+  }, [currentPage])
+
   const candidateJobHandler = () => history.push(routes.getAvailableJobs)
   return (
     <div className='jobs'>

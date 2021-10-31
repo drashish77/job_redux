@@ -91,13 +91,15 @@ function jobReducer() {
       return _objectSpread({}, state, {
         loading: false,
         error: action.payload.error,
+        jobFetchSuccess: false,
         jobs: []
       });
 
     case _jobActionTypes["default"].FETCH_RECRUITER_JOBS_START:
       return _objectSpread({}, state, {
         loading: true,
-        error: null
+        error: null,
+        jobFetchSuccess: false
       });
 
     case _jobActionTypes["default"].FETCH_RECRUITER_JOBS_SUCCESS:
@@ -111,6 +113,7 @@ function jobReducer() {
       return _objectSpread({}, state, {
         loading: false,
         error: action.payload.error,
+        jobFetchSuccess: false,
         jobs: []
       });
 

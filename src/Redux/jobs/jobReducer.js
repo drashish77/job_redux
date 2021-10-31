@@ -77,6 +77,7 @@ export default function jobReducer(state = INITIAL_STATE, action) {
         ...state,
         loading: false,
         error: action.payload.error,
+        jobFetchSuccess: false,
         jobs: [],
       }
     case types.FETCH_RECRUITER_JOBS_START:
@@ -84,6 +85,7 @@ export default function jobReducer(state = INITIAL_STATE, action) {
         ...state,
         loading: true,
         error: null,
+        jobFetchSuccess: false,
       }
 
     case types.FETCH_RECRUITER_JOBS_SUCCESS:
@@ -99,6 +101,7 @@ export default function jobReducer(state = INITIAL_STATE, action) {
         ...state,
         loading: false,
         error: action.payload.error,
+        jobFetchSuccess: false,
         jobs: [],
       }
     case types.POST_NEW_JOB_START:

@@ -38,9 +38,24 @@ export const fetchRecruiterJobsSuccess = (token) => ({
   type: types.FETCH_RECRUITER_JOBS_SUCCESS,
   payload: token,
 })
-export const fetchRecruiterJobsFailure = (token) => ({
+export const fetchRecruiterJobsFailure = (error) => ({
   type: types.FETCH_RECRUITER_JOBS_FAILURE,
+  payload: error,
+})
+//fetch all applied job by a candidate
+export const fetchAppliedJobsBegin = (token) => ({
+  type: types.FETCH_APPLIED_JOBS_START,
   payload: token,
+})
+
+export const fetchAppliedJobsSuccess = (data) => ({
+  type: types.FETCH_APPLIED_JOBS_SUCCESS,
+  payload: data,
+})
+
+export const fetchAppliedJobsFailure = (error) => ({
+  type: types.FETCH_APPLIED_JOBS_FAILURE,
+  payload: error,
 })
 //post a new job by recruiter
 export const postNewJobBegin = (data) => ({
@@ -59,21 +74,6 @@ export const postNewJobFailure = (error) => ({
 })
 export const clearPostNewJob = () => ({
   type: types.CLEAR_POST_NEW_JOB,
-})
-
-//fetch all applied job by a candidate
-export const fetchAppliedJobsBegin = () => ({
-  type: types.FETCH_APPLIED_JOBS_START,
-})
-
-export const fetchAppliedJobsSuccess = (data) => ({
-  type: types.FETCH_APPLIED_JOBS_SUCCESS,
-  payload: { data },
-})
-
-export const fetchAppliedJobsFailure = (error) => ({
-  type: types.FETCH_APPLIED_JOBS_FAILURE,
-  payload: { error },
 })
 
 //apply a job by candidate
