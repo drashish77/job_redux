@@ -11,6 +11,7 @@
   .main__section {
     display: flex;
     justify-content: space-around;
+    margin: 0 50px;
     // align-items: center;
     .left__section {
       // height: 25vh;
@@ -81,12 +82,26 @@
   color: gray;
   font-size: 30px;
 }
+@media screen and (max-width: 800px) {
+  .home {
+    .main__section {
+      .left__section {
+      }
+      .heading {
+        p {
+          font-size: 2.5rem;
+        }
+      }
+    }
+  }
+}
 
 @media screen and (max-width: 1200px) {
   .home {
     .main__section {
       display: flex;
       justify-content: space-around;
+      margin: 0 50px;
       // align-items: center;
       .left__section {
         // height: 25vh;
@@ -119,6 +134,7 @@
     }
   }
 }
+
 @media screen and (max-width: 500px) {
   .home {
     height: 200px;

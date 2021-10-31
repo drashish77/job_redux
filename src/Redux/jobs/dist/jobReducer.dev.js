@@ -21,13 +21,31 @@ var INITIAL_STATE = {
   error: null,
   jobFetchSuccess: false,
   totalAvailableJobs: 0,
+  availableJobs: [],
   totalPostedJobs: 0,
   createJob: null,
   createJobSuccess: false,
   createJobErrorMessage: null,
   applyJob: null,
-  totalAppliedJobs: 0
+  totalAppliedJobs: 0,
+  jobApplicationSuccess: false
 };
+/*
+case postActions.GET_AVAILABLE_JOBS_SUCCESS:
+
+return {
+
+...state,
+
+availablePostLoader: false,
+
+availablePosts: payload.data,
+
+totalAvailablePosts: payload.metadata.count,
+const totalPages = Math.ceil(totalAvailablePosts && totalAvailablePosts / 20);
+};
+
+*/
 
 function jobReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
@@ -64,7 +82,8 @@ function jobReducer() {
       console.log(action.payload);
       return _objectSpread({}, state, {
         loading: false,
-        totalAvailableJobs: action.payload,
+        totalAvailableJobs: action.payload.metadata.count,
+        availableJobs: action.payload.data,
         jobFetchSuccess: true
       });
 
@@ -96,7 +115,6 @@ function jobReducer() {
       });
 
     case _jobActionTypes["default"].POST_NEW_JOB_START:
-      console.log(action.payload);
       return _objectSpread({}, state, {
         createJob: null,
         loading: true,
@@ -126,22 +144,24 @@ function jobReducer() {
 
     case _jobActionTypes["default"].APPLY_NEW_JOB_START:
       return _objectSpread({}, state, {
+        applyJob: null,
         loading: true,
-        error: null
+        error: null,
+        jobApplicationSuccess: false
       });
 
     case _jobActionTypes["default"].APPLY_NEW_JOB_SUCCESS:
       return _objectSpread({}, state, {
         loading: false,
         applyJob: action.payload,
-        jobFetchSuccess: true
+        jobApplicationSuccess: true
       });
 
     case _jobActionTypes["default"].APPLY_NEW_JOB_FAILURE:
       return _objectSpread({}, state, {
         loading: false,
         error: action.payload.error,
-        jobs: []
+        jobApplicationSuccess: false
       });
 
     case _jobActionTypes["default"].FETCH_APPLIED_JOBS_START:

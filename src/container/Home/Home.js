@@ -16,8 +16,6 @@ const Home2 = () => {
       history.push(routes.getAvailableJobs)
     } else if (currentUser && currentUser.userRole === 0) {
       history.push(routes.getPostedJobs)
-    } else {
-      history.push(routes.jobsRoute)
     }
   }
   return (

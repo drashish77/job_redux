@@ -16,7 +16,6 @@ const Login = () => {
   const { userLoginSuccess, currentUser, error, errorMessage } = useSelector(
     (state) => state.auth
   )
-  console.log(currentUser)
   const handleChange = (e) =>
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
 

@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import JobCard from '../../../components/JobCard/JobCard'
 import {
+  applyNewJobBegin,
   fetchCandidateJobsBegin,
-  fetchJobsBegin,
 } from '../../../Redux/jobs/jobActions'
 import '../Job.scss'
 import PaginationCard from '../Pagination/PaginationCard'
@@ -13,22 +13,23 @@ const AvailableJobs = () => {
   const dispatch = useDispatch()
   const [jobs, setJobs] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
-  const [itemsPerPage] = useState(3)
+  const [itemsPerPage] = useState(20)
   const [pageNumberLimit] = useState(4)
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(4)
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0)
-
-  const jobClickHandler = () => console.log('jobClicked')
+  const { totalAvailableJobs, availableJobs, jobFetchSuccess } = useSelector(
+    (state) => state.jobs
+  )
   const pages = []
-  for (let i = 1; i <= Math.ceil(jobs && jobs.length / itemsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(totalAvailableJobs / itemsPerPage); i++) {
     pages.push(i)
   }
   const handleClick = (event) => {
     setCurrentPage(+event.target.id)
   }
-  const indexOfLastItem = currentPage * itemsPerPage
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage
-  const currentItems = jobs && jobs.slice(indexOfFirstItem, indexOfLastItem)
+  // const indexOfLastItem = currentPage * itemsPerPage
+  // const indexOfFirstItem = indexOfLastItem - itemsPerPage
+  // const currentItems = jobs && jobs.slice(indexOfFirstItem, indexOfLastItem)
   const renderPageNumbers = pages.map((number) => {
     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
       return (
@@ -67,14 +68,20 @@ const AvailableJobs = () => {
   if (minPageNumberLimit >= 1) {
     pageDecrementBtn = <li onClick={handlePrevButton}> &hellip; </li>
   }
-  const { totalAvailableJobs } = useSelector((state) => state.jobs)
-  console.log(totalAvailableJobs)
+
+  console.log({ totalAvailableJobs, availableJobs })
   const token = localStorage.getItem('token')
 
-  useEffect(() => setJobs(totalAvailableJobs), [])
+  useEffect(() => setJobs(totalAvailableJobs), [totalAvailableJobs])
   useEffect(() => {
-    dispatch(fetchCandidateJobsBegin(token))
-  }, [])
+    dispatch(fetchCandidateJobsBegin({ page: currentPage, token: token }))
+  }, [currentPage])
+
+  // const jobClickHandler = () => {
+  //   let jobId
+  //   dispatch(applyNewJobBegin({ data: jobId, token: token }))
+  // }
+
   return (
     <div className='jobs'>
       <div className='job__home_logo'>
@@ -82,9 +89,12 @@ const AvailableJobs = () => {
       </div>
       <h2>Jobs for you</h2>
       <div className='all__jobs'>
-        {currentItems &&
-          currentItems.map((job) => {
-            console.log(job)
+        {availableJobs &&
+          availableJobs.map((job) => {
+            const body = { jobId: job.id, token: token }
+            const jobClickHandler = () => {
+              dispatch(applyNewJobBegin({ body, currentPage }))
+            }
             return (
               <div className='all__jobs-job' key={Math.random()}>
                 <JobCard

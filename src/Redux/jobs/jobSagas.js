@@ -18,20 +18,23 @@ import {
   fetchCandidateJobsFailure,
   fetchRecruiterJobsSuccess,
   fetchRecruiterJobsFailure,
+  fetchCandidateJobsBegin,
 } from './jobActions'
 import { getApiResponse } from '../../utils/apiHandler'
 import types from './jobActionTypes'
-
-const fetchJOBS = async () => {
-  return axios.get(`${BASE_URL}${routes.jobsRoute}`)
+//url: `https://jobs-api.squareboat.info/api/v1/jobs?page=${payload.page}`,
+const fetchJOBS = async (payload) => {
+  // return axios.get(`${BASE_URL}${routes.jobsRoute}?page=${payload.page}`)
+  return axios.get(
+    `https://jobs-api.squareboat.info/api/v1/jobs?page=${payload}`
+  )
 }
-const fetchAvailableJOBS = async (token) => {
-  console.log(token)
-  let url = `${BASE_URL}/candidates/jobs`
-  let method = 'GET'
+const fetchAvailableJOBS = async (payload) => {
+  let url = `${BASE_URL}/candidates/jobs?page=${payload.page}`
+
   let headers = {
     'Content-Type': 'application/json',
-    Authorization: token,
+    Authorization: payload.token,
   }
   return await axios.get(url, {
     headers: headers,
@@ -39,7 +42,6 @@ const fetchAvailableJOBS = async (token) => {
   // return getApiResponse(url, { method, headers })
 }
 const fetchRecruiterPostedJOBS = async (token) => {
-  console.log(token)
   let url = `${BASE_URL}/recruiters/jobs`
   let method = 'GET'
   let headers = {
@@ -51,38 +53,7 @@ const fetchRecruiterPostedJOBS = async (token) => {
   })
   // return getApiResponse(url, { method, headers })
 }
-
-export function* fetchJobs({ payload }) {
-  try {
-    const response = yield call(fetchJOBS)
-    if (response) {
-      yield put(fetchJobsSuccess(response.data))
-    }
-  } catch (error) {
-    yield put(fetchJobsFailure(error))
-  }
-}
-export function* fetchAvailableJobs({ payload }) {
-  try {
-    const response = yield call(fetchAvailableJOBS, payload)
-    yield put(fetchCandidateJobsSuccess(response.data.data))
-  } catch (error) {
-    yield put(fetchCandidateJobsFailure(error))
-  }
-}
-export function* fetchRecruiterPostedJobs({ payload }) {
-  console.log(payload)
-  try {
-    const response = yield call(fetchRecruiterPostedJOBS, payload)
-    console.log(response)
-    yield put(fetchRecruiterJobsSuccess(response.data.data))
-  } catch (error) {
-    yield put(fetchRecruiterJobsFailure(error))
-  }
-}
-
 const postJOB = async (body, token) => {
-  console.log(body, token)
   let url = `${BASE_URL}/jobs/`
 
   let headers = {
@@ -94,18 +65,95 @@ const postJOB = async (body, token) => {
   })
   // return getApiResponse(url, { method, headers })
 }
-export function* postAJob({ payload }) {
+
+export function* fetchJobs({ payload }) {
+  try {
+    const response = yield call(fetchJOBS, payload.page)
+    if (response) {
+      yield put(fetchJobsSuccess(response.data))
+    }
+  } catch (error) {
+    yield put(fetchJobsFailure(error))
+  }
+}
+export function* fetchAvailableJobs({ payload }) {
   console.log(payload)
   try {
+    const response = yield call(fetchAvailableJOBS, payload)
+
+    yield put(fetchCandidateJobsSuccess(response.data))
+  } catch (error) {
+    yield put(fetchCandidateJobsFailure(error))
+  }
+}
+export function* fetchRecruiterPostedJobs({ payload }) {
+  try {
+    const response = yield call(fetchRecruiterPostedJOBS, payload)
+
+    yield put(fetchRecruiterJobsSuccess(response.data.data))
+  } catch (error) {
+    yield put(fetchRecruiterJobsFailure(error))
+  }
+}
+
+export function* postAJob({ payload }) {
+  try {
     const response = yield call(postJOB, payload.data, payload.token)
-    console.log(response)
+
     yield put(postNewJobSuccess(response.data.data))
   } catch (error) {
     yield put(postNewJobFailure(error))
   }
 }
+
+const ApplyAJOB = async (body, token) => {
+  var data = JSON.stringify({
+    jobId: body,
+  })
+
+  let url = `${BASE_URL}/candidates/jobs`
+
+  let headers = {
+    'Content-Type': 'application/json',
+    Authorization: token,
+  }
+  return await axios.post(url, data, {
+    headers: headers,
+  })
+  // return getApiResponse(url, { method, headers })
+}
+
+export function* applyAJob({ payload }) {
+  console.log(payload.data)
+  try {
+    const response = yield call(
+      ApplyAJOB,
+      payload.data.body.jobId,
+      payload.data.body.token
+    )
+    // const response2 = yield call(
+    //   fetchAvailableJOBS,
+    //   payload.data.body.token,
+    //   payload.data.currentPage
+    // )
+    // if (response) {
+    //   yield put(
+    //     fetchCandidateJobsBegin({
+    //       token: payload.data.body.token,
+    //       page: payload.currentPage,
+    //     })
+    //   )
+    // }
+    yield put(applyNewJobSuccess(response.data.data))
+  } catch (error) {
+    yield put(applyNewJobFailure(error))
+  }
+}
 function* onPostJobsStart() {
   yield takeLatest(types.POST_NEW_JOB_START, postAJob)
+}
+function* onApplyJobStart() {
+  yield takeLatest(types.APPLY_NEW_JOB_START, applyAJob)
 }
 
 function* onFetchStart() {
@@ -125,5 +173,28 @@ export function* jobSagas() {
     call(onFetchAvailableJobsStart),
     call(onFetchPostedJobsStart),
     call(onPostJobsStart),
+    call(onApplyJobStart),
   ])
 }
+
+// export function* applyPostSaga({ payload }) {
+//   try {
+//     var data = JSON.stringify({ jobId: payload.id })
+//     var config = {
+//       method: 'post',
+//       url: 'https://jobs-api.squareboat.info/api/v1/candidates/jobs',
+//       headers: {
+//         Authorization: `${payload.token}`,
+//         'Content-Type': 'application/json',
+//       },
+//       data: data,
+//     }
+//     const result = yield sendRequest(config)
+//     if (result) {
+//       yield put(getAvailablePostsInitiate({ token: payload.token, page: 1 }))
+//     }
+//     yield put(postApplySuccess('Applied to post successfully'))
+//   } catch (error) {
+//     yield put(postApplyFailure(error))
+//   }
+// }

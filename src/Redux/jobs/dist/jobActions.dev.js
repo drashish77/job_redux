@@ -3,16 +3,17 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchAppliedJobsFailure = exports.fetchAppliedJobsSuccess = exports.fetchAppliedJobsBegin = exports.applyNewJobFailure = exports.applyNewJobSuccess = exports.applyNewJobBegin = exports.clearPostNewJob = exports.postNewJobFailure = exports.postNewJobSuccess = exports.postNewJobBegin = exports.fetchRecruiterJobsFailure = exports.fetchRecruiterJobsSuccess = exports.fetchRecruiterJobsBegin = exports.fetchCandidateJobsFailure = exports.fetchCandidateJobsSuccess = exports.fetchCandidateJobsBegin = exports.fetchJobsFailure = exports.fetchJobsSuccess = exports.fetchJobsBegin = void 0;
+exports.applyNewJobFailure = exports.applyNewJobSuccess = exports.applyNewJobBegin = exports.fetchAppliedJobsFailure = exports.fetchAppliedJobsSuccess = exports.fetchAppliedJobsBegin = exports.clearPostNewJob = exports.postNewJobFailure = exports.postNewJobSuccess = exports.postNewJobBegin = exports.fetchRecruiterJobsFailure = exports.fetchRecruiterJobsSuccess = exports.fetchRecruiterJobsBegin = exports.fetchCandidateJobsFailure = exports.fetchCandidateJobsSuccess = exports.fetchCandidateJobsBegin = exports.fetchJobsFailure = exports.fetchJobsSuccess = exports.fetchJobsBegin = void 0;
 
 var _jobActionTypes = _interopRequireDefault(require("./jobActionTypes"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 //ALL jobs fetching
-var fetchJobsBegin = function fetchJobsBegin() {
+var fetchJobsBegin = function fetchJobsBegin(data) {
   return {
-    type: _jobActionTypes["default"].FETCH_JOBS_START
+    type: _jobActionTypes["default"].FETCH_JOBS_START,
+    payload: data
   };
 };
 
@@ -128,41 +129,10 @@ var clearPostNewJob = function clearPostNewJob() {
   return {
     type: _jobActionTypes["default"].CLEAR_POST_NEW_JOB
   };
-}; //apply a job by candidate
-
-
-exports.clearPostNewJob = clearPostNewJob;
-
-var applyNewJobBegin = function applyNewJobBegin() {
-  return {
-    type: _jobActionTypes["default"].APPLY_NEW_JOB_START
-  };
-};
-
-exports.applyNewJobBegin = applyNewJobBegin;
-
-var applyNewJobSuccess = function applyNewJobSuccess(data) {
-  return {
-    type: _jobActionTypes["default"].APPLY_NEW_JOB_SUCCESS,
-    payload: {
-      data: data
-    }
-  };
-};
-
-exports.applyNewJobSuccess = applyNewJobSuccess;
-
-var applyNewJobFailure = function applyNewJobFailure(error) {
-  return {
-    type: _jobActionTypes["default"].APPLY_NEW_JOB_FAILURE,
-    payload: {
-      error: error
-    }
-  };
 }; //fetch all applied job by a candidate
 
 
-exports.applyNewJobFailure = applyNewJobFailure;
+exports.clearPostNewJob = clearPostNewJob;
 
 var fetchAppliedJobsBegin = function fetchAppliedJobsBegin() {
   return {
@@ -190,6 +160,40 @@ var fetchAppliedJobsFailure = function fetchAppliedJobsFailure(error) {
       error: error
     }
   };
-};
+}; //apply a job by candidate
+
 
 exports.fetchAppliedJobsFailure = fetchAppliedJobsFailure;
+
+var applyNewJobBegin = function applyNewJobBegin(data) {
+  return {
+    type: _jobActionTypes["default"].APPLY_NEW_JOB_START,
+    payload: {
+      data: data
+    }
+  };
+};
+
+exports.applyNewJobBegin = applyNewJobBegin;
+
+var applyNewJobSuccess = function applyNewJobSuccess(data) {
+  return {
+    type: _jobActionTypes["default"].APPLY_NEW_JOB_SUCCESS,
+    payload: {
+      data: data
+    }
+  };
+};
+
+exports.applyNewJobSuccess = applyNewJobSuccess;
+
+var applyNewJobFailure = function applyNewJobFailure(error) {
+  return {
+    type: _jobActionTypes["default"].APPLY_NEW_JOB_FAILURE,
+    payload: {
+      error: error
+    }
+  };
+};
+
+exports.applyNewJobFailure = applyNewJobFailure;

@@ -6,14 +6,31 @@ const INITIAL_STATE = {
   error: null,
   jobFetchSuccess: false,
   totalAvailableJobs: 0,
+  availableJobs: [],
   totalPostedJobs: 0,
   createJob: null,
   createJobSuccess: false,
   createJobErrorMessage: null,
   applyJob: null,
   totalAppliedJobs: 0,
+  jobApplicationSuccess: false,
 }
+/*
+case postActions.GET_AVAILABLE_JOBS_SUCCESS:
 
+return {
+
+...state,
+
+availablePostLoader: false,
+
+availablePosts: payload.data,
+
+totalAvailablePosts: payload.metadata.count,
+const totalPages = Math.ceil(totalAvailablePosts && totalAvailablePosts / 20);
+};
+
+*/
 export default function jobReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case types.FETCH_JOBS_START:
@@ -50,7 +67,8 @@ export default function jobReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         loading: false,
-        totalAvailableJobs: action.payload,
+        totalAvailableJobs: action.payload.metadata.count,
+        availableJobs: action.payload.data,
         jobFetchSuccess: true,
       }
 
@@ -84,7 +102,6 @@ export default function jobReducer(state = INITIAL_STATE, action) {
         jobs: [],
       }
     case types.POST_NEW_JOB_START:
-      console.log(action.payload)
       return {
         ...state,
         createJob: null,
@@ -118,8 +135,10 @@ export default function jobReducer(state = INITIAL_STATE, action) {
     case types.APPLY_NEW_JOB_START:
       return {
         ...state,
+        applyJob: null,
         loading: true,
         error: null,
+        jobApplicationSuccess: false,
       }
 
     case types.APPLY_NEW_JOB_SUCCESS:
@@ -127,7 +146,7 @@ export default function jobReducer(state = INITIAL_STATE, action) {
         ...state,
         loading: false,
         applyJob: action.payload,
-        jobFetchSuccess: true,
+        jobApplicationSuccess: true,
       }
 
     case types.APPLY_NEW_JOB_FAILURE:
@@ -135,8 +154,9 @@ export default function jobReducer(state = INITIAL_STATE, action) {
         ...state,
         loading: false,
         error: action.payload.error,
-        jobs: [],
+        jobApplicationSuccess: false,
       }
+
     case types.FETCH_APPLIED_JOBS_START:
       return {
         ...state,
