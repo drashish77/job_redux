@@ -19,6 +19,8 @@ import {
   fetchRecruiterJobsSuccess,
   fetchRecruiterJobsFailure,
   fetchCandidateJobsBegin,
+  fetchApplicationForAJobSuccess,
+  fetchApplicationForAJobFailure,
 } from './jobActions'
 import { getApiResponse } from '../../utils/apiHandler'
 import types from './jobActionTypes'
@@ -67,7 +69,6 @@ const postJOB = async (body, token) => {
 }
 
 const fetchAppliedJOBS = async (token) => {
-  console.log(token)
   let url = `${BASE_URL}/candidates/jobs/applied`
   let headers = {
     'Content-Type': 'application/json',
@@ -77,8 +78,29 @@ const fetchAppliedJOBS = async (token) => {
     headers: headers,
   })
 }
+const fetchApplicationsForAJOB = async (jobId, token) => {
+  let url = `${BASE_URL}/recruiters/jobs/${jobId}/candidates`
+  let headers = {
+    'Content-Type': 'application/json',
+    Authorization: token,
+  }
+  return await axios.get(url, {
+    headers: headers,
+  })
+}
+export function* fetchApplicationsForAJob({ payload }) {
+  try {
+    const response = yield call(
+      fetchApplicationsForAJOB,
+      payload.jobId,
+      payload.token
+    )
+    yield put(fetchApplicationForAJobSuccess(response.data.data))
+  } catch (error) {
+    yield put(fetchApplicationForAJobFailure(error))
+  }
+}
 export function* fetchAppliedJobs({ payload }) {
-  console.log(payload)
   try {
     const response = yield call(fetchAppliedJOBS, payload.token)
     yield put(fetchAppliedJobsSuccess(response.data.data))
@@ -189,6 +211,12 @@ function* onFetchPostedJobsStart() {
 function* onFetchApplyJobsStart() {
   yield takeLatest(types.FETCH_APPLIED_JOBS_START, fetchAppliedJobs)
 }
+function* onFetchApplicationForAJobStart() {
+  yield takeLatest(
+    types.FETCH_APPLICATIONS_FOR_A_JOB_START,
+    fetchApplicationsForAJob
+  )
+}
 
 export function* jobSagas() {
   yield all([
@@ -198,6 +226,7 @@ export function* jobSagas() {
     call(onPostJobsStart),
     call(onApplyJobStart),
     call(onFetchApplyJobsStart),
+    call(onFetchApplicationForAJobStart),
   ])
 }
 

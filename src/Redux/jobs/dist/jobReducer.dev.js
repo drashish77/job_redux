@@ -28,7 +28,9 @@ var INITIAL_STATE = {
   createJobErrorMessage: null,
   applyJob: null,
   totalAppliedJobs: 0,
-  jobApplicationSuccess: false
+  jobApplicationSuccess: false,
+  totalJobApplication: 0,
+  fetchApplicationSuccess: false
 };
 /*
 case postActions.GET_AVAILABLE_JOBS_SUCCESS:
@@ -170,7 +172,8 @@ function jobReducer() {
     case _jobActionTypes["default"].FETCH_APPLIED_JOBS_START:
       return _objectSpread({}, state, {
         loading: true,
-        error: null
+        error: null,
+        jobFetchSuccess: false
       });
 
     case _jobActionTypes["default"].FETCH_APPLIED_JOBS_SUCCESS:
@@ -184,6 +187,30 @@ function jobReducer() {
       return _objectSpread({}, state, {
         loading: false,
         error: action.payload.error,
+        jobFetchSuccess: false,
+        jobs: []
+      });
+
+    case _jobActionTypes["default"].FETCH_APPLICATIONS_FOR_A_JOB_START:
+      return _objectSpread({}, state, {
+        loading: true,
+        error: null,
+        fetchApplicationSuccess: false
+      });
+
+    case _jobActionTypes["default"].FETCH_APPLICATIONS_FOR_A_JOB_SUCCESS:
+      console.log(action.payload);
+      return _objectSpread({}, state, {
+        loading: false,
+        totalJobApplication: action.payload,
+        fetchApplicationSuccess: true
+      });
+
+    case _jobActionTypes["default"].FETCH_APPLICATIONS_FOR_A_JOB_FAILURE:
+      return _objectSpread({}, state, {
+        loading: false,
+        error: action.payload.error,
+        fetchApplicationSuccess: false,
         jobs: []
       });
 

@@ -48,7 +48,7 @@ const SingleJobDetail = ({ match, setModalIsOpen }) => {
           {/* <p>Currencies: {country.currencies[0]['code']}</p> */}
           <div className='lg:mx-24 mt-20 mb-12'>
             <h2 className='mx-5 my-5 text-blue-moderate font-semibold text-2xl'>
-              Applicants for this job
+              Applicants for this jobdfdf
             </h2>
             <div className='m-5'>
               <hr />

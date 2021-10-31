@@ -5,7 +5,10 @@ import { useHistory } from 'react-router'
 import Button from '../../../components/Button/Button'
 import JobCard from '../../../components/JobCard/JobCard'
 import routes from '../../../config/config'
-import { fetchRecruiterJobsBegin } from '../../../Redux/jobs/jobActions'
+import {
+  fetchRecruiterJobsBegin,
+  fetchApplicationForAJobBegin,
+} from '../../../Redux/jobs/jobActions'
 import '../Job.scss'
 import PaginationCard from '../Pagination/PaginationCard'
 import SingleJobDetail from './OpenModal'
@@ -70,11 +73,9 @@ const RecruitersJobs = () => {
     pageDecrementBtn = <li onClick={handlePrevButton}> &hellip; </li>
   }
   const showAllPostedJob = () => history.push(routes.createNewJob)
-  const viewApplicationHandler = (e) => {
-    setModalIsOpen(true)
-  }
+
   const { totalPostedJobs } = useSelector((state) => state.jobs)
-  console.log(totalPostedJobs)
+
   const token = localStorage.getItem('token')
   useEffect(() => {
     totalPostedJobs && setJobs(totalPostedJobs.data)
@@ -101,7 +102,13 @@ const RecruitersJobs = () => {
         <div className='all__jobs'>
           {currentItems &&
             currentItems.map((job) => {
-              console.log(job)
+              let jobId = job.id
+              const viewApplicationHandler = (e) => {
+                setModalIsOpen(true)
+                dispatch(
+                  fetchApplicationForAJobBegin({ jobId: jobId, token: token })
+                )
+              }
               return (
                 <div className='all__jobs-job' key={Math.random()}>
                   <JobCard

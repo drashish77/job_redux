@@ -5,41 +5,28 @@ import { getApiResponse } from '../../../utils/apiHandler'
 import data from '../../../assets/candidate.json'
 import EmployeeCard from '../../../components/employeCard/EmployeeCard'
 import './OpenModal.scss'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchApplicationForAJobBegin } from '../../../Redux/jobs/jobActions'
+
 const SingleJobDetail = ({ match, setModalIsOpen }) => {
+  const dispatch = useDispatch()
+
   const history = useHistory()
   const [loading, setLoading] = useState(false)
-  const [applications, setApplications] = useState(data)
   const [error, setError] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
   // console.log(data)
-  const performAPICall = async () => {
-    setLoading(true)
-    let response
-    let errored = false
-    try {
-      let url = `${BASE_URL}${routes.getOneJobDetails}/${match.params.id}`
-      response = await getApiResponse(url)
-    } catch (error) {
-      // setIsLoaded(true)
-      setError(error)
-      // errored = true
-    }
-    setApplications(response.data)
-    // setLoading(false)
-    return response
-  }
-  const singlejobApplications = async () => {
-    try {
-      var response = await performAPICall()
-      if (response !== undefined) {
-        setApplications([])
-        // history.push(routes.jobsRoute)
-      }
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  const { totalJobApplication, fetchApplicationSuccess } = useSelector(
+    (state) => state.jobs
+  )
+  const [applications] = useState(totalJobApplication)
+  let jobId
+  let token = localStorage.getItem('token')
+  const singlejobApplications = () => console.log('application clicked')
 
+  // useEffect(() => {
+  //   dispatch(fetchApplicationForAJobBegin({ jobId: jobId, token: token }))
+  // }, [jobId])
   return (
     <div className=' text-blue-moderate'>
       {/* <p>Currencies: {country.currencies[0]['code']}</p> */}
@@ -58,7 +45,7 @@ const SingleJobDetail = ({ match, setModalIsOpen }) => {
           <hr />
         </div>
         <p className=''>
-          Total {applications && applications.length} Applicants
+          Total {totalJobApplication && totalJobApplication.length} Applicants
         </p>
         <div className='modal_wrap'>
           {applications &&

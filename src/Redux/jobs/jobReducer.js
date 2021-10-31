@@ -14,6 +14,8 @@ const INITIAL_STATE = {
   applyJob: null,
   totalAppliedJobs: 0,
   jobApplicationSuccess: false,
+  totalJobApplication: 0,
+  fetchApplicationSuccess: false,
 }
 /*
 case postActions.GET_AVAILABLE_JOBS_SUCCESS:
@@ -165,6 +167,7 @@ export default function jobReducer(state = INITIAL_STATE, action) {
         ...state,
         loading: true,
         error: null,
+        jobFetchSuccess: false,
       }
 
     case types.FETCH_APPLIED_JOBS_SUCCESS:
@@ -180,6 +183,32 @@ export default function jobReducer(state = INITIAL_STATE, action) {
         ...state,
         loading: false,
         error: action.payload.error,
+        jobFetchSuccess: false,
+        jobs: [],
+      }
+    case types.FETCH_APPLICATIONS_FOR_A_JOB_START:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+        fetchApplicationSuccess: false,
+      }
+
+    case types.FETCH_APPLICATIONS_FOR_A_JOB_SUCCESS:
+      console.log(action.payload)
+      return {
+        ...state,
+        loading: false,
+        totalJobApplication: action.payload,
+        fetchApplicationSuccess: true,
+      }
+
+    case types.FETCH_APPLICATIONS_FOR_A_JOB_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error,
+        fetchApplicationSuccess: false,
         jobs: [],
       }
 

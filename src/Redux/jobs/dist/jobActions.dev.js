@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.applyNewJobFailure = exports.applyNewJobSuccess = exports.applyNewJobBegin = exports.clearPostNewJob = exports.postNewJobFailure = exports.postNewJobSuccess = exports.postNewJobBegin = exports.fetchAppliedJobsFailure = exports.fetchAppliedJobsSuccess = exports.fetchAppliedJobsBegin = exports.fetchRecruiterJobsFailure = exports.fetchRecruiterJobsSuccess = exports.fetchRecruiterJobsBegin = exports.fetchCandidateJobsFailure = exports.fetchCandidateJobsSuccess = exports.fetchCandidateJobsBegin = exports.fetchJobsFailure = exports.fetchJobsSuccess = exports.fetchJobsBegin = void 0;
+exports.fetchApplicationForAJobFailure = exports.fetchApplicationForAJobSuccess = exports.fetchApplicationForAJobBegin = exports.fetchAppliedJobsFailure = exports.fetchAppliedJobsSuccess = exports.fetchAppliedJobsBegin = exports.applyNewJobFailure = exports.applyNewJobSuccess = exports.applyNewJobBegin = exports.clearPostNewJob = exports.postNewJobFailure = exports.postNewJobSuccess = exports.postNewJobBegin = exports.fetchRecruiterJobsFailure = exports.fetchRecruiterJobsSuccess = exports.fetchRecruiterJobsBegin = exports.fetchCandidateJobsFailure = exports.fetchCandidateJobsSuccess = exports.fetchCandidateJobsBegin = exports.fetchJobsFailure = exports.fetchJobsSuccess = exports.fetchJobsBegin = void 0;
 
 var _jobActionTypes = _interopRequireDefault(require("./jobActionTypes"));
 
@@ -93,38 +93,10 @@ var fetchRecruiterJobsFailure = function fetchRecruiterJobsFailure(error) {
     type: _jobActionTypes["default"].FETCH_RECRUITER_JOBS_FAILURE,
     payload: error
   };
-}; //fetch all applied job by a candidate
-
-
-exports.fetchRecruiterJobsFailure = fetchRecruiterJobsFailure;
-
-var fetchAppliedJobsBegin = function fetchAppliedJobsBegin(token) {
-  return {
-    type: _jobActionTypes["default"].FETCH_APPLIED_JOBS_START,
-    payload: token
-  };
-};
-
-exports.fetchAppliedJobsBegin = fetchAppliedJobsBegin;
-
-var fetchAppliedJobsSuccess = function fetchAppliedJobsSuccess(data) {
-  return {
-    type: _jobActionTypes["default"].FETCH_APPLIED_JOBS_SUCCESS,
-    payload: data
-  };
-};
-
-exports.fetchAppliedJobsSuccess = fetchAppliedJobsSuccess;
-
-var fetchAppliedJobsFailure = function fetchAppliedJobsFailure(error) {
-  return {
-    type: _jobActionTypes["default"].FETCH_APPLIED_JOBS_FAILURE,
-    payload: error
-  };
 }; //post a new job by recruiter
 
 
-exports.fetchAppliedJobsFailure = fetchAppliedJobsFailure;
+exports.fetchRecruiterJobsFailure = fetchRecruiterJobsFailure;
 
 var postNewJobBegin = function postNewJobBegin(data) {
   return {
@@ -191,6 +163,62 @@ var applyNewJobFailure = function applyNewJobFailure(error) {
       error: error
     }
   };
-};
+}; //fetch all applied job by a candidate
+
 
 exports.applyNewJobFailure = applyNewJobFailure;
+
+var fetchAppliedJobsBegin = function fetchAppliedJobsBegin(token) {
+  return {
+    type: _jobActionTypes["default"].FETCH_APPLIED_JOBS_START,
+    payload: token
+  };
+};
+
+exports.fetchAppliedJobsBegin = fetchAppliedJobsBegin;
+
+var fetchAppliedJobsSuccess = function fetchAppliedJobsSuccess(data) {
+  return {
+    type: _jobActionTypes["default"].FETCH_APPLIED_JOBS_SUCCESS,
+    payload: data
+  };
+};
+
+exports.fetchAppliedJobsSuccess = fetchAppliedJobsSuccess;
+
+var fetchAppliedJobsFailure = function fetchAppliedJobsFailure(error) {
+  return {
+    type: _jobActionTypes["default"].FETCH_APPLIED_JOBS_FAILURE,
+    payload: error
+  };
+}; //fetch all applied job by a candidate
+
+
+exports.fetchAppliedJobsFailure = fetchAppliedJobsFailure;
+
+var fetchApplicationForAJobBegin = function fetchApplicationForAJobBegin(data) {
+  return {
+    type: _jobActionTypes["default"].FETCH_APPLICATIONS_FOR_A_JOB_START,
+    payload: data
+  };
+};
+
+exports.fetchApplicationForAJobBegin = fetchApplicationForAJobBegin;
+
+var fetchApplicationForAJobSuccess = function fetchApplicationForAJobSuccess(data) {
+  return {
+    type: _jobActionTypes["default"].FETCH_APPLICATIONS_FOR_A_JOB_SUCCESS,
+    payload: data
+  };
+};
+
+exports.fetchApplicationForAJobSuccess = fetchApplicationForAJobSuccess;
+
+var fetchApplicationForAJobFailure = function fetchApplicationForAJobFailure(error) {
+  return {
+    type: _jobActionTypes["default"].FETCH_APPLICATIONS_FOR_A_JOB_FAILURE,
+    payload: error
+  };
+};
+
+exports.fetchApplicationForAJobFailure = fetchApplicationForAJobFailure;

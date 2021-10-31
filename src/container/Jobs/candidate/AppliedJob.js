@@ -74,7 +74,7 @@ const Jobs = () => {
 
   useEffect(() => {
     dispatch(fetchAppliedJobsBegin({ token: token }))
-  }, [currentPage])
+  }, [totalAppliedJobs])
 
   const candidateJobHandler = () => history.push(routes.getAvailableJobs)
   return (
