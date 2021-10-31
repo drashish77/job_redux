@@ -21,7 +21,6 @@ const Jobs = () => {
     setModalIsOpen(true)
   }
   const history = useHistory()
-  const jobClickHandler = () => console.log('jobClicked')
   const pages = []
   for (let i = 1; i <= Math.ceil(jobs.length / itemsPerPage); i++) {
     pages.push(i)

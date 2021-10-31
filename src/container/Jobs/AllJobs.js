@@ -68,9 +68,9 @@ const AllJobs = () => {
   }
   const state = useSelector((state) => state.jobs)
   useEffect(() => {
-    setJobs(state && state.jobs.data)
+    state && setJobs(state.jobs.data)
     dispatch(fetchJobsBegin())
-  }, [])
+  }, [state])
   const handleLoadMore = () => {
     setItemsPerPage(itemsPerPage + 4)
   }
