@@ -13,6 +13,7 @@ import {
 } from './authActions'
 
 import types from './authActionTypes'
+import { toast } from 'react-toastify'
 
 const logIn = async (email, password) => {
   return axios.post(`${BASE_URL}${routes.loginRoute}`, {
@@ -58,6 +59,7 @@ export function* logInWithCredentials({ payload: { email, password } }) {
     if (user && user.data.success) {
       yield put(logInSuccess(user.data.data))
     }
+    toast.success('Login Successful!')
   } catch (error) {
     yield put(logInFailure(error.response.data))
   }
@@ -105,6 +107,7 @@ export function* registerWithCredentials({
         skills,
       })
     )
+    toast.success('Signup Successful!')
   } catch (error) {
     console.log(error)
     yield put(registerFailure(error))
