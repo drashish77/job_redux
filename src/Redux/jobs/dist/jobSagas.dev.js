@@ -26,6 +26,8 @@ var _apiHandler = require("../../utils/apiHandler");
 
 var _jobActionTypes = _interopRequireDefault(require("./jobActionTypes"));
 
+var _reactToastify = require("react-toastify");
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -78,7 +80,6 @@ regeneratorRuntime.mark(onFetchApplicationForAJobStart),
 /*#__PURE__*/
 regeneratorRuntime.mark(jobSagas);
 
-//url: `https://jobs-api.squareboat.info/api/v1/jobs?page=${payload.page}`,
 var fetchJOBS = function fetchJOBS(payload) {
   return regeneratorRuntime.async(function fetchJOBS$(_context) {
     while (1) {
@@ -472,38 +473,57 @@ var ApplyAJOB = function ApplyAJOB(body, token) {
 };
 
 function applyAJob(_ref7) {
-  var payload, response;
+  var payload, response, payloadNew;
   return regeneratorRuntime.wrap(function applyAJob$(_context14) {
     while (1) {
       switch (_context14.prev = _context14.next) {
         case 0:
           payload = _ref7.payload;
-          console.log(payload.data);
-          _context14.prev = 2;
-          _context14.next = 5;
+          _context14.prev = 1;
+          _context14.next = 4;
           return (0, _effects.call)(ApplyAJOB, payload.data.body.jobId, payload.data.body.token);
 
-        case 5:
+        case 4:
           response = _context14.sent;
+
+          if (!(response && response.data)) {
+            _context14.next = 12;
+            break;
+          }
+
           _context14.next = 8;
           return (0, _effects.put)((0, _jobActions.applyNewJobSuccess)(response.data.data));
 
         case 8:
-          _context14.next = 14;
+          payloadNew = {
+            token: payload.data.body.token,
+            page: payload.data.currentPage
+          };
+          _context14.next = 11;
+          return (0, _effects.put)((0, _jobActions.fetchCandidateJobsBegin)(payloadNew));
+
+        case 11:
+          _reactToastify.toast.success('Job application successful');
+
+        case 12:
+          _context14.next = 19;
           break;
 
-        case 10:
-          _context14.prev = 10;
-          _context14.t0 = _context14["catch"](2);
-          _context14.next = 14;
+        case 14:
+          _context14.prev = 14;
+          _context14.t0 = _context14["catch"](1);
+
+          _reactToastify.toast.error('Job application failed');
+
+          _context14.next = 19;
           return (0, _effects.put)((0, _jobActions.applyNewJobFailure)(_context14.t0));
 
-        case 14:
+        case 19:
         case "end":
           return _context14.stop();
       }
     }
-  }, _marked7, null, [[2, 10]]);
+  }, _marked7, null, [[1, 14]]);
 }
 
 function onPostJobsStart() {

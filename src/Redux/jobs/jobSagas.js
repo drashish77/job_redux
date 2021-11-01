@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 import { all, call, put, takeLatest } from 'redux-saga/effects'
 import routes, { BASE_URL } from '../../config/config'
 import {
@@ -24,6 +25,7 @@ import {
 } from './jobActions'
 import { getApiResponse } from '../../utils/apiHandler'
 import types from './jobActionTypes'
+import { toast } from 'react-toastify'
 //url: `https://jobs-api.squareboat.info/api/v1/jobs?page=${payload.page}`,
 const fetchJOBS = async (payload) => {
   // return axios.get(`${BASE_URL}${routes.jobsRoute}?page=${payload.page}`)
@@ -166,28 +168,25 @@ const ApplyAJOB = async (body, token) => {
 }
 
 export function* applyAJob({ payload }) {
-  console.log(payload.data)
   try {
     const response = yield call(
       ApplyAJOB,
       payload.data.body.jobId,
       payload.data.body.token
     )
-    // const response2 = yield call(
-    //   fetchAvailableJOBS,
-    //   payload.data.body.token,
-    //   payload.data.currentPage
-    // )
-    // if (response) {
-    //   yield put(
-    //     fetchCandidateJobsBegin({
-    //       token: payload.data.body.token,
-    //       page: payload.currentPage,
-    //     })
-    //   )
-    // }
-    yield put(applyNewJobSuccess(response.data.data))
+
+    if (response && response.data) {
+      yield put(applyNewJobSuccess(response.data.data))
+      const payloadNew = {
+        token: payload.data.body.token,
+        page: payload.data.currentPage,
+      }
+
+      yield put(fetchCandidateJobsBegin(payloadNew))
+      toast.success('Job application successful')
+    }
   } catch (error) {
+    toast.error('Job application failed')
     yield put(applyNewJobFailure(error))
   }
 }

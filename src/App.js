@@ -11,7 +11,8 @@ import Signup from './container/Auth/Signup/Signup'
 import AvailableJobs from './container/Jobs/candidate/AvailableJobs'
 import AppliedJob from './container/Jobs/candidate/AppliedJob'
 import JobCreated from './container/Jobs/recruiter/JobCreated'
-
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 // import AllJobs from './container/Jobs/AllJobs'
 import PostAJob from './container/Jobs/recruiter/PostAJob'
 import RecruitersJobs from './container/Jobs/recruiter/RecruiterJobs'
@@ -19,6 +20,7 @@ function App() {
   return (
     <div className='app'>
       <Header />
+      <ToastContainer />
       <Switch>
         <Route path='/auth/login' component={Login} />
         <Route path='/auth/logout' component={Login} />

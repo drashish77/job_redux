@@ -83,6 +83,11 @@ const AvailableJobs = () => {
   //   dispatch(applyNewJobBegin({ data: jobId, token: token }))
   // }
 
+  /* dispatch(
+    fetchCandidateJobsBegin({ page: currentPage, token: token })
+    ) 
+    */
+
   return (
     <div className='jobs'>
       <div className='job__home_logo'>
@@ -95,9 +100,6 @@ const AvailableJobs = () => {
             const body = { jobId: job.id, token: token }
             const jobClickHandler = () => {
               dispatch(applyNewJobBegin({ body, currentPage }))
-              dispatch(
-                fetchCandidateJobsBegin({ page: currentPage, token: token })
-              )
             }
             return (
               <div className='all__jobs-job' key={Math.random()}>
@@ -107,7 +109,7 @@ const AvailableJobs = () => {
                   location={job.location}
                   buttonTitle='Apply'
                   onClick={jobClickHandler}
-                />
+                ></JobCard>
               </div>
             )
           })}
