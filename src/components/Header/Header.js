@@ -6,6 +6,8 @@ import './header.scss'
 import Button from '../Button/Button'
 import { useSelector, useDispatch } from 'react-redux'
 import { logOut } from '../../Redux/auth/authActions'
+import { toast } from 'react-toastify'
+
 const Header = (props) => {
   const [isActive, setIsActive] = useState(false)
   const dispatch = useDispatch()
@@ -32,6 +34,7 @@ const Header = (props) => {
     localStorage.removeItem('name')
     localStorage.removeItem('userData')
     history.push(routes.rootRoute)
+    toast.success('Successfully Logged out')
   }
   const postAJobHandler = () => history.push(routes.createNewJob)
   const applyAJobHandler = () => history.push(routes.applyForAJob)

@@ -55,7 +55,7 @@ const resetPassword = async (password, confirmPassword, token) => {
 export function* logInWithCredentials({ payload: { email, password } }) {
   try {
     const user = yield call(logIn, email, password)
-    console.log(user && user.data.success)
+
     if (user && user.data.success) {
       yield put(logInSuccess(user.data.data))
     }
@@ -109,7 +109,8 @@ export function* registerWithCredentials({
     )
     toast.success('Signup Successful!')
   } catch (error) {
-    console.log(error)
+    toast.error('Signup failed!')
+    // console.log(error)
     yield put(registerFailure(error))
   }
 }

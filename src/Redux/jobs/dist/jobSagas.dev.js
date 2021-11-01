@@ -244,25 +244,33 @@ function fetchApplicationsForAJob(_ref) {
 
         case 4:
           response = _context7.sent;
-          _context7.next = 7;
+
+          if (!(response && response.data)) {
+            _context7.next = 8;
+            break;
+          }
+
+          _context7.next = 8;
           return (0, _effects.put)((0, _jobActions.fetchApplicationForAJobSuccess)(response.data.data));
 
-        case 7:
-          _context7.next = 13;
+        case 8:
+          _reactToastify.toast.success('Job application successfully showing');
+
+          _context7.next = 15;
           break;
 
-        case 9:
-          _context7.prev = 9;
+        case 11:
+          _context7.prev = 11;
           _context7.t0 = _context7["catch"](1);
-          _context7.next = 13;
+          _context7.next = 15;
           return (0, _effects.put)((0, _jobActions.fetchApplicationForAJobFailure)(_context7.t0));
 
-        case 13:
+        case 15:
         case "end":
           return _context7.stop();
       }
     }
-  }, _marked, null, [[1, 9]]);
+  }, _marked, null, [[1, 11]]);
 }
 
 function fetchAppliedJobs(_ref2) {
@@ -421,25 +429,36 @@ function postAJob(_ref6) {
 
         case 4:
           response = _context12.sent;
-          _context12.next = 7;
+
+          if (!(response && response.data)) {
+            _context12.next = 8;
+            break;
+          }
+
+          _context12.next = 8;
           return (0, _effects.put)((0, _jobActions.postNewJobSuccess)(response.data.data));
 
-        case 7:
-          _context12.next = 13;
+        case 8:
+          _reactToastify.toast.success('Job created successfully');
+
+          _context12.next = 16;
           break;
 
-        case 9:
-          _context12.prev = 9;
+        case 11:
+          _context12.prev = 11;
           _context12.t0 = _context12["catch"](1);
-          _context12.next = 13;
+
+          _reactToastify.toast.success('Job creation failed');
+
+          _context12.next = 16;
           return (0, _effects.put)((0, _jobActions.postNewJobFailure)(_context12.t0));
 
-        case 13:
+        case 16:
         case "end":
           return _context12.stop();
       }
     }
-  }, _marked6, null, [[1, 9]]);
+  }, _marked6, null, [[1, 11]]);
 }
 
 var ApplyAJOB = function ApplyAJOB(body, token) {

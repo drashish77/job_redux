@@ -97,7 +97,10 @@ export function* fetchApplicationsForAJob({ payload }) {
       payload.jobId,
       payload.token
     )
-    yield put(fetchApplicationForAJobSuccess(response.data.data))
+    if (response && response.data) {
+      yield put(fetchApplicationForAJobSuccess(response.data.data))
+    }
+    toast.success('Job application successfully showing')
   } catch (error) {
     yield put(fetchApplicationForAJobFailure(error))
   }
@@ -143,9 +146,12 @@ export function* fetchRecruiterPostedJobs({ payload }) {
 export function* postAJob({ payload }) {
   try {
     const response = yield call(postJOB, payload.data, payload.token)
-
-    yield put(postNewJobSuccess(response.data.data))
+    if (response && response.data) {
+      yield put(postNewJobSuccess(response.data.data))
+    }
+    toast.success('Job created successfully')
   } catch (error) {
+    toast.success('Job creation failed')
     yield put(postNewJobFailure(error))
   }
 }
