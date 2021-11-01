@@ -15,6 +15,7 @@ const Header = (props) => {
   let menuRef = useClickOutside(() => {
     setIsActive(false)
   })
+
   const history = useHistory()
   const root = () => {
     history.push(routes.rootRoute)
@@ -50,8 +51,8 @@ const Header = (props) => {
           <i className='fas fa-bars'></i>
         </div> */}
 
-        <div className={isActive ? 'button_active' : 'button_inActive'}>
-          <div className='navbar__left'>
+        <div className=''>
+          <div className={isActive ? 'navbar__left-active' : 'navbar__left'}>
             {/* {state?.userLoginSuccess ? <div></div>} */}
             {currentUser ? (
               <div className='nav__left_wrap'>

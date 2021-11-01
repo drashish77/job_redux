@@ -52,7 +52,7 @@
   color: black;
 }
 
-.hamburger {
+.burger {
   display: none;
   align-items: center;
 }
@@ -99,6 +99,17 @@
 
   .navbar__left {
     display: none;
+  }
+
+  .navbar__left-active {
+    position: fixed;
+    top: 10%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+    text-align: center;
   }
 
   .divider {
