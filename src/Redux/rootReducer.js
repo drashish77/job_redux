@@ -3,21 +3,27 @@ import { combineReducers } from 'redux'
 import auth from './auth/authReducer'
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-const authPersistConfig = {
-  key: 'auth',
-  storage: storage,
+
+const persistConfig = {
+  key: 'root',
+  storage,
   whitelist: ['auth'],
 }
-const jobsPersistConfig = {
-  key: 'jobs',
-  storage: storage,
-  whitelist: ['jobs'],
-}
+// const authPersistConfig = {
+//   key: 'root',
+//   storage: storage,
+//   whitelist: ['auth'],
+// }
+// const jobsPersistConfig = {
+//   key: 'root',
+//   storage: storage,
+//   whitelist: ['jobs'],
+// }
 const rootReducer = combineReducers({
-  auth: persistReducer(authPersistConfig, auth),
-  jobs: persistReducer(jobsPersistConfig, jobs),
+  auth: auth,
+  jobs: jobs,
 })
-export default persistReducer(authPersistConfig, rootReducer)
+export default persistReducer(persistConfig, rootReducer)
 
 // import { combineReducers } from 'redux'
 // import auth from './auth/authReducer'

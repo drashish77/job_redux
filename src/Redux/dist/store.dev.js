@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.persister = exports.store = void 0;
+exports["default"] = exports.persister = exports.store = void 0;
 
 var _redux = require("redux");
 
@@ -24,7 +24,11 @@ var middlewares = [sagaMiddleware, _reduxLogger["default"]];
 var store = (0, _redux.createStore)(_rootReducer["default"], _redux.applyMiddleware.apply(void 0, middlewares));
 exports.store = store;
 sagaMiddleware.run(_rootSaga["default"]);
-var persister = (0, _reduxPersist.persistStore)(store); // const storePersist = { store, persister }
-// export default { store, persister }
-
+var persister = (0, _reduxPersist.persistStore)(store);
 exports.persister = persister;
+var storePersist = {
+  store: store,
+  persister: persister
+};
+var _default = storePersist;
+exports["default"] = _default;

@@ -17,22 +17,27 @@ var _storage = _interopRequireDefault(require("redux-persist/lib/storage"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var authPersistConfig = {
-  key: 'auth',
+var persistConfig = {
+  key: 'root',
   storage: _storage["default"],
   whitelist: ['auth']
-};
-var jobsPersistConfig = {
-  key: 'jobs',
-  storage: _storage["default"],
-  whitelist: ['jobs']
-};
+}; // const authPersistConfig = {
+//   key: 'root',
+//   storage: storage,
+//   whitelist: ['auth'],
+// }
+// const jobsPersistConfig = {
+//   key: 'root',
+//   storage: storage,
+//   whitelist: ['jobs'],
+// }
+
 var rootReducer = (0, _redux.combineReducers)({
-  auth: (0, _reduxPersist.persistReducer)(authPersistConfig, _authReducer["default"]),
-  jobs: (0, _reduxPersist.persistReducer)(jobsPersistConfig, _jobReducer["default"])
+  auth: _authReducer["default"],
+  jobs: _jobReducer["default"]
 });
 
-var _default = (0, _reduxPersist.persistReducer)(authPersistConfig, rootReducer); // import { combineReducers } from 'redux'
+var _default = (0, _reduxPersist.persistReducer)(persistConfig, rootReducer); // import { combineReducers } from 'redux'
 // import auth from './auth/authReducer'
 // export default combineReducers({ auth, })
 // import { persistReducer } from 'redux-persist'
