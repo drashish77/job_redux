@@ -28,7 +28,7 @@ const Home2 = () => {
         <meta name='description' content='This is job portal home page' />
       </Helmet>
       <div className='wrapper'>
-        <div className='main__section'>
+        {/* <div className='main__section'>
           <div className='left__section'>
             <div className='heading'>
               <p>Welcome to</p>
@@ -45,6 +45,29 @@ const Home2 = () => {
           </div>
 
           <div className='right__section'>
+            <img
+              src='https://images.unsplash.com/photo-1554774853-719586f82d77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
+              className=''
+              alt=''
+            />
+          </div>
+        </div> */}
+        <div className='main__section'>
+          <div className='heading'>
+            <div className='heading_inner'>
+              <p>Welcome to</p>
+              <p>
+                My<span>Jobs</span>
+              </p>
+            </div>
+            <Button
+              title='Get Started'
+              color='btn-light'
+              onClick={fetchJobHandler}
+            />
+          </div>
+
+          <div className='img2'>
             <img
               src='https://images.unsplash.com/photo-1554774853-719586f82d77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
               className=''
