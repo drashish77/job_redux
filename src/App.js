@@ -17,6 +17,8 @@ import 'react-toastify/dist/ReactToastify.css'
 import PostAJob from './container/Jobs/recruiter/PostAJob'
 import RecruitersJobs from './container/Jobs/recruiter/RecruiterJobs'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
+import PrivateRoute from './PrivateRoute'
+
 function App() {
   return (
     <div className='app'>
@@ -30,16 +32,29 @@ function App() {
         </Helmet>
         <Switch>
           <Route path='/auth/login' component={Login} />
+          <PrivateRoute
+            path={routes.getAlreadyAppliedJobs}
+            component={AppliedJob}
+          />
           <Route path='/auth/logout' component={Login} />
           <Route path={routes.registerRoute} component={Signup} />
           {/* <Route path={routes.jobsRoute} component={AllJobs} /> */}
           <Route path={routes.forgetPassword} component={ForgotPassword} />
           <Route path={routes.resetPassword} component={ResetPassword} />
-          <Route path={routes.getAlreadyAppliedJobs} component={AppliedJob} />
-          <Route path={routes.candidates} component={AvailableJobs} />
-          <Route path={routes.getAvailableJobs} component={AvailableJobs} />
-          <Route path={routes.getPostedJobs} component={RecruitersJobs} />
-          <Route path={routes.createNewJob} component={PostAJob} />
+          <PrivateRoute
+            path={routes.getAlreadyAppliedJobs}
+            component={AppliedJob}
+          />
+          <PrivateRoute path={routes.candidates} component={AvailableJobs} />
+          <PrivateRoute
+            path={routes.getAvailableJobs}
+            component={AvailableJobs}
+          />
+          <PrivateRoute
+            path={routes.getPostedJobs}
+            component={RecruitersJobs}
+          />
+          <PrivateRoute path={routes.createNewJob} component={PostAJob} />
           {/* <Route path={routes.createNewJob} component={PostAJob} /> */}
           <Route path='/' component={Home} exact />
         </Switch>
