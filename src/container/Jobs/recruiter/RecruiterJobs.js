@@ -20,7 +20,7 @@ const RecruitersJobs = () => {
   const dispatch = useDispatch()
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
-  const [itemsPerPage] = useState(20)
+  const [itemsPerPage] = useState(12)
   const [pageNumberLimit] = useState(4)
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(4)
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0)
@@ -28,19 +28,19 @@ const RecruitersJobs = () => {
   const { totalPostedJobs, postedJobs, recruiterJobFetchSuccess } = useSelector(
     (state) => state.jobs
   )
-
-  let jobs = totalPostedJobs.data
+  console.log({ totalPostedJobs, postedJobs })
+  let jobs = postedJobs
 
   const pages = []
-  for (let i = 1; i <= Math.ceil(totalPostedJobs.data / itemsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(postedJobs.length / itemsPerPage); i++) {
     pages.push(i)
   }
   const handleClick = (event) => {
     setCurrentPage(+event.target.id)
   }
-  // const indexOfLastItem = currentPage * itemsPerPage
-  // const indexOfFirstItem = indexOfLastItem - itemsPerPage
-  // const currentItems = jobs && jobs.slice(indexOfFirstItem, indexOfLastItem)
+  const indexOfLastItem = currentPage * itemsPerPage
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage
+  const currentItems = jobs && jobs.slice(indexOfFirstItem, indexOfLastItem)
   const renderPageNumbers = pages.map((number) => {
     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
       return (
@@ -77,7 +77,7 @@ const RecruitersJobs = () => {
   }
   let pageDecrementBtn = null
   if (minPageNumberLimit >= 1) {
-    pageDecrementBtn = <li onClick={handlePrevButton}> &hellip; </li>
+    pageDecrementBtn = <sp onClick={handlePrevButton}> &hellip; </sp>
   }
   const showAllPostedJob = () => history.push(routes.createNewJob)
 
@@ -87,7 +87,7 @@ const RecruitersJobs = () => {
   // }, [totalPostedJobs])
   useEffect(() => {
     // setJobs(totalPostedJobs.data)
-    dispatch(fetchRecruiterJobsBegin({ page: currentPage, token: token }))
+    dispatch(fetchRecruiterJobsBegin({ token: token }))
   }, [currentPage])
   const homeButtonHandler = () => history.push(routes.getPostedJobs)
   return (
@@ -110,8 +110,8 @@ const RecruitersJobs = () => {
         </div>
       ) : (
         <div className='all__jobs'>
-          {postedJobs &&
-            postedJobs.map((job) => {
+          {currentItems &&
+            currentItems.map((job) => {
               let jobId = job.id
               const viewApplicationHandler = (e) => {
                 setModalIsOpen(true)

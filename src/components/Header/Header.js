@@ -79,7 +79,15 @@ const Header = (props) => {
             ) : null}
 
             {currentUser && currentUser.token ? (
-              <Button title='Logout' color='dark' onClick={logout} />
+              <div className='wrapper_dropdown'>
+                <label>
+                  <i className='fas fa-caret-down'></i>
+                </label>
+                <ul>
+                  <li onClick={logout}>Logout</li>
+                </ul>
+                {/* <Button title='Logout' color='dark' onClick={logout} /> */}
+              </div>
             ) : (
               <>
                 <Button title='Login/Signup' color='dark' onClick={login} />
@@ -87,12 +95,12 @@ const Header = (props) => {
             )}
           </div>
         </div>
-        <div
+        {/* <div
           className='burger'
           onClick={() => setIsActive((isActive) => !isActive)}
         >
           <i className='fas fa-bars'></i>
-        </div>
+        </div> */}
       </div>
       <div className='divider'></div>
     </div>

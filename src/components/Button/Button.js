@@ -4,7 +4,13 @@ const Button = ({ title, color, onClick }) => {
     <div className=''>
       <button
         type='submit'
-        className={`button ${color === 'dark' ? 'btn-dark' : 'btn-light'}`}
+        className={`button ${
+          color === 'dark'
+            ? 'btn-dark'
+            : color === 'extraLight'
+            ? 'btn-extraLight'
+            : 'btn-light'
+        }`}
         onClick={onClick}
       >
         {title}

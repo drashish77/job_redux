@@ -10,14 +10,16 @@ const JobCard = ({
 }) => {
   return (
     <div className='jobCard'>
-      <h4 className='heading'>{title}</h4>
-      <p className='multi-line-truncate'>{description}</p>
+      <div className='description2'>
+        <span className='multi-line-truncate_head'>{title}</span>
+        <p className='multi-line-truncate '>{description}</p>
+      </div>
       <div className='jobCard__bottom'>
         <div className='location'>
           <i className='fas fa-map-marker-alt'></i> <span>{location}</span>
         </div>
         {buttonTitle && (
-          <Button title={buttonTitle} color='light' onClick={onClick} />
+          <Button title={buttonTitle} color='extraLight' onClick={onClick} />
         )}
         {children}
       </div>

@@ -88,16 +88,8 @@
   text-align: center;
   align-items: center;
 }
-.burger {
-  display: none;
-}
+
 @media (max-width: 500px) {
-  .hamburger {
-    display: block;
-  }
-  .navbar__left {
-    display: none;
-  }
   .navbar__left-active {
     position: fixed;
     top: 10%;
@@ -131,22 +123,9 @@ i {
 .nav__left_wrap {
   display: flex;
   align-items: center;
-  * {
-    margin-right: 5px;
-  }
+  margin: 0 10px;
 }
-// .nav__left_wrap_inner {
-//   display: flex;
-//   .nav_form {
-//     display: flex;
 
-//     p {
-//       cursor: pointer;
-//       color: $gray;
-//     }
-//   }
-// }
-//new
 .nav_form p {
   display: inline-block;
 }
@@ -185,4 +164,84 @@ i {
 }
 .nav_form.stroke p:hover:after {
   width: 60%;
+}
+.wrapper_dropdown {
+  position: relative;
+
+  ul {
+    opacity: 0;
+    visibility: hidden;
+    text-align: left;
+    transition: all 200ms;
+  }
+
+  &:hover ul {
+    opacity: 1;
+    visibility: visible;
+  }
+  ul {
+    position: absolute;
+    padding: 4px 0;
+    top: 28px;
+    right: 0;
+    width: 80px;
+    background-color: white;
+    border: 1px solid hsl(0, 0%, 80%);
+    border-radius: 4px;
+    box-shadow: 0 3px rgba(0, 0, 0, 0.05);
+    list-style-type: none;
+
+    &:before {
+      content: '';
+
+      position: absolute;
+      top: -12px;
+      height: 12px;
+      width: 100%;
+
+      background-color: transparent;
+    }
+
+    &:after {
+      content: '';
+
+      position: absolute;
+      right: 6px;
+      top: -16px;
+      height: 0;
+      width: 0;
+
+      border: 8px solid transparent;
+      border-bottom-color: hsl(0, 0%, 80%);
+    }
+  }
+
+  li {
+    padding: 5px 10px;
+
+    color: hsl(0, 0%, 60%);
+    cursor: pointer;
+
+    transition: all 100ms;
+
+    &:hover {
+      background-color: hsl(0, 0%, 90%);
+      color: black;
+    }
+
+    &:first-of-type:after {
+      content: '';
+
+      position: absolute;
+      right: 6px;
+      top: -15px;
+      height: 0;
+      width: 0;
+      z-index: 1;
+
+      border: 8px solid transparent;
+      border-bottom-color: white;
+      pointer-events: none;
+    }
+  }
 }

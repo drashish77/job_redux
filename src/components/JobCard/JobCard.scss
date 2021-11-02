@@ -1,10 +1,24 @@
 @import '../../scss/variables/Variable.scss';
 .jobCard {
-  color: $darkBlue;
+  color: $lightBlue;
   background-color: $white;
-  margin: 10px;
-  padding: 10px;
+  padding: 8px 12px;
+  min-width: 230px;
+  min-height: 160px;
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  // span {
+  //   display: block;
+  //   font-size: 22px;
+  //   font-weight: 400;
+  //   margin-top: 10px;
+  // }
+  p {
+    font-size: 14px;
+  }
   .jobCard__bottom {
     display: flex;
     justify-content: space-between;
@@ -12,17 +26,31 @@
     align-items: center;
     padding: 10px;
     i {
-      color: $darkBlue;
+      color: $skyBlueDark;
     }
   }
 }
 .multi-line-truncate {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 3;
   overflow: hidden;
 }
-
+.multi-line-truncate_head {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  // display: block;
+  font-size: 22px;
+  font-weight: 400;
+  margin-top: 10px;
+}
+@media screen and (max-width: 500px) {
+  .jobCard {
+    margin: 10px;
+  }
+}
 // .jobCard {
 //   color: $darkBlue;
 //   background-color: $white;

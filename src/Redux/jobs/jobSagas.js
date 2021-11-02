@@ -43,7 +43,7 @@ const fetchAvailableJOBS = async (payload) => {
   // return getApiResponse(url, { method, headers })
 }
 const fetchRecruiterPostedJOBS = async (payload) => {
-  let url = `${process.env.REACT_APP_BASE_URL}/recruiters/jobs?page=${payload.page}`
+  let url = `${process.env.REACT_APP_BASE_URL}/recruiters/jobs`
 
   let headers = {
     'Content-Type': 'application/json',

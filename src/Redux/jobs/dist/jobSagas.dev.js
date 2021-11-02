@@ -122,7 +122,7 @@ var fetchRecruiterPostedJOBS = function fetchRecruiterPostedJOBS(payload) {
     while (1) {
       switch (_context3.prev = _context3.next) {
         case 0:
-          url = "".concat(process.env.REACT_APP_BASE_URL, "/recruiters/jobs?page=").concat(payload.page);
+          url = "".concat(process.env.REACT_APP_BASE_URL, "/recruiters/jobs");
           headers = {
             'Content-Type': 'application/json',
             Authorization: payload.token
