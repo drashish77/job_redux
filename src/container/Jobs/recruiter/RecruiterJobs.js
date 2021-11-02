@@ -28,7 +28,7 @@ const RecruitersJobs = () => {
   const { totalPostedJobs, postedJobs, recruiterJobFetchSuccess } = useSelector(
     (state) => state.jobs
   )
-  console.log({ totalPostedJobs, postedJobs })
+
   let jobs = postedJobs
 
   const pages = []

@@ -10,6 +10,7 @@
 form {
   margin: auto;
   padding: 20px;
+  color: #303f60;
 }
 
 .login {
@@ -20,7 +21,7 @@ form {
   border-radius: 20px;
 }
 .login h2 {
-  color: #1a253c;
+  color: #303f60;
 }
 .login .error {
   color: red;

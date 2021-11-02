@@ -35,7 +35,7 @@ function App() {
           {/* <Route path={routes.jobsRoute} component={AllJobs} /> */}
           <Route path={routes.forgetPassword} component={ForgotPassword} />
           <Route path={routes.resetPassword} component={ResetPassword} />
-          <Route path={routes.applyForAJob} component={AppliedJob} />
+          <Route path={routes.getAlreadyAppliedJobs} component={AppliedJob} />
           <Route path={routes.candidates} component={AvailableJobs} />
           <Route path={routes.getAvailableJobs} component={AvailableJobs} />
           <Route path={routes.getPostedJobs} component={RecruitersJobs} />

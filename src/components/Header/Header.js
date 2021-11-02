@@ -37,7 +37,7 @@ const Header = (props) => {
     toast.success('Successfully Logged out')
   }
   const postAJobHandler = () => history.push(routes.createNewJob)
-  const applyAJobHandler = () => history.push(routes.applyForAJob)
+  const applyAJobHandler = () => history.push(routes.getAlreadyAppliedJobs)
   return (
     <div>
       <div className='header' ref={menuRef}>

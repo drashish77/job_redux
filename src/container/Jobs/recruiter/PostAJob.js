@@ -47,7 +47,7 @@ const PostAJob = () => {
       </Helmet>
       <div className='login'>
         <form onSubmit={handleSubmit}>
-          <h2>Post a Job</h2>
+          <h2 id='postJob'>Post a Job</h2>
           <Input
             heading='Job title*'
             name='title'

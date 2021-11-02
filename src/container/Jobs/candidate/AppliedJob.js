@@ -84,6 +84,7 @@ const Jobs = () => {
   }, [])
 
   const candidateJobHandler = () => history.push(routes.getAvailableJobs)
+  // const homeButtonHandler = () => history.push(routes.getAvailableJobs)
   return (
     <div className='jobs'>
       <Helmet>
@@ -94,7 +95,11 @@ const Jobs = () => {
         />
       </Helmet>
       <div className='job__home_logo'>
-        <i className='fas fa-home'></i> <span>{`Home > Applied Jobs`}</span>
+        <span onClick={candidateJobHandler}>
+          <i className='fas fa-home'></i> <span>Home </span>
+        </span>
+        <span>{`>`}</span>
+        <span> Applied Jobs</span>
       </div>
       <h2>Jobs applied by you</h2>
       {currentItems && currentItems.length === 0 ? (
