@@ -53,6 +53,7 @@
 .card__heading {
   color: #303f60;
   font-weight: bolder;
+  margin-left: 20px;
 }
 
 .section__three {

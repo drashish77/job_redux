@@ -63,27 +63,17 @@ const Header = (props) => {
                   {currentUser &&
                     currentUser.token &&
                     (currentUser.userRole === 0 ? (
-                      <div className='nav_form'>
-                        <Button color='dark' title='Recruiter' />
-                        <Button
-                          color='dark'
-                          title='Post a Job'
-                          onClick={postAJobHandler}
-                        />
+                      <div className='nav_form stroke'>
+                        <p onClick={postAJobHandler}>Post a Job</p>
                       </div>
                     ) : (
                       <div className='nav_form'>
-                        <Button color='dark' title='Candidate' />
-                        <Button
-                          color='dark'
-                          title='Applied Jobs'
-                          onClick={applyAJobHandler}
-                        />
+                        <p onClick={applyAJobHandler}>Applied Jobs</p>
                       </div>
                     ))}
                 </div>
                 <div className='menu__left'>
-                  {currentUser && currentUser.name[0]}
+                  <span>{currentUser && currentUser.name[0]}</span>
                 </div>
               </div>
             ) : null}
@@ -92,7 +82,7 @@ const Header = (props) => {
               <Button title='Logout' color='dark' onClick={logout} />
             ) : (
               <>
-                <Button title='Login' color='dark' onClick={login} />
+                <Button title='Login/Signup' color='dark' onClick={login} />
               </>
             )}
           </div>

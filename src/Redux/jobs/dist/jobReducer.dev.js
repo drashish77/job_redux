@@ -23,31 +23,18 @@ var INITIAL_STATE = {
   totalAvailableJobs: 0,
   availableJobs: [],
   totalPostedJobs: 0,
+  postedJobs: [],
   createJob: null,
   createJobSuccess: false,
   createJobErrorMessage: null,
   applyJob: null,
   totalAppliedJobs: 0,
+  appliedJobFetchSuccess: false,
   jobApplicationSuccess: false,
   totalJobApplication: 0,
-  fetchApplicationSuccess: false
+  fetchApplicationSuccess: false,
+  recruiterJobFetchSuccess: false
 };
-/*
-case postActions.GET_AVAILABLE_JOBS_SUCCESS:
-
-return {
-
-...state,
-
-availablePostLoader: false,
-
-availablePosts: payload.data,
-
-totalAvailablePosts: payload.metadata.count,
-const totalPages = Math.ceil(totalAvailablePosts && totalAvailablePosts / 20);
-};
-
-*/
 
 function jobReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
@@ -81,7 +68,6 @@ function jobReducer() {
       });
 
     case _jobActionTypes["default"].FETCH_CANDIDATE_JOBS_SUCCESS:
-      console.log(action.payload);
       return _objectSpread({}, state, {
         loading: false,
         totalAvailableJobs: action.payload.metadata.count,
@@ -101,21 +87,22 @@ function jobReducer() {
       return _objectSpread({}, state, {
         loading: true,
         error: null,
-        jobFetchSuccess: false
+        recruiterJobFetchSuccess: false
       });
 
     case _jobActionTypes["default"].FETCH_RECRUITER_JOBS_SUCCESS:
       return _objectSpread({}, state, {
         loading: false,
-        totalPostedJobs: action.payload,
-        jobFetchSuccess: true
+        totalPostedJobs: action.payload.data.metadata.count,
+        postedJobs: action.payload.data.data,
+        recruiterJobFetchSuccess: true
       });
 
     case _jobActionTypes["default"].FETCH_RECRUITER_JOBS_FAILURE:
       return _objectSpread({}, state, {
         loading: false,
         error: action.payload.error,
-        jobFetchSuccess: false,
+        recruiterJobFetchSuccess: false,
         jobs: []
       });
 
@@ -173,21 +160,21 @@ function jobReducer() {
       return _objectSpread({}, state, {
         loading: true,
         error: null,
-        jobFetchSuccess: false
+        appliedJobFetchSuccess: false
       });
 
     case _jobActionTypes["default"].FETCH_APPLIED_JOBS_SUCCESS:
       return _objectSpread({}, state, {
         loading: false,
         totalAppliedJobs: action.payload,
-        jobFetchSuccess: true
+        appliedJobFetchSuccess: true
       });
 
     case _jobActionTypes["default"].FETCH_APPLIED_JOBS_FAILURE:
       return _objectSpread({}, state, {
         loading: false,
         error: action.payload.error,
-        jobFetchSuccess: false,
+        appliedJobFetchSuccess: false,
         jobs: []
       });
 
@@ -199,7 +186,6 @@ function jobReducer() {
       });
 
     case _jobActionTypes["default"].FETCH_APPLICATIONS_FOR_A_JOB_SUCCESS:
-      console.log(action.payload);
       return _objectSpread({}, state, {
         loading: false,
         totalJobApplication: action.payload,

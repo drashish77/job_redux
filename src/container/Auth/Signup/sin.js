@@ -38,7 +38,7 @@ const Signup = () => {
     // setErrors(validation(credentials))
     // validation()
     const allCredentials = { userRole, ...credentials }
-    console.log(allCredentials)
+
     dispatch(registerStart(allCredentials))
     history.push('/jobs')
   }

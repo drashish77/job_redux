@@ -7,6 +7,7 @@ import EmployeeCard from '../../../components/employeCard/EmployeeCard'
 import './OpenModal.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchApplicationForAJobBegin } from '../../../Redux/jobs/jobActions'
+import { Helmet } from 'react-helmet-async'
 
 const SingleJobDetail = ({ match, setModalIsOpen }) => {
   const dispatch = useDispatch()
@@ -45,25 +46,33 @@ const SingleJobDetail = ({ match, setModalIsOpen }) => {
           <hr />
         </div>
         <p className=''>
-          Total {totalJobApplication && totalJobApplication.length} Applicants
+          {totalJobApplication ? `Total ${totalJobApplication.length}` : 0}{' '}
+          applications
         </p>
-        <div className='modal_wrap'>
-          {applications &&
-            applications.map((applicant) => {
-              return (
-                <div className='modal_wrap_inside' key={Math.random()}>
-                  {/*title, email, skills*/}
-                  <EmployeeCard
-                    title={applicant.name}
-                    email={applicant.email}
-                    skills={applicant.skills}
-                  />
-                </div>
-              )
-            })}
-        </div>
+        {totalJobApplication ? (
+          <div className='modal_wrap'>
+            {applications &&
+              applications.map((applicant) => {
+                return (
+                  <div className='modal_wrap_inside' key={Math.random()}>
+                    {/*title, email, skills*/}
+                    <EmployeeCard
+                      title={applicant.name}
+                      email={applicant.email}
+                      skills={applicant.skills}
+                    />
+                  </div>
+                )
+              })}
+          </div>
+        ) : (
+          <div className='no_jobs'>
+            <i className='far fa-file'></i>
+            <p>No applications available!</p>
+          </div>
+        )}
       </div>
-      <button
+      {/* <button
         className='button'
         onClick={() => {
           singlejobApplications()
@@ -71,7 +80,7 @@ const SingleJobDetail = ({ match, setModalIsOpen }) => {
         }}
       >
         Close
-      </button>
+      </button> */}
     </div>
   )
 }

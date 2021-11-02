@@ -61,19 +61,26 @@
   margin-left: 5px;
 }
 .menu__left {
-  background-color: $skyBlueDark;
+  background-color: $skyBlueLight;
   color: $darkBlue;
+  border-radius: 50%;
   height: 30px;
   width: 30px;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  text-align: center;
-  font-weight: bold;
   display: flex;
-  align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  margin-right: 10px;
+  align-items: center;
+  // // font-size: 1.2rem;
+  text-transform: uppercase;
+  // text-align: center;
+  // font-weight: bold;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // border-radius: 50%;
+  // margin-right: 10px;
+  span {
+    text-align: center;
+  }
 }
 .navbar__left {
   display: flex;
@@ -127,10 +134,55 @@ i {
   * {
     margin-right: 5px;
   }
-  .nav__left_wrap_inner {
-    display: flex;
-    .nav_form {
-      display: flex;
-    }
-  }
+}
+// .nav__left_wrap_inner {
+//   display: flex;
+//   .nav_form {
+//     display: flex;
+
+//     p {
+//       cursor: pointer;
+//       color: $gray;
+//     }
+//   }
+// }
+//new
+.nav_form p {
+  display: inline-block;
+}
+.nav_form p {
+  display: block;
+  cursor: pointer;
+  padding: 22px 0;
+  text-decoration: none;
+  color: $white;
+  margin: 0 10px;
+}
+.nav_form p,
+.nav_form p:after,
+.nav_form p:before {
+  transition: all 0.5s;
+}
+.nav_form p:hover {
+  color: $gray;
+}
+
+/* stroke */
+.nav_form.stroke p {
+  position: relative;
+}
+.nav_form.stroke p:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 0%;
+  content: '.';
+  color: transparent;
+  background: $skyBlueDark;
+  height: 4px;
+}
+.nav_form.stroke p:hover:after {
+  width: 60%;
 }

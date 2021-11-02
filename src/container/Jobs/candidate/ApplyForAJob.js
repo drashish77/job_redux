@@ -21,7 +21,7 @@ const PostAJob = () => {
   })
   const { createJobSuccess } = useSelector((state) => state.jobs)
   const { currentUser } = useSelector((state) => state.auth)
-  console.log()
+
   useEffect(() => {
     if (createJobSuccess) {
       history.push(routes.getPostedJobs)

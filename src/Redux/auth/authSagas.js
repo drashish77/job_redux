@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { all, call, put, takeLatest } from 'redux-saga/effects'
-import routes, { BASE_URL } from '../../config/config'
+import routes from '../../config/config'
 import {
   forgetPasswordFailure,
   forgetPasswordSuccess,
@@ -16,7 +16,7 @@ import types from './authActionTypes'
 import { toast } from 'react-toastify'
 
 const logIn = async (email, password) => {
-  return axios.post(`${BASE_URL}${routes.loginRoute}`, {
+  return axios.post(`${process.env.REACT_APP_BASE_URL}${routes.loginRoute}`, {
     email,
     password,
   })
@@ -31,7 +31,7 @@ const register = async (
   confirmPassword,
   skills
 ) => {
-  await axios.post(`${BASE_URL}${routes.registerRoute}`, {
+  await axios.post(`${process.env.REACT_APP_BASE_URL}${routes.registerRoute}`, {
     userRole,
     name,
     email,
@@ -41,15 +41,20 @@ const register = async (
   })
 }
 const forgetPassword = async (email) => {
-  return axios.get(`${BASE_URL}${routes.resetPassword}?email=${email}`)
+  return axios.get(
+    `${process.env.REACT_APP_BASE_URL}${routes.resetPassword}?email=${email}`
+  )
   // return { token: response.data.accessToken }
 }
 const resetPassword = async (password, confirmPassword, token) => {
-  return axios.post(`${BASE_URL}${routes.resetPassword}`, {
-    password,
-    confirmPassword,
-    token,
-  })
+  return axios.post(
+    `${process.env.REACT_APP_BASE_URL}${routes.resetPassword}`,
+    {
+      password,
+      confirmPassword,
+      token,
+    }
+  )
   // return { token: response.data.accessToken }
 }
 export function* logInWithCredentials({ payload: { email, password } }) {
@@ -110,7 +115,7 @@ export function* registerWithCredentials({
     toast.success('Signup Successful!')
   } catch (error) {
     toast.error('Signup failed!')
-    // console.log(error)
+
     yield put(registerFailure(error))
   }
 }

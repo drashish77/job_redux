@@ -34,3 +34,14 @@
   display: flex;
   justify-content: space-between;
 }
+.no_jobs {
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  i {
+    font-size: 100px;
+    color: gray;
+  }
+}

@@ -12,28 +12,35 @@ import {
 import '../Job.scss'
 import PaginationCard from '../Pagination/PaginationCard'
 import SingleJobDetail from './OpenModal'
+import { Helmet } from 'react-helmet-async'
+
 const RecruitersJobs = () => {
-  const [jobs, setJobs] = useState([])
+  // const [jobs, setJobs] = useState([])
   const history = useHistory()
   const dispatch = useDispatch()
   const [modalIsOpen, setModalIsOpen] = useState(false)
-
   const [currentPage, setCurrentPage] = useState(1)
-  const [itemsPerPage] = useState(3)
+  const [itemsPerPage] = useState(20)
   const [pageNumberLimit] = useState(4)
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(4)
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0)
 
+  const { totalPostedJobs, postedJobs, recruiterJobFetchSuccess } = useSelector(
+    (state) => state.jobs
+  )
+
+  let jobs = totalPostedJobs.data
+
   const pages = []
-  for (let i = 1; i <= Math.ceil(jobs && jobs.length / itemsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(totalPostedJobs.data / itemsPerPage); i++) {
     pages.push(i)
   }
   const handleClick = (event) => {
     setCurrentPage(+event.target.id)
   }
-  const indexOfLastItem = currentPage * itemsPerPage
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage
-  const currentItems = jobs && jobs.slice(indexOfFirstItem, indexOfLastItem)
+  // const indexOfLastItem = currentPage * itemsPerPage
+  // const indexOfFirstItem = indexOfLastItem - itemsPerPage
+  // const currentItems = jobs && jobs.slice(indexOfFirstItem, indexOfLastItem)
   const renderPageNumbers = pages.map((number) => {
     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
       return (
@@ -74,23 +81,26 @@ const RecruitersJobs = () => {
   }
   const showAllPostedJob = () => history.push(routes.createNewJob)
 
-  const { totalPostedJobs } = useSelector((state) => state.jobs)
-
   const token = localStorage.getItem('token')
-  useEffect(() => {
-    totalPostedJobs && setJobs(totalPostedJobs.data)
-  }, [totalPostedJobs])
+  // useEffect(() => {
+  //   totalPostedJobs && setJobs(totalPostedJobs.data)
+  // }, [totalPostedJobs])
   useEffect(() => {
     // setJobs(totalPostedJobs.data)
-    dispatch(fetchRecruiterJobsBegin(token))
-  }, [])
+    dispatch(fetchRecruiterJobsBegin({ page: currentPage, token: token }))
+  }, [currentPage])
+  const homeButtonHandler = () => history.push(routes.getPostedJobs)
   return (
     <div className='jobs'>
-      <div className='job__home_logo'>
+      <Helmet>
+        <title>Jobs posted by you</title>
+        <meta name='description' content='here are recruiter posted jobs' />
+      </Helmet>
+      <div className='job__home_logo' onClick={homeButtonHandler}>
         <i className='fas fa-home'></i> <span>Home</span>
       </div>
       <h2>Jobs posted by you</h2>
-      {jobs && jobs.length === 0 ? (
+      {postedJobs && postedJobs.length === 0 ? (
         <div className='no_job_applied_wrap'>
           <div className='no_job_applied'>
             <i className='fas fa-pen-square'></i>
@@ -100,8 +110,8 @@ const RecruitersJobs = () => {
         </div>
       ) : (
         <div className='all__jobs'>
-          {currentItems &&
-            currentItems.map((job) => {
+          {postedJobs &&
+            postedJobs.map((job) => {
               let jobId = job.id
               const viewApplicationHandler = (e) => {
                 setModalIsOpen(true)
@@ -134,6 +144,10 @@ const RecruitersJobs = () => {
                         },
                       }}
                     >
+                      <Helmet>
+                        <title>{job.title}</title>
+                        <meta name='description' content={job.description} />
+                      </Helmet>
                       <SingleJobDetail setModalIsOpen={setModalIsOpen} />
                       {/* </div> */}
                     </Modal>
@@ -143,17 +157,19 @@ const RecruitersJobs = () => {
             })}
         </div>
       )}
-      <div className='pagination__block'>
-        <PaginationCard
-          currentPage={currentPage}
-          pages={pages}
-          handlePrevButton={handlePrevButton}
-          handleNextButton={handleNextButton}
-          pageDecrementBtn={pageDecrementBtn}
-          pageIncrementBtn={pageIncrementBtn}
-          renderPageNumbers={renderPageNumbers}
-        />
-      </div>
+      {postedJobs && postedJobs.length !== 0 && (
+        <div className='pagination__block'>
+          <PaginationCard
+            currentPage={currentPage}
+            pages={pages}
+            handlePrevButton={handlePrevButton}
+            handleNextButton={handleNextButton}
+            pageDecrementBtn={pageDecrementBtn}
+            pageIncrementBtn={pageIncrementBtn}
+            renderPageNumbers={renderPageNumbers}
+          />
+        </div>
+      )}
     </div>
   )
 }

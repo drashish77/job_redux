@@ -22,11 +22,9 @@ const ResetPassword = () => {
     (state) => state.auth
   )
 
-  // console.log(errorMessage && errorMessage)
   const history = useHistory()
 
   useEffect(() => {
-    // console.log(resetSuccess)
     resetSuccess && history.push(routes.loginRoute)
     return () => {
       dispatch(clearState())

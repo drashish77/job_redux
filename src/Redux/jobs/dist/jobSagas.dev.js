@@ -1,7 +1,5 @@
 "use strict";
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -18,7 +16,7 @@ var _axios = _interopRequireDefault(require("axios"));
 
 var _effects = require("redux-saga/effects");
 
-var _config = _interopRequireWildcard(require("../../config/config"));
+var _config = _interopRequireDefault(require("../../config/config"));
 
 var _jobActions = require("./jobActions");
 
@@ -27,10 +25,6 @@ var _apiHandler = require("../../utils/apiHandler");
 var _jobActionTypes = _interopRequireDefault(require("./jobActionTypes"));
 
 var _reactToastify = require("react-toastify");
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -85,7 +79,7 @@ var fetchJOBS = function fetchJOBS(payload) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          return _context.abrupt("return", _axios["default"].get("https://jobs-api.squareboat.info/api/v1/jobs?page=".concat(payload)));
+          return _context.abrupt("return", _axios["default"].get("".concat(process.env.REACT_APP_BASE_URL, "/jobs?page=").concat(payload)));
 
         case 1:
         case "end":
@@ -101,7 +95,7 @@ var fetchAvailableJOBS = function fetchAvailableJOBS(payload) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
-          url = "".concat(_config.BASE_URL, "/candidates/jobs?page=").concat(payload.page);
+          url = "".concat(process.env.REACT_APP_BASE_URL, "/candidates/jobs?page=").concat(payload.page);
           headers = {
             'Content-Type': 'application/json',
             Authorization: payload.token
@@ -122,27 +116,26 @@ var fetchAvailableJOBS = function fetchAvailableJOBS(payload) {
   });
 };
 
-var fetchRecruiterPostedJOBS = function fetchRecruiterPostedJOBS(token) {
-  var url, method, headers;
+var fetchRecruiterPostedJOBS = function fetchRecruiterPostedJOBS(payload) {
+  var url, headers;
   return regeneratorRuntime.async(function fetchRecruiterPostedJOBS$(_context3) {
     while (1) {
       switch (_context3.prev = _context3.next) {
         case 0:
-          url = "".concat(_config.BASE_URL, "/recruiters/jobs");
-          method = 'GET';
+          url = "".concat(process.env.REACT_APP_BASE_URL, "/recruiters/jobs?page=").concat(payload.page);
           headers = {
             'Content-Type': 'application/json',
-            Authorization: token
+            Authorization: payload.token
           };
-          _context3.next = 5;
+          _context3.next = 4;
           return regeneratorRuntime.awrap(_axios["default"].get(url, {
             headers: headers
           }));
 
-        case 5:
+        case 4:
           return _context3.abrupt("return", _context3.sent);
 
-        case 6:
+        case 5:
         case "end":
           return _context3.stop();
       }
@@ -156,7 +149,7 @@ var postJOB = function postJOB(body, token) {
     while (1) {
       switch (_context4.prev = _context4.next) {
         case 0:
-          url = "".concat(_config.BASE_URL, "/jobs/");
+          url = "".concat(process.env.REACT_APP_BASE_URL, "/jobs/");
           headers = {
             'Content-Type': 'application/json',
             Authorization: token
@@ -183,7 +176,7 @@ var fetchAppliedJOBS = function fetchAppliedJOBS(token) {
     while (1) {
       switch (_context5.prev = _context5.next) {
         case 0:
-          url = "".concat(_config.BASE_URL, "/candidates/jobs/applied");
+          url = "".concat(process.env.REACT_APP_BASE_URL, "/candidates/jobs/applied");
           headers = {
             'Content-Type': 'application/json',
             Authorization: token
@@ -210,7 +203,7 @@ var fetchApplicationsForAJOB = function fetchApplicationsForAJOB(jobId, token) {
     while (1) {
       switch (_context6.prev = _context6.next) {
         case 0:
-          url = "".concat(_config.BASE_URL, "/recruiters/jobs/").concat(jobId, "/candidates");
+          url = "".concat(process.env.REACT_APP_BASE_URL, "/recruiters/jobs/").concat(jobId, "/candidates");
           headers = {
             'Content-Type': 'application/json',
             Authorization: token
@@ -354,32 +347,31 @@ function fetchAvailableJobs(_ref4) {
       switch (_context10.prev = _context10.next) {
         case 0:
           payload = _ref4.payload;
-          console.log(payload);
-          _context10.prev = 2;
-          _context10.next = 5;
+          _context10.prev = 1;
+          _context10.next = 4;
           return (0, _effects.call)(fetchAvailableJOBS, payload);
 
-        case 5:
+        case 4:
           response = _context10.sent;
-          _context10.next = 8;
+          _context10.next = 7;
           return (0, _effects.put)((0, _jobActions.fetchCandidateJobsSuccess)(response.data));
 
-        case 8:
-          _context10.next = 14;
+        case 7:
+          _context10.next = 13;
           break;
 
-        case 10:
-          _context10.prev = 10;
-          _context10.t0 = _context10["catch"](2);
-          _context10.next = 14;
+        case 9:
+          _context10.prev = 9;
+          _context10.t0 = _context10["catch"](1);
+          _context10.next = 13;
           return (0, _effects.put)((0, _jobActions.fetchCandidateJobsFailure)(_context10.t0));
 
-        case 14:
+        case 13:
         case "end":
           return _context10.stop();
       }
     }
-  }, _marked4, null, [[2, 10]]);
+  }, _marked4, null, [[1, 9]]);
 }
 
 function fetchRecruiterPostedJobs(_ref5) {
@@ -396,7 +388,7 @@ function fetchRecruiterPostedJobs(_ref5) {
         case 4:
           response = _context11.sent;
           _context11.next = 7;
-          return (0, _effects.put)((0, _jobActions.fetchRecruiterJobsSuccess)(response.data.data));
+          return (0, _effects.put)((0, _jobActions.fetchRecruiterJobsSuccess)(response.data));
 
         case 7:
           _context11.next = 13;
@@ -470,7 +462,7 @@ var ApplyAJOB = function ApplyAJOB(body, token) {
           data = JSON.stringify({
             jobId: body
           });
-          url = "".concat(_config.BASE_URL, "/candidates/jobs");
+          url = "".concat(process.env.REACT_APP_BASE_URL, "/candidates/jobs");
           headers = {
             'Content-Type': 'application/json',
             Authorization: token
@@ -671,24 +663,4 @@ function jobSagas() {
       }
     }
   }, _marked15);
-} // export function* applyPostSaga({ payload }) {
-//   try {
-//     var data = JSON.stringify({ jobId: payload.id })
-//     var config = {
-//       method: 'post',
-//       url: 'https://jobs-api.squareboat.info/api/v1/candidates/jobs',
-//       headers: {
-//         Authorization: `${payload.token}`,
-//         'Content-Type': 'application/json',
-//       },
-//       data: data,
-//     }
-//     const result = yield sendRequest(config)
-//     if (result) {
-//       yield put(getAvailablePostsInitiate({ token: payload.token, page: 1 }))
-//     }
-//     yield put(postApplySuccess('Applied to post successfully'))
-//   } catch (error) {
-//     yield put(postApplyFailure(error))
-//   }
-// }
+}

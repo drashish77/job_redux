@@ -17,7 +17,6 @@ const ForgotPassword = () => {
   const state = useSelector((state) => state.auth)
 
   useEffect(() => {
-    console.log(state.forgotSuccess)
     state.forgotSuccess && history.push(routes.resetPassword)
     return () => {
       dispatch(clearState())

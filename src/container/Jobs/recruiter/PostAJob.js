@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import Button from '../../../components/Button/Button'
@@ -40,6 +41,10 @@ const PostAJob = () => {
   // }, [])
   return (
     <div className='postAJob'>
+      <Helmet>
+        <title>Post a Job</title>
+        <meta name='description' content='here you can Post a Job' />
+      </Helmet>
       <div className='login'>
         <form onSubmit={handleSubmit}>
           <h2>Post a Job</h2>

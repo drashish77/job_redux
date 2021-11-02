@@ -65,7 +65,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
 
     case types.FORGOT_PASSWORD_SUCCESS: {
       //  localStorage.setItem('token', token)
-      console.log(action.payload)
+
       return {
         ...state,
         // currentUser: action.payload,

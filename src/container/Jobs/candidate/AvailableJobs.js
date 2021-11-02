@@ -8,11 +8,12 @@ import {
 } from '../../../Redux/jobs/jobActions'
 import '../Job.scss'
 import PaginationCard from '../Pagination/PaginationCard'
+import { Helmet } from 'react-helmet-async'
 
 const AvailableJobs = () => {
   const history = useHistory()
   const dispatch = useDispatch()
-  const [jobs, setJobs] = useState([])
+  // const [jobs, setJobs] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage] = useState(20)
   const [pageNumberLimit] = useState(4)
@@ -70,26 +71,22 @@ const AvailableJobs = () => {
     pageDecrementBtn = <li onClick={handlePrevButton}> &hellip; </li>
   }
 
-  console.log({ totalAvailableJobs, availableJobs })
   const token = localStorage.getItem('token')
 
-  useEffect(() => setJobs(totalAvailableJobs), [totalAvailableJobs])
+  // useEffect(() => setJobs(totalAvailableJobs), [totalAvailableJobs])
   useEffect(() => {
     dispatch(fetchCandidateJobsBegin({ page: currentPage, token: token }))
   }, [currentPage])
 
-  // const jobClickHandler = () => {
-  //   let jobId
-  //   dispatch(applyNewJobBegin({ data: jobId, token: token }))
-  // }
-
-  /* dispatch(
-    fetchCandidateJobsBegin({ page: currentPage, token: token })
-    ) 
-    */
-
   return (
     <div className='jobs'>
+      <Helmet>
+        <title>Available Jobs</title>
+        <meta
+          name='description'
+          content='Here is the list of all the available jobs for you'
+        />
+      </Helmet>
       <div className='job__home_logo'>
         <i className='fas fa-home'></i> <span>Home</span>
       </div>

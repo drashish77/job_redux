@@ -16,26 +16,34 @@ import 'react-toastify/dist/ReactToastify.css'
 // import AllJobs from './container/Jobs/AllJobs'
 import PostAJob from './container/Jobs/recruiter/PostAJob'
 import RecruitersJobs from './container/Jobs/recruiter/RecruiterJobs'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 function App() {
   return (
     <div className='app'>
-      <Header />
-      <ToastContainer />
-      <Switch>
-        <Route path='/auth/login' component={Login} />
-        <Route path='/auth/logout' component={Login} />
-        <Route path={routes.registerRoute} component={Signup} />
-        {/* <Route path={routes.jobsRoute} component={AllJobs} /> */}
-        <Route path={routes.forgetPassword} component={ForgotPassword} />
-        <Route path={routes.resetPassword} component={ResetPassword} />
-        <Route path={routes.applyForAJob} component={AppliedJob} />
-        <Route path={routes.candidates} component={AvailableJobs} />
-        <Route path={routes.getAvailableJobs} component={AvailableJobs} />
-        <Route path={routes.getPostedJobs} component={RecruitersJobs} />
-        <Route path={routes.createNewJob} component={PostAJob} />
-        {/* <Route path={routes.createNewJob} component={PostAJob} /> */}
-        <Route path='/' component={Home} exact />
-      </Switch>
+      <HelmetProvider>
+        <Header />
+        <ToastContainer />
+        <Helmet>
+          <title>JOB-portal</title>
+          <meta name='description' content='Get and post jobs' />
+          <meta name='keywords' content='job, jobs, employment, naukri' />
+        </Helmet>
+        <Switch>
+          <Route path='/auth/login' component={Login} />
+          <Route path='/auth/logout' component={Login} />
+          <Route path={routes.registerRoute} component={Signup} />
+          {/* <Route path={routes.jobsRoute} component={AllJobs} /> */}
+          <Route path={routes.forgetPassword} component={ForgotPassword} />
+          <Route path={routes.resetPassword} component={ResetPassword} />
+          <Route path={routes.applyForAJob} component={AppliedJob} />
+          <Route path={routes.candidates} component={AvailableJobs} />
+          <Route path={routes.getAvailableJobs} component={AvailableJobs} />
+          <Route path={routes.getPostedJobs} component={RecruitersJobs} />
+          <Route path={routes.createNewJob} component={PostAJob} />
+          {/* <Route path={routes.createNewJob} component={PostAJob} /> */}
+          <Route path='/' component={Home} exact />
+        </Switch>
+      </HelmetProvider>
     </div>
   )
 }

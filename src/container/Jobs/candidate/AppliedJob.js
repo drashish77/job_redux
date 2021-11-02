@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import jobsall from '../../../assets/allJobs'
@@ -12,17 +13,21 @@ const Jobs = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const [currentPage, setCurrentPage] = useState(1)
-  const [itemsPerPage] = useState(4)
+  const [itemsPerPage] = useState(8)
   const [pageNumberLimit] = useState(4)
   const { totalAppliedJobs } = useSelector((state) => state.jobs)
   // console.log(totalAppliedJobs)
-  const [jobs] = useState(totalAppliedJobs)
+  // const [jobs] = useState(totalAppliedJobs)
 
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(4)
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0)
 
   const pages = []
-  for (let i = 1; i <= Math.ceil(jobs && jobs.length / itemsPerPage); i++) {
+  for (
+    let i = 1;
+    i <= Math.ceil(totalAppliedJobs && totalAppliedJobs.length / itemsPerPage);
+    i++
+  ) {
     pages.push(i)
   }
   const handleClick = (event) => {
@@ -30,7 +35,9 @@ const Jobs = () => {
   }
   const indexOfLastItem = currentPage * itemsPerPage
   const indexOfFirstItem = indexOfLastItem - itemsPerPage
-  const currentItems = jobs && jobs.slice(indexOfFirstItem, indexOfLastItem)
+  const currentItems =
+    totalAppliedJobs &&
+    totalAppliedJobs.slice(indexOfFirstItem, indexOfLastItem)
   const renderPageNumbers = pages.map((number) => {
     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
       return (
@@ -74,11 +81,18 @@ const Jobs = () => {
 
   useEffect(() => {
     dispatch(fetchAppliedJobsBegin({ token: token }))
-  }, [totalAppliedJobs])
+  }, [])
 
   const candidateJobHandler = () => history.push(routes.getAvailableJobs)
   return (
     <div className='jobs'>
+      <Helmet>
+        <title>Jobs applied by you</title>
+        <meta
+          name='description'
+          content='here are the list of all the jobs applied by a candidate'
+        />
+      </Helmet>
       <div className='job__home_logo'>
         <i className='fas fa-home'></i> <span>{`Home > Applied Jobs`}</span>
       </div>

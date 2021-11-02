@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.validation = exports.LoginValidation = exports.ResetValidation = exports.NewJobValidation = void 0;
 
 var NewJobValidation = function NewJobValidation(values) {
-  console.log(values);
   var jobTitle = values.jobTitle,
       description = values.description,
       location = values.location;

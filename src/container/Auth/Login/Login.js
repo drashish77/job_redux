@@ -41,7 +41,7 @@ const Login = () => {
     dispatch(logInStart(credentials))
     // history.push(routes.jobsRoute)
   }
-  // console.log(error[0].email)
+
   return (
     <div className='container'>
       <div className='login'>

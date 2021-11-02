@@ -1,5 +1,4 @@
 export const NewJobValidation = (values) => {
-  console.log(values)
   const { jobTitle, description, location } = values
   let errors = {}
   if (jobTitle === '' || description === '' || location === '') {

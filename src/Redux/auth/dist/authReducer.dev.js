@@ -91,7 +91,6 @@ var authReducer = function authReducer() {
     case _authActionTypes["default"].FORGOT_PASSWORD_SUCCESS:
       {
         //  localStorage.setItem('token', token)
-        console.log(action.payload);
         return _objectSpread({}, state, {
           // currentUser: action.payload,
           resetToken: action.payload.token,

@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 import { all, call, put, takeLatest } from 'redux-saga/effects'
-import routes, { BASE_URL } from '../../config/config'
+import routes from '../../config/config'
 import {
   fetchJobsBegin,
   fetchJobsSuccess,
@@ -26,15 +26,12 @@ import {
 import { getApiResponse } from '../../utils/apiHandler'
 import types from './jobActionTypes'
 import { toast } from 'react-toastify'
-//url: `https://jobs-api.squareboat.info/api/v1/jobs?page=${payload.page}`,
+
 const fetchJOBS = async (payload) => {
-  // return axios.get(`${BASE_URL}${routes.jobsRoute}?page=${payload.page}`)
-  return axios.get(
-    `https://jobs-api.squareboat.info/api/v1/jobs?page=${payload}`
-  )
+  return axios.get(`${process.env.REACT_APP_BASE_URL}/jobs?page=${payload}`)
 }
 const fetchAvailableJOBS = async (payload) => {
-  let url = `${BASE_URL}/candidates/jobs?page=${payload.page}`
+  let url = `${process.env.REACT_APP_BASE_URL}/candidates/jobs?page=${payload.page}`
 
   let headers = {
     'Content-Type': 'application/json',
@@ -45,12 +42,12 @@ const fetchAvailableJOBS = async (payload) => {
   })
   // return getApiResponse(url, { method, headers })
 }
-const fetchRecruiterPostedJOBS = async (token) => {
-  let url = `${BASE_URL}/recruiters/jobs`
-  let method = 'GET'
+const fetchRecruiterPostedJOBS = async (payload) => {
+  let url = `${process.env.REACT_APP_BASE_URL}/recruiters/jobs?page=${payload.page}`
+
   let headers = {
     'Content-Type': 'application/json',
-    Authorization: token,
+    Authorization: payload.token,
   }
   return await axios.get(url, {
     headers: headers,
@@ -58,7 +55,7 @@ const fetchRecruiterPostedJOBS = async (token) => {
   // return getApiResponse(url, { method, headers })
 }
 const postJOB = async (body, token) => {
-  let url = `${BASE_URL}/jobs/`
+  let url = `${process.env.REACT_APP_BASE_URL}/jobs/`
 
   let headers = {
     'Content-Type': 'application/json',
@@ -71,7 +68,7 @@ const postJOB = async (body, token) => {
 }
 
 const fetchAppliedJOBS = async (token) => {
-  let url = `${BASE_URL}/candidates/jobs/applied`
+  let url = `${process.env.REACT_APP_BASE_URL}/candidates/jobs/applied`
   let headers = {
     'Content-Type': 'application/json',
     Authorization: token,
@@ -81,7 +78,7 @@ const fetchAppliedJOBS = async (token) => {
   })
 }
 const fetchApplicationsForAJOB = async (jobId, token) => {
-  let url = `${BASE_URL}/recruiters/jobs/${jobId}/candidates`
+  let url = `${process.env.REACT_APP_BASE_URL}/recruiters/jobs/${jobId}/candidates`
   let headers = {
     'Content-Type': 'application/json',
     Authorization: token,
@@ -124,7 +121,6 @@ export function* fetchJobs({ payload }) {
   }
 }
 export function* fetchAvailableJobs({ payload }) {
-  console.log(payload)
   try {
     const response = yield call(fetchAvailableJOBS, payload)
 
@@ -137,7 +133,7 @@ export function* fetchRecruiterPostedJobs({ payload }) {
   try {
     const response = yield call(fetchRecruiterPostedJOBS, payload)
 
-    yield put(fetchRecruiterJobsSuccess(response.data.data))
+    yield put(fetchRecruiterJobsSuccess(response.data))
   } catch (error) {
     yield put(fetchRecruiterJobsFailure(error))
   }
@@ -161,7 +157,7 @@ const ApplyAJOB = async (body, token) => {
     jobId: body,
   })
 
-  let url = `${BASE_URL}/candidates/jobs`
+  let url = `${process.env.REACT_APP_BASE_URL}/candidates/jobs`
 
   let headers = {
     'Content-Type': 'application/json',
@@ -234,25 +230,3 @@ export function* jobSagas() {
     call(onFetchApplicationForAJobStart),
   ])
 }
-
-// export function* applyPostSaga({ payload }) {
-//   try {
-//     var data = JSON.stringify({ jobId: payload.id })
-//     var config = {
-//       method: 'post',
-//       url: 'https://jobs-api.squareboat.info/api/v1/candidates/jobs',
-//       headers: {
-//         Authorization: `${payload.token}`,
-//         'Content-Type': 'application/json',
-//       },
-//       data: data,
-//     }
-//     const result = yield sendRequest(config)
-//     if (result) {
-//       yield put(getAvailablePostsInitiate({ token: payload.token, page: 1 }))
-//     }
-//     yield put(postApplySuccess('Applied to post successfully'))
-//   } catch (error) {
-//     yield put(postApplyFailure(error))
-//   }
-// }
