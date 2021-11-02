@@ -45,6 +45,7 @@ const Signup = () => {
     }
     // history.push('/jobs')
   }
+  console.log(credentials.userRole)
 
   const login = () => {}
   return (

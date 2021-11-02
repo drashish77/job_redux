@@ -9,6 +9,7 @@
     // color: initial;
     color: $lightBlue;
     margin-bottom: 5px;
+    font-size: 14px;
   }
   input {
     padding: 10px 10px;
@@ -24,3 +25,9 @@ input:focus {
   outline: none;
   border: 1px solid $skyBlueDark;
 }
+// .active {
+//   input:focus {
+//     outline: none;
+//     border: 1px solid red;
+//   }
+// }

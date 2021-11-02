@@ -5,6 +5,7 @@
     margin: 20px 0;
   }
 }
+
 .password__section {
   display: flex;
   justify-content: space-between;
@@ -13,19 +14,17 @@
 }
 .password__section * {
   flex-grow: 1;
+  max-width: 70%;
 }
-@media screen and (max-width: 700px) {
-  .password__section {
-    flex-direction: column;
-  }
-}
+
 .buttongroup {
   display: flex;
   column-gap: 20px;
+  font-size: 14px;
 }
 .buttongroup label {
   border: 1px solid $gray;
-  padding: 10px 20px;
+  padding: 15px 20px;
   border-radius: 5px;
   cursor: pointer;
   color: $darkBlue;
@@ -52,12 +51,34 @@ input[name='userRole']:checked + label {
   background-color: $skyBlueDark;
   color: $white;
 }
+@media screen and (max-width: 1024px) {
+  .password__section * {
+    flex-grow: 1;
+    max-width: 65%;
+  }
+}
 
-@media screen and( max-width: 500px) {
-  .buttongroup {
-    justify-content: space-between;
+@media screen and (max-width: 768px) {
+  .password__section {
+    flex-direction: column;
+  }
+  .password__section * {
+    flex-grow: 1;
+    max-width: 100%;
   }
   .buttongroup label {
-    padding: 5px 10px;
+    padding: 15px 10px;
+  }
+}
+
+@media screen and( max-width: 500px) {
+  .container {
+    margin: 50px 10px;
+  }
+  .buttongroup {
+    // justify-content: space-between;
+  }
+  .buttongroup label {
+    padding: 10px 10px;
   }
 }

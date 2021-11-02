@@ -38,12 +38,6 @@ form {
   align-items: center;
 }
 
-@media screen and (max-width: 500px) {
-  form {
-    margin: auto;
-    max-width: 100%;
-  }
-}
 .after__password label,
 .register label {
   display: block;
