@@ -38,7 +38,7 @@ function App() {
           />
           <Route path='/auth/logout' component={Login} />
           <Route path={routes.registerRoute} component={Signup} />
-          {/* <Route path={routes.jobsRoute} component={AllJobs} /> */}
+          {/* new comment added */}
           <Route path={routes.forgetPassword} component={ForgotPassword} />
           <Route path={routes.resetPassword} component={ResetPassword} />
           <PrivateRoute
