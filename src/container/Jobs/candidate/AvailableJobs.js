@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router'
+// import { useHistory } from 'react-router'
 import JobCard from '../../../components/JobCard/JobCard'
 import {
   applyNewJobBegin,
@@ -11,7 +11,7 @@ import PaginationCard from '../Pagination/PaginationCard'
 import { Helmet } from 'react-helmet-async'
 
 const AvailableJobs = () => {
-  const history = useHistory()
+  // const history = useHistory()
   const dispatch = useDispatch()
   // const [jobs, setJobs] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
@@ -19,7 +19,7 @@ const AvailableJobs = () => {
   const [pageNumberLimit] = useState(4)
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(4)
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0)
-  const { totalAvailableJobs, availableJobs, jobFetchSuccess } = useSelector(
+  const { totalAvailableJobs, availableJobs } = useSelector(
     (state) => state.jobs
   )
   const pages = []

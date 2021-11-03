@@ -37,6 +37,12 @@ form {
   justify-content: center;
   align-items: center;
 }
+.login .password:first-child {
+  margin-top: 20px;
+}
+.login .password input {
+  margin-top: 0 !important;
+}
 
 .after__password label,
 .register label {
@@ -54,9 +60,9 @@ form {
 
 .after__password {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  text-align: center;
+  font-size: 14px;
 }
 
 .register {
@@ -75,4 +81,8 @@ form {
     padding: 0px;
     width: 100%;
   }
+}
+.forget___password {
+  display: flex;
+  justify-content: center;
 }

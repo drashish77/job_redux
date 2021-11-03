@@ -46,6 +46,7 @@ input[type=radio] {
 /* The checked buttons label style */
 input[name=userRole]:checked + label {
   background-color: #43afff;
+  border: 1px solid #43afff;
   color: #ffffff;
 }
 

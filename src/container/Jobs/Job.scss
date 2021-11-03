@@ -8,6 +8,7 @@
   flex-direction: column;
   margin: 10px 170px 20px;
   .job__home_logo {
+    cursor: pointer;
     i {
       font-size: 0.8rem;
     }
@@ -24,7 +25,8 @@
 }
 .all__jobs-job {
   width: 250px;
-  margin: 5px;
+  margin: 10px;
+  flex-grow: 1;
 }
 @media screen and (max-width: 1024px) {
   .jobs {
@@ -56,7 +58,6 @@
   }
   .all__jobs {
     display: flex;
-    flex-direction: column;
   }
   .all__jobs-job {
     width: 100%;

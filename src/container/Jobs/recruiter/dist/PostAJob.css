@@ -43,3 +43,12 @@ textarea::placeholder {
 input:focus {
   outline: none;
 }
+
+.description {
+  margin: 20px 0;
+}
+
+.button_wrap {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}

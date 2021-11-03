@@ -5,13 +5,13 @@ import Button from '../../../components/Button/Button'
 import Input from '../../../components/Input/Input2'
 import routes from '../../../config/config'
 import { registerStart } from '../../../Redux/auth/authActions'
-import { validation } from '../validation/validation'
+// import { validation } from '../validation/validation'
 // import { registerStart } from '../../../redux/store/auth/authActions'
 import './signup.scss'
 
 const Signup = () => {
   const history = useHistory()
-  const [errors, setErrors] = useState({})
+  const [errors] = useState({})
   const [credentials, setCredentials] = useState({
     userRole: 0,
     name: '',
@@ -47,7 +47,6 @@ const Signup = () => {
   }
   console.log(credentials.userRole)
 
-  const login = () => {}
   return (
     <div className='container'>
       <div className='login'>

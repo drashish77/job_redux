@@ -25,9 +25,7 @@ const RecruitersJobs = () => {
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(4)
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0)
 
-  const { totalPostedJobs, postedJobs, recruiterJobFetchSuccess } = useSelector(
-    (state) => state.jobs
-  )
+  const { postedJobs } = useSelector((state) => state.jobs)
 
   let jobs = postedJobs
 

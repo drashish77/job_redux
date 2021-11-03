@@ -4,7 +4,7 @@ import Button from '../../../components/Button/Button'
 import Input from '../../../components/Input/Input2'
 import routes from '../../../config/config'
 import { useDispatch, useSelector } from 'react-redux'
-import { onForgetStart } from '../../../Redux/auth/authSagas'
+
 import {
   clearState,
   forgetPasswordStart,
@@ -51,7 +51,9 @@ const ForgotPassword = () => {
               <p className='error'>{state?.errorMessage}</p>
             )}
           </Input>
-          <Button title='Submit' color='light' />
+          <div className='forget___password'>
+            <Button title='Submit' color='light' />
+          </div>
         </form>
       </div>
     </div>

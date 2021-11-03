@@ -16,8 +16,8 @@
 .home .main__section .heading {
   margin-top: 100px;
 }
-.home .main__section .heading p {
-  line-height: 0;
+.home .main__section .heading h1 {
+  line-height: 0.5;
   font-size: 4rem;
 }
 .home .main__section .heading span {
@@ -37,13 +37,12 @@
   width: 100%;
 }
 
-.section__two {
-  margin: 250px 100px 0;
-}
-
 .card__wrap {
   display: flex;
   flex-wrap: wrap;
+}
+.card__wrap * {
+  flex-grow: 1;
 }
 
 .card__heading {
@@ -52,8 +51,9 @@
   margin-left: 20px;
 }
 
+.section__two,
 .section__three {
-  margin: 50px 100px 0;
+  margin: 70px 100px 0;
 }
 
 .clients {
@@ -87,7 +87,7 @@
   .home .main__section .heading {
     margin-top: 80px;
   }
-  .home .main__section .heading p {
+  .home .main__section .heading h1 {
     font-size: 2.5rem;
   }
   .home .section__two {
@@ -101,7 +101,7 @@
   .home .main__section {
     margin: 0 100px;
   }
-  .home .main__section .heading p {
+  .home .main__section .heading h1 {
     font-size: 2rem;
   }
   .home .main__section button {
@@ -132,7 +132,7 @@
   .home .main__section .heading {
     margin: 40px;
   }
-  .home .main__section .heading p {
+  .home .main__section .heading h1 {
     font-size: 1.5rem;
   }
   .home .main__section button {
@@ -150,6 +150,9 @@
   }
   .home .heading_inner {
     display: flex;
+  }
+  .home .section__two {
+    margin: 0;
   }
 
   .section__two,

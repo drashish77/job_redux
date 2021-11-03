@@ -13,7 +13,7 @@ import './PostAJob.scss'
 const PostAJob = () => {
   const dispatch = useDispatch()
   const history = useHistory()
-  const [error, setError] = useState('')
+  // const [error, setError] = useState('')
   const [credentials, setCredentials] = useState({
     title: '',
     description: '',
@@ -58,22 +58,24 @@ const PostAJob = () => {
           >
             {/* {error && <p className='error'>{error[0]?.email}</p>} */}
           </Input>
-          <div className='py-2' x-data='{ show: true }'>
-            <div className='relative'>
-              <Input
-                heading='Description*'
-                name='description'
-                type='text'
-                value={credentials.description}
-                placeholder='Enter job description'
-                handleChange={handleChange}
-              >
-                {/* <p className='error'>{errors && errors.error}</p> */}
-                {/* {errors && <span className='error w-48'>{errors[0]}</span>}
+          <div className=''>
+            <div className=''>
+              <div className='description'>
+                <Input
+                  heading='Description*'
+                  name='description'
+                  type='text'
+                  value={credentials.description}
+                  placeholder='Enter job description'
+                  handleChange={handleChange}
+                >
+                  {/* <p className='error'>{errors && errors.error}</p> */}
+                  {/* {errors && <span className='error w-48'>{errors[0]}</span>}
               {errorMessage && (
                 <span className='error w-48'>{errorMessage}</span>
               )} */}
-              </Input>
+                </Input>
+              </div>
 
               <Input
                 heading='Location*'

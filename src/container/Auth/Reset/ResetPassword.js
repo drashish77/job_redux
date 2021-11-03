@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import Button from '../../../components/Button/Button'
 import Input from '../../../components/Input/Input2'
 import routes from '../../../config/config'
@@ -11,7 +11,7 @@ import {
 } from '../../../Redux/auth/authActions'
 
 const ResetPassword = () => {
-  const [errors, setErrors] = useState({})
+  // const [errors, setErrors] = useState({})
 
   const [credentials, setCredentials] = useState({
     password: '',

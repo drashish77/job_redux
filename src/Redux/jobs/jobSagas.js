@@ -1,18 +1,18 @@
 import axios from 'axios'
 
 import { all, call, put, takeLatest } from 'redux-saga/effects'
-import routes from '../../config/config'
+
 import {
-  fetchJobsBegin,
+  // fetchJobsBegin,
   fetchJobsSuccess,
   fetchJobsFailure,
-  postNewJobBegin,
+  // postNewJobBegin,
   postNewJobSuccess,
   postNewJobFailure,
-  applyNewJobBegin,
+  // applyNewJobBegin,
   applyNewJobSuccess,
   applyNewJobFailure,
-  fetchAppliedJobsBegin,
+  // fetchAppliedJobsBegin,
   fetchAppliedJobsSuccess,
   fetchAppliedJobsFailure,
   fetchCandidateJobsSuccess,
@@ -23,7 +23,6 @@ import {
   fetchApplicationForAJobSuccess,
   fetchApplicationForAJobFailure,
 } from './jobActions'
-import { getApiResponse } from '../../utils/apiHandler'
 import types from './jobActionTypes'
 import { toast } from 'react-toastify'
 

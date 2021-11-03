@@ -38,6 +38,14 @@ form {
     align-items: center;
     // margin: 10px 0;
   }
+  .password {
+    &:first-child {
+      margin-top: 20px;
+    }
+    input {
+      margin-top: 0 !important;
+    }
+  }
 }
 
 .after__password,
@@ -57,9 +65,9 @@ form {
 }
 .after__password {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  text-align: center;
+  font-size: 14px;
 }
 .register {
   display: flex;
@@ -75,4 +83,8 @@ form {
     padding: 0px;
     width: 100%;
   }
+}
+.forget___password {
+  display: flex;
+  justify-content: center;
 }

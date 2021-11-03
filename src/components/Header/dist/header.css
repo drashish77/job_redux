@@ -26,6 +26,10 @@
   text-align: center;
 }
 
+.login_signup button {
+  border: 1px solid #43afff;
+}
+
 .button_inActive {
   font-size: 10px;
   justify-content: end;
@@ -209,7 +213,7 @@ i {
 .wrapper_dropdown ul:after {
   content: "";
   position: absolute;
-  right: 6px;
+  right: 0px;
   top: -16px;
   height: 0;
   width: 0;
@@ -217,10 +221,11 @@ i {
   border-bottom-color: #cccccc;
 }
 .wrapper_dropdown li {
-  padding: 5px 10px;
-  color: #999999;
+  padding: 3px 15px 3px 5px;
+  color: #303f60;
   cursor: pointer;
   transition: all 100ms;
+  font-size: 14px;
 }
 .wrapper_dropdown li:hover {
   background-color: #e6e6e6;
@@ -229,7 +234,7 @@ i {
 .wrapper_dropdown li:first-of-type:after {
   content: "";
   position: absolute;
-  right: 6px;
+  right: 0px;
   top: -15px;
   height: 0;
   width: 0;

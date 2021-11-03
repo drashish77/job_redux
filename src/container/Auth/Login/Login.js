@@ -4,13 +4,13 @@ import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
 import Button from '../../../components/Button/Button'
 import Input from '../../../components/Input/Input2'
-import routes, { BASE_URL } from '../../../config/config'
+import routes from '../../../config/config'
 import { clearErrors, logInStart } from '../../../Redux/auth/authActions'
 import './Login.scss'
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: '', password: '' })
-  const [errors, setErrors] = useState({})
+  const [errors] = useState({})
   const dispatch = useDispatch()
   const history = useHistory()
   const { userLoginSuccess, currentUser, error, errorMessage } = useSelector(
@@ -57,10 +57,18 @@ const Login = () => {
           >
             {error && <p className='error'>{error[0]?.email}</p>}
           </Input>
-          <div className='py-2' x-data='{ show: true }'>
-            <div className='relative'>
+          <div className='' x-data='{ show: true }'>
+            <div className='password'>
+              <div className='after__password'>
+                <span>Password*</span>
+
+                <Link to={routes.forgetPassword} className=''>
+                  <span>Forgot your password?</span>
+                </Link>
+              </div>
+
               <Input
-                heading='Password*'
+                // heading='Password*'
                 name='password'
                 type='password'
                 value={credentials.password}
@@ -73,13 +81,13 @@ const Login = () => {
                   <span className='error w-48'>{errorMessage}</span>
                 )}
               </Input>
-              <div className='after__password'>
+              {/* <div className='after__password'>
                 <label className=''>
                   <Link to={routes.forgetPassword} className=''>
                     <span>Forgot your password?</span>
                   </Link>
                 </label>
-              </div>
+              </div> */}
               <div className='button_wrap'>
                 <Button title='Login' color='light' />
               </div>

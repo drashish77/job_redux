@@ -25,7 +25,11 @@
   align-items: center;
   text-align: center;
 }
-
+.login_signup {
+  button {
+    border: 1px solid $skyBlueDark;
+  }
+}
 .button_inActive {
   font-size: 10px;
   justify-content: end;
@@ -206,7 +210,7 @@ i {
       content: '';
 
       position: absolute;
-      right: 6px;
+      right: 0px;
       top: -16px;
       height: 0;
       width: 0;
@@ -217,12 +221,11 @@ i {
   }
 
   li {
-    padding: 5px 10px;
-
-    color: hsl(0, 0%, 60%);
+    padding: 3px 15px 3px 5px;
+    color: $lightBlue;
     cursor: pointer;
-
     transition: all 100ms;
+    font-size: 14px;
 
     &:hover {
       background-color: hsl(0, 0%, 90%);
@@ -233,7 +236,7 @@ i {
       content: '';
 
       position: absolute;
-      right: 6px;
+      right: 0px;
       top: -15px;
       height: 0;
       width: 0;

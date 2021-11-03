@@ -16,11 +16,7 @@ var _axios = _interopRequireDefault(require("axios"));
 
 var _effects = require("redux-saga/effects");
 
-var _config = _interopRequireDefault(require("../../config/config"));
-
 var _jobActions = require("./jobActions");
-
-var _apiHandler = require("../../utils/apiHandler");
 
 var _jobActionTypes = _interopRequireDefault(require("./jobActionTypes"));
 

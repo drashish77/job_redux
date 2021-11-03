@@ -11,7 +11,7 @@ const Input2 = ({
 }) => {
   return (
     <div className='input'>
-      <span>{heading}</span>
+      {heading && <span>{heading}</span>}
       <input
         type={type}
         name={name}

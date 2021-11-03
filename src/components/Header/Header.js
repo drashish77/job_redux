@@ -47,13 +47,6 @@ const Header = (props) => {
           </h2>
         </div>
 
-        {/* <div
-          className='burger'
-          onClick={() => setIsActive((isActive) => !isActive)}
-        >
-          <i className='fas fa-bars'></i>
-        </div> */}
-
         <div className=''>
           <div className={isActive ? 'navbar__left-active' : 'navbar__left'}>
             {/* {state?.userLoginSuccess ? <div></div>} */}
@@ -89,9 +82,9 @@ const Header = (props) => {
                 {/* <Button title='Logout' color='dark' onClick={logout} /> */}
               </div>
             ) : (
-              <>
+              <div className='login_signup'>
                 <Button title='Login/Signup' color='dark' onClick={login} />
-              </>
+              </div>
             )}
           </div>
         </div>

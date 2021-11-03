@@ -1,4 +1,4 @@
-import { all, call, fork } from 'redux-saga/effects'
+import { fork } from 'redux-saga/effects'
 
 import { authSagas } from './auth/authSagas'
 import { jobSagas } from './jobs/jobSagas'

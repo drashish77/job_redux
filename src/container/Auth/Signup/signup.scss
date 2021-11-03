@@ -49,6 +49,7 @@ input[type='radio'] {
 /* The checked buttons label style */
 input[name='userRole']:checked + label {
   background-color: $skyBlueDark;
+  border: 1px solid $skyBlueDark;
   color: $white;
 }
 @media screen and (max-width: 1024px) {

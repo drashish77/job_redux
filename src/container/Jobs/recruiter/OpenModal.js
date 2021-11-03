@@ -1,33 +1,19 @@
-import { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
-import routes, { BASE_URL } from '../../../config/config'
-import { getApiResponse } from '../../../utils/apiHandler'
-import data from '../../../assets/candidate.json'
+import { useState } from 'react'
 import EmployeeCard from '../../../components/employeCard/EmployeeCard'
 import './OpenModal.scss'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchApplicationForAJobBegin } from '../../../Redux/jobs/jobActions'
-import { Helmet } from 'react-helmet-async'
+import { useSelector } from 'react-redux'
 
 const SingleJobDetail = ({ match, setModalIsOpen }) => {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
-  const history = useHistory()
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
-  const [isLoaded, setIsLoaded] = useState(false)
+  // const history = useHistory()
+  // const [loading, setLoading] = useState(false)
+  // const [error, setError] = useState(null)
+  // const [isLoaded, setIsLoaded] = useState(false)
   // console.log(data)
-  const { totalJobApplication, fetchApplicationSuccess } = useSelector(
-    (state) => state.jobs
-  )
+  const { totalJobApplication } = useSelector((state) => state.jobs)
   const [applications] = useState(totalJobApplication)
-  let jobId
-  let token = localStorage.getItem('token')
-  const singlejobApplications = () => console.log('application clicked')
 
-  // useEffect(() => {
-  //   dispatch(fetchApplicationForAJobBegin({ jobId: jobId, token: token }))
-  // }, [jobId])
   return (
     <div className=' text-blue-moderate'>
       {/* <p>Currencies: {country.currencies[0]['code']}</p> */}
