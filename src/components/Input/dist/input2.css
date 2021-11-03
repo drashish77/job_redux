@@ -10,7 +10,8 @@
   font-size: 14px;
 }
 .input input {
-  padding: 10px 10px;
+  padding: 0px 10px;
+  min-height: 42px;
   border-radius: 5px;
   border: 1px solid #c6c6c6;
   background-color: #e8e8e833;

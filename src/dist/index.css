@@ -10,7 +10,6 @@ code {
 }
 
 .pageNumbers {
-  position: fixed;
   bottom: 0;
   list-style: none;
   display: flex;
