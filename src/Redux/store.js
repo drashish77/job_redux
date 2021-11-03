@@ -12,6 +12,7 @@ const middlewares = [sagaMiddleware, logger]
 
 export const store = createStore(rootReducer, applyMiddleware(...middlewares))
 sagaMiddleware.run(rootSaga)
+
 export const persister = persistStore(store)
 const storePersist = { store, persister }
 export default storePersist
