@@ -24,8 +24,6 @@ const Home2 = () => {
       <Helmet>
         <title>🏠 Job Portal</title>
         <meta name='description' content='This is job portal home page' />
-        <meta name='og:title' content='Job Portal' />
-        <meta name='og:image' content='This is job portal home page' />
       </Helmet>
       <div className='wrapper'>
         <div className='main__section'>
