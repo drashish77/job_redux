@@ -79,13 +79,9 @@ input[name=userRole]:checked + label i {
     padding: 15px 10px;
   }
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 425px) {
   .login {
     width: 95%;
-  }
-
-  .container {
-    margin: 50px 10px;
   }
 
   .buttongroup label {

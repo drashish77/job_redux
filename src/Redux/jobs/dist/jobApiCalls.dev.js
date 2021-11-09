@@ -32,8 +32,8 @@ var fetchAvailableJOBS = function fetchAvailableJOBS(payload) {
 
 exports.fetchAvailableJOBS = fetchAvailableJOBS;
 
-var fetchRecruiterPostedJOBS = function fetchRecruiterPostedJOBS() {
-  return _apiHandler["default"].get("/recruiters/jobs");
+var fetchRecruiterPostedJOBS = function fetchRecruiterPostedJOBS(payload) {
+  return _apiHandler["default"].get("/recruiters/jobs?page=".concat(payload.page));
 };
 
 exports.fetchRecruiterPostedJOBS = fetchRecruiterPostedJOBS;

@@ -5,8 +5,8 @@ export const fetchJOBS = async (payload) => {
 export const fetchAvailableJOBS = (payload) => {
   return axiosInstance.get(`/candidates/jobs?page=${payload.page}`)
 }
-export const fetchRecruiterPostedJOBS = () => {
-  return axiosInstance.get(`/recruiters/jobs`)
+export const fetchRecruiterPostedJOBS = (payload) => {
+  return axiosInstance.get(`/recruiters/jobs?page=${payload.page}`)
 }
 
 export const postJOB = async (body, token) => {

@@ -19,7 +19,7 @@ const RecruitersJobs = () => {
   const dispatch = useDispatch()
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
-  const [itemsPerPage] = useState(12)
+  const [itemsPerPage] = useState(20)
   const [pageNumberLimit] = useState(4)
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(4)
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0)
@@ -77,10 +77,11 @@ const RecruitersJobs = () => {
 
   const token = currentUser && currentUser.token
   useEffect(() => {
-    // setJobs(totalPostedJobs.data)
-    dispatch(fetchRecruiterJobsBegin({ token: token }))
+    dispatch(fetchRecruiterJobsBegin({ page: currentPage, token: token }))
   }, [currentPage, dispatch, token])
+
   const homeButtonHandler = () => history.push(routes.getPostedJobs)
+
   return (
     <div className='jobs container'>
       <Helmet>

@@ -19,9 +19,12 @@ const AvailableJobs = () => {
   const [pageNumberLimit] = useState(4)
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(4)
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0)
-  const { totalAvailableJobs, availableJobs } = useSelector(
+
+  const { availableJobs, totalAvailableJobs } = useSelector(
     (state) => state.jobs
   )
+  const { currentUser } = useSelector((state) => state.auth)
+
   const pages = []
   for (let i = 1; i <= Math.ceil(totalAvailableJobs / itemsPerPage); i++) {
     pages.push(i)
@@ -69,7 +72,7 @@ const AvailableJobs = () => {
     pageDecrementBtn = <li onClick={handlePrevButton}> &hellip; </li>
   }
 
-  const token = localStorage.getItem('token')
+  const token = currentUser && currentUser.token
 
   useEffect(() => {
     dispatch(fetchCandidateJobsBegin({ page: currentPage, token: token }))
