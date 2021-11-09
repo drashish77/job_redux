@@ -9,7 +9,7 @@ import {
   clearState,
   forgetPasswordStart,
 } from '../../../Redux/auth/authActions'
-
+import './Forget.scss'
 const ForgotPassword = () => {
   const [email, setEmail] = useState('')
   const dispatch = useDispatch()
@@ -21,13 +21,12 @@ const ForgotPassword = () => {
     return () => {
       dispatch(clearState())
     }
-  }, [state.forgotSuccess])
+  }, [dispatch, history, state.forgotSuccess])
 
   const handleChange = (e) => setEmail(e.target.value)
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // localStorage.setItem('token')
     dispatch(forgetPasswordStart(email))
   }
   return (

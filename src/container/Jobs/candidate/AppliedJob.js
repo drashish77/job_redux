@@ -12,11 +12,9 @@ const Jobs = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const [currentPage, setCurrentPage] = useState(1)
-  const [itemsPerPage] = useState(8)
+  const [itemsPerPage] = useState(20)
   const [pageNumberLimit] = useState(4)
   const { totalAppliedJobs } = useSelector((state) => state.jobs)
-  // console.log(totalAppliedJobs)
-  // const [jobs] = useState(totalAppliedJobs)
 
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(4)
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0)
@@ -55,7 +53,7 @@ const Jobs = () => {
   })
   const handlePrevButton = () => {
     setCurrentPage(currentPage - 1)
-    if ((currentPage - 1) % pageNumberLimit == 0) {
+    if ((currentPage - 1) % pageNumberLimit === 0) {
       setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit)
       setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit)
     }
@@ -80,10 +78,10 @@ const Jobs = () => {
 
   useEffect(() => {
     dispatch(fetchAppliedJobsBegin({ token: token }))
-  }, [])
+  }, [dispatch, token])
 
   const candidateJobHandler = () => history.push(routes.getAvailableJobs)
-  // const homeButtonHandler = () => history.push(routes.getAvailableJobs)
+
   return (
     <div className='jobs'>
       <Helmet>

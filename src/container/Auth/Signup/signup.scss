@@ -39,18 +39,29 @@
 .buttongroup label:hover {
   background-color: $skyBlueDark;
   color: $white;
+  i {
+    color: $white;
+  }
 }
 
 /* Hide the radio button */
 input[type='radio'] {
   display: none;
 }
-
+input[name='userRole'] + label {
+  border-color: #e8e8e833;
+  i {
+    color: $skyBlueDark;
+  }
+}
 /* The checked buttons label style */
 input[name='userRole']:checked + label {
   background-color: $skyBlueDark;
   border: 1px solid $skyBlueDark;
   color: $white;
+  i {
+    color: $white;
+  }
 }
 @media screen and (max-width: 1024px) {
   .password__section * {

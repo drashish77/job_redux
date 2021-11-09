@@ -27,8 +27,6 @@ const RecruitersJobs = () => {
   const { postedJobs, totalPostedJobs } = useSelector((state) => state.jobs)
   const { currentUser } = useSelector((state) => state.auth)
 
-  let jobs = postedJobs
-
   const pages = []
   for (let i = 1; i <= Math.ceil(totalPostedJobs / itemsPerPage); i++) {
     pages.push(i)
@@ -36,9 +34,7 @@ const RecruitersJobs = () => {
   const handleClick = (event) => {
     setCurrentPage(+event.target.id)
   }
-  // const indexOfLastItem = currentPage * itemsPerPage
-  // const indexOfFirstItem = indexOfLastItem - itemsPerPage
-  // const currentItems = jobs && jobs.slice(indexOfFirstItem, indexOfLastItem)
+
   const renderPageNumbers = pages.map((number) => {
     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
       return (
@@ -57,7 +53,7 @@ const RecruitersJobs = () => {
   })
   const handlePrevButton = () => {
     setCurrentPage(currentPage - 1)
-    if ((currentPage - 1) % pageNumberLimit == 0) {
+    if ((currentPage - 1) % pageNumberLimit === 0) {
       setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit)
       setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit)
     }
@@ -83,7 +79,7 @@ const RecruitersJobs = () => {
   useEffect(() => {
     // setJobs(totalPostedJobs.data)
     dispatch(fetchRecruiterJobsBegin({ token: token }))
-  }, [currentPage])
+  }, [currentPage, dispatch, token])
   const homeButtonHandler = () => history.push(routes.getPostedJobs)
   return (
     <div className='jobs container'>

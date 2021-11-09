@@ -1,3 +1,7 @@
+.app {
+  height: 350px !important;
+}
+
 .form_container {
   margin: 0 20px;
   margin-top: 80px;
@@ -15,7 +19,7 @@ form {
 
 .login {
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.1);
-  width: 40%;
+  width: 45%;
   padding: 10px;
   background: #ffffff;
   border-radius: 20px;

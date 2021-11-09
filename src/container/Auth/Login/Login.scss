@@ -1,4 +1,7 @@
 @import '../../../scss/variables/Variable.scss';
+.app {
+  height: 350px !important;
+}
 .form_container {
   margin: 0 20px;
   margin-top: 80px;
@@ -21,7 +24,7 @@ form {
     color: red;
     text-align: right;
   }
-  width: 40%;
+  width: 45%;
   padding: 10px;
   background: $white;
   // border: 1px solid gray;

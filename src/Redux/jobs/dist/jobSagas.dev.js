@@ -201,33 +201,31 @@ function fetchAvailableJobs(_ref4) {
 
         case 4:
           response = _context4.sent;
-          console.log(response);
-          console.log(response.data.success);
 
           if (!(response && response.data.success)) {
-            _context4.next = 10;
+            _context4.next = 8;
             break;
           }
 
-          _context4.next = 10;
+          _context4.next = 8;
           return (0, _effects.put)((0, _jobActions.fetchCandidateJobsSuccess)(response.data));
 
-        case 10:
-          _context4.next = 16;
+        case 8:
+          _context4.next = 14;
           break;
 
-        case 12:
-          _context4.prev = 12;
+        case 10:
+          _context4.prev = 10;
           _context4.t0 = _context4["catch"](1);
-          _context4.next = 16;
+          _context4.next = 14;
           return (0, _effects.put)((0, _jobActions.fetchCandidateJobsFailure)(_context4.t0));
 
-        case 16:
+        case 14:
         case "end":
           return _context4.stop();
       }
     }
-  }, _marked4, null, [[1, 12]]);
+  }, _marked4, null, [[1, 10]]);
 }
 
 function fetchRecruiterPostedJobs(_ref5) {

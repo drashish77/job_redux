@@ -25,15 +25,13 @@ const PostAJob = () => {
       history.push(routes.getPostedJobs)
       dispatch(clearPostNewJob())
     }
-  }, [createJobSuccess])
+  }, [createJobSuccess, dispatch, history])
   const handleChange = (e) =>
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
 
-  const token = localStorage.getItem('token')
-
   function handleSubmit(e) {
     e.preventDefault()
-    dispatch(postNewJobBegin({ data: credentials, token: token }))
+    dispatch(postNewJobBegin({ data: credentials }))
   }
 
   // useEffect(() => {

@@ -4,13 +4,6 @@ import './OpenModal.scss'
 import { useSelector } from 'react-redux'
 
 const SingleJobDetail = ({ match, setModalIsOpen }) => {
-  // const dispatch = useDispatch()
-
-  // const history = useHistory()
-  // const [loading, setLoading] = useState(false)
-  // const [error, setError] = useState(null)
-  // const [isLoaded, setIsLoaded] = useState(false)
-  // console.log(data)
   const { totalJobApplication } = useSelector((state) => state.jobs)
   const [applications] = useState(totalJobApplication)
 

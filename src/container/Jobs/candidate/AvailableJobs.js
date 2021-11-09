@@ -29,9 +29,7 @@ const AvailableJobs = () => {
   const handleClick = (event) => {
     setCurrentPage(+event.target.id)
   }
-  // const indexOfLastItem = currentPage * itemsPerPage
-  // const indexOfFirstItem = indexOfLastItem - itemsPerPage
-  // const currentItems = jobs && jobs.slice(indexOfFirstItem, indexOfLastItem)
+
   const renderPageNumbers = pages.map((number) => {
     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
       return (
@@ -50,7 +48,7 @@ const AvailableJobs = () => {
   })
   const handlePrevButton = () => {
     setCurrentPage(currentPage - 1)
-    if ((currentPage - 1) % pageNumberLimit == 0) {
+    if ((currentPage - 1) % pageNumberLimit === 0) {
       setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit)
       setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit)
     }
@@ -75,7 +73,7 @@ const AvailableJobs = () => {
 
   useEffect(() => {
     dispatch(fetchCandidateJobsBegin({ page: currentPage, token: token }))
-  }, [currentPage])
+  }, [currentPage, dispatch, token])
 
   return (
     <div className='jobs'>

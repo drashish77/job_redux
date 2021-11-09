@@ -9,7 +9,6 @@
 //   const [applications, setApplications] = useState([])
 //   const [error, setError] = useState(null)
 //   const [isLoaded, setIsLoaded] = useState(false)
-//   // console.log(data)
 //   const performAPICall = async () => {
 //     setLoading(true)
 //     let response
@@ -108,4 +107,4 @@
 //   }
 // }
 // export default SingleJobDetail
-"use strict";
+'use strict'

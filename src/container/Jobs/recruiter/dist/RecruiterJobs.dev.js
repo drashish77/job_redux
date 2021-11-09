@@ -62,7 +62,6 @@
 //       <h2>Jobs posted by you</h2>
 //       <div className='all__jobs'>
 //         {jobsall.map((job) => {
-//           console.log(job)
 //           return (
 //             <div className='all__jobs-job' key={Math.random()}>
 //               <JobCard
@@ -80,4 +79,4 @@
 //   )
 // }
 // export default Jobs
-"use strict";
+'use strict'

@@ -29,16 +29,29 @@
   background-color: #43afff;
   color: #ffffff;
 }
+.buttongroup label:hover i {
+  color: #ffffff;
+}
 
 /* Hide the radio button */
 input[type=radio] {
   display: none;
 }
 
+input[name=userRole] + label {
+  border-color: #e8e8e833;
+}
+input[name=userRole] + label i {
+  color: #43afff;
+}
+
 /* The checked buttons label style */
 input[name=userRole]:checked + label {
   background-color: #43afff;
   border: 1px solid #43afff;
+  color: #ffffff;
+}
+input[name=userRole]:checked + label i {
   color: #ffffff;
 }
 

@@ -11,8 +11,6 @@ import {
 } from '../../../Redux/auth/authActions'
 
 const ResetPassword = () => {
-  // const [errors, setErrors] = useState({})
-
   const [credentials, setCredentials] = useState({
     password: '',
     confirmPassword: '',
@@ -30,7 +28,7 @@ const ResetPassword = () => {
       dispatch(clearState())
       dispatch(clearErrors())
     }
-  }, [resetSuccess])
+  }, [dispatch, history, resetSuccess])
 
   const handleChange = (e) =>
     setCredentials({ ...credentials, [e.target.name]: e.target.value })

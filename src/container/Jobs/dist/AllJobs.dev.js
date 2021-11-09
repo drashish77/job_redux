@@ -72,7 +72,6 @@
 //   if (minPageNumberLimit >= 1) {
 //     pageDecrementBtn = <li onClick={handlePrevButton}> &hellip; </li>
 //   }
-//   console.log(currentPage)
 //   useEffect(() => {
 //     dispatch(fetchJobsBegin({ page: currentPage }))
 //   }, [])
@@ -127,4 +126,4 @@
 //   )
 // }
 // export default AllJobs
-"use strict";
+'use strict'

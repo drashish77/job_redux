@@ -1,6 +1,5 @@
-import axios from 'axios'
 import { all, call, put, takeLatest } from 'redux-saga/effects'
-import routes from '../../config/config'
+
 import {
   forgetPasswordFailure,
   forgetPasswordSuccess,
@@ -45,8 +44,7 @@ export function* registerWithCredentials({
       confirmPassword,
       skills
     )
-    console.log(user.data.success)
-    console.log(user.data.errors)
+
     if (user && user.data.success) {
       yield put(
         registerSuccess({

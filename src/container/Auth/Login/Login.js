@@ -21,7 +21,7 @@ const Login = () => {
 
   useEffect(() => {
     if (userLoginSuccess) {
-      localStorage.setItem('userData', JSON.stringify(currentUser))
+      // localStorage.setItem('userData', JSON.stringify(currentUser))
       if (currentUser.userRole === 1) {
         history.push(routes.candidates)
       } else if (currentUser.userRole === 0) {
@@ -36,7 +36,7 @@ const Login = () => {
     return () => {
       dispatch(clearErrors())
     }
-  }, [])
+  }, [dispatch])
 
   const handleSubmit = (e) => {
     e.preventDefault()

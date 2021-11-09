@@ -1,6 +1,5 @@
 import axios from 'axios'
-import { get } from 'lodash'
-// import { generateApiSecret } from '../utilities/apiSecret'
+
 const axiosConfiguration = () =>
   axios.create({
     baseURL: process.env.REACT_APP_BASE_URL,
@@ -24,7 +23,7 @@ axiosInstance.interceptors.response.use(
     return response
   },
   (err) => {
-    if (err?.response?.status == 500) {
+    if (err?.response?.status === 500) {
       window.location = '/_500'
     }
     return err.response

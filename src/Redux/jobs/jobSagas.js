@@ -71,8 +71,7 @@ export function* fetchJobs({ payload }) {
 export function* fetchAvailableJobs({ payload }) {
   try {
     const response = yield call(fetchAvailableJOBS, payload)
-    console.log(response)
-    console.log(response.data.success)
+
     if (response && response.data.success) {
       yield put(fetchCandidateJobsSuccess(response.data))
     }

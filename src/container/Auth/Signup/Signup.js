@@ -11,7 +11,6 @@ import './signup.scss'
 
 const Signup = () => {
   const history = useHistory()
-  const [errors] = useState({})
   const [credentials, setCredentials] = useState({
     userRole: 0,
     name: '',
@@ -42,7 +41,7 @@ const Signup = () => {
     return () => {
       dispatch(clearErrors())
     }
-  }, [])
+  }, [dispatch])
   useEffect(() => {
     if (userSignupSuccess) {
       if (credentials.userRole === 1) {
@@ -56,7 +55,7 @@ const Signup = () => {
     return () => {
       dispatch(clearErrors())
     }
-  }, [userSignupSuccess])
+  }, [credentials.userRole, dispatch, history, userSignupSuccess])
 
   const handleSubmit = (e) => {
     e.preventDefault()
