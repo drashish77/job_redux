@@ -145,7 +145,7 @@ button {
 }
 
 .pagination__block {
-  margin-top: 10vh;
+  margin: 5vh 0;
   display: flex;
   justify-content: center;
   align-items: center;

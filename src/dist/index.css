@@ -16,7 +16,7 @@ code {
   justify-content: center;
   align-items: center;
   width: 100%;
-  /* margin-bottom: 50px; */
+  padding: 0;
 }
 
 .pageNumbers li {

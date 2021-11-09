@@ -11,9 +11,7 @@ import PaginationCard from '../Pagination/PaginationCard'
 import { Helmet } from 'react-helmet-async'
 
 const AvailableJobs = () => {
-  // const history = useHistory()
   const dispatch = useDispatch()
-  // const [jobs, setJobs] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage] = useState(20)
   const [pageNumberLimit] = useState(4)
@@ -24,6 +22,8 @@ const AvailableJobs = () => {
     (state) => state.jobs
   )
   const { currentUser } = useSelector((state) => state.auth)
+
+  //pagination component
 
   const pages = []
   for (let i = 1; i <= Math.ceil(totalAvailableJobs / itemsPerPage); i++) {
@@ -71,9 +71,10 @@ const AvailableJobs = () => {
   if (minPageNumberLimit >= 1) {
     pageDecrementBtn = <li onClick={handlePrevButton}> &hellip; </li>
   }
-
+  //getting token from react persist
   const token = currentUser && currentUser.token
 
+  //dispatching action
   useEffect(() => {
     dispatch(fetchCandidateJobsBegin({ page: currentPage, token: token }))
   }, [currentPage, dispatch, token])

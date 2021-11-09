@@ -27,6 +27,7 @@ const RecruitersJobs = () => {
   const { postedJobs, totalPostedJobs } = useSelector((state) => state.jobs)
   const { currentUser } = useSelector((state) => state.auth)
 
+  //pagination component
   const pages = []
   for (let i = 1; i <= Math.ceil(totalPostedJobs / itemsPerPage); i++) {
     pages.push(i)
@@ -73,13 +74,18 @@ const RecruitersJobs = () => {
   if (minPageNumberLimit >= 1) {
     pageDecrementBtn = <sp onClick={handlePrevButton}> &hellip; </sp>
   }
-  const showAllPostedJob = () => history.push(routes.createNewJob)
-
+  //token fetching from persist user
   const token = currentUser && currentUser.token
+
+  //dispatching action
   useEffect(() => {
     dispatch(fetchRecruiterJobsBegin({ page: currentPage, token: token }))
   }, [currentPage, dispatch, token])
 
+  //handler if no posted job is there
+  const showAllPostedJob = () => history.push(routes.createNewJob)
+
+  //home button handler
   const homeButtonHandler = () => history.push(routes.getPostedJobs)
 
   return (
