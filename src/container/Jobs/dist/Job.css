@@ -94,11 +94,11 @@
   }
 
   .all__jobs-job {
-    width: 45%;
+    width: 46%;
     margin: 0 10px;
   }
   .all__jobs-job .jobCard {
-    min-height: 13vh;
+    min-height: 18vh;
   }
 }
 @media screen and (max-width: 425px) {
@@ -113,7 +113,7 @@
   }
 
   .jobs {
-    margin: 0px;
+    margin: 20px;
   }
 
   .all__jobs {
@@ -121,7 +121,7 @@
   }
 
   .all__jobs-job {
-    width: 100%;
+    width: 80%;
   }
 }
 .no_job_applied_wrap {
