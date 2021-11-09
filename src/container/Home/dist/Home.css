@@ -1,6 +1,7 @@
 .home {
   background-image: linear-gradient(to right, #1a253c, #303f60);
   height: 400px;
+  width: 100%;
   color: #ffffff;
 }
 .home .main__section {
@@ -13,17 +14,19 @@
   flex-direction: column;
   justify-content: flex-start;
 }
-.home .main__section .heading {
+.home .main__section .home_heading {
   margin-top: 100px;
 }
-.home .main__section .heading h1 {
-  line-height: 0.5;
+.home .main__section .home_heading .main_h1 {
+  line-height: 1;
+  font-weight: normal;
   font-size: 4rem;
 }
-.home .main__section .heading span {
+.home .main__section .home_heading span {
   color: #43afff;
 }
 .home .main__section button {
+  margin-top: 15px;
   padding: 15px 25px;
   letter-spacing: 0.5px;
   font-size: 16px;
@@ -41,9 +44,6 @@
   display: flex;
   flex-wrap: wrap;
 }
-.card__wrap * {
-  flex-grow: 1;
-}
 
 .card__heading {
   color: #303f60;
@@ -54,6 +54,10 @@
 .section__two,
 .section__three {
   margin: 70px 100px 0;
+}
+
+.section__three {
+  padding-bottom: 70px;
 }
 
 .clients {
@@ -80,15 +84,39 @@
   font-size: 30px;
 }
 
+@media screen and (max-width: 1920px) {
+  .home .main__section button {
+    margin-top: 40px;
+  }
+}
+@media screen and (max-width: 1440px) {
+  .home {
+    height: 380px;
+  }
+  .home .main__section button {
+    margin-top: 40px;
+  }
+}
+@media screen and (max-width: 1368px) {
+  .home {
+    height: 350px;
+  }
+  .home .main__section button {
+    margin-top: 20px;
+  }
+}
 @media screen and (max-width: 1024px) {
   .home {
     height: 300px;
   }
-  .home .main__section .heading {
-    margin-top: 80px;
+  .home .main__section .home_heading {
+    margin-top: 90px;
   }
-  .home .main__section .heading h1 {
+  .home .main__section .home_heading .main_h1 {
     font-size: 2.5rem;
+  }
+  .home .main__section button {
+    margin-top: 40px;
   }
   .home .section__two {
     margin: 50px 100px 0;
@@ -96,18 +124,19 @@
 }
 @media screen and (max-width: 768px) {
   .home {
-    height: 250px;
+    height: 230px;
   }
   .home .main__section {
     margin: 0 100px;
   }
-  .home .main__section .heading h1 {
-    font-size: 2rem;
+  .home .main__section .home_heading .main_h1 {
+    font-size: 1.6rem;
   }
   .home .main__section button {
-    padding: 10px 15px;
+    padding: 8px 12px;
     letter-spacing: 0.5px;
-    font-size: 16px;
+    font-size: 14px;
+    margin-top: 10px;
   }
   .home .img2 {
     margin-top: 70px;
@@ -118,9 +147,9 @@
     width: 100%;
   }
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 425px) {
   .home {
-    height: 280px;
+    height: 230px;
   }
   .home .main__section {
     display: flex;
@@ -128,17 +157,23 @@
     align-items: center;
     justify-content: flex-start;
     margin: 0;
+    margin-bottom: 40px;
   }
-  .home .main__section .heading {
-    margin: 40px;
+  .home .main__section .home_heading {
+    margin: 0px 0 20px 0;
   }
-  .home .main__section .heading h1 {
-    font-size: 1.5rem;
+  .home .main__section .home_heading .main_h1 {
+    font-size: 2rem;
+  }
+  .home .main__section .button_wrap_home {
+    display: flex;
+    justify-content: center;
   }
   .home .main__section button {
     padding: 5px 10px;
     letter-spacing: 0.5px;
     font-size: 12px;
+    margin: 10px 0;
   }
   .home .img2 {
     margin-top: 0px;
@@ -150,6 +185,7 @@
   }
   .home .heading_inner {
     display: flex;
+    line-height: 1.5;
   }
   .home .section__two {
     margin: 0;
@@ -163,7 +199,7 @@
   .client {
     flex-grow: 1;
     width: 80px;
-    margin: 10px;
+    margin: 10px auto;
     font-size: 15px;
   }
 

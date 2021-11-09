@@ -5,7 +5,7 @@ $breakpoint-laptop: 992px;
 $breakpoint-desktop: 1220px;
 @import './scss/variables/Variable.scss';
 body {
-  background-color: $skyBlueLight;
+  background-color: $skyBlueLight !important;
 }
 .app {
   background-image: linear-gradient(to right, $darkBlue, $lightBlue);

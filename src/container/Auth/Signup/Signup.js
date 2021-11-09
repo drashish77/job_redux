@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import Button from '../../../components/Button/Button'
 import Input from '../../../components/Input/Input2'
 import routes from '../../../config/config'
-import { registerStart } from '../../../Redux/auth/authActions'
+import { clearErrors, registerStart } from '../../../Redux/auth/authActions'
 // import { validation } from '../validation/validation'
 // import { registerStart } from '../../../redux/store/auth/authActions'
 import './signup.scss'
@@ -20,6 +20,14 @@ const Signup = () => {
     confirmPassword: '',
     skills: '',
   })
+  const { userSignupSuccess, signupFailed } = useSelector((state) => state.auth)
+
+  let passwordError =
+    signupFailed && signupFailed.find((a) => a.password)?.password
+
+  let ConfirmPasswordError =
+    signupFailed && signupFailed.find((a) => a.confirmPassword)?.confirmPassword
+  let nameError = signupFailed && signupFailed.find((a) => a.name)?.name
 
   const dispatch = useDispatch()
 
@@ -30,25 +38,33 @@ const Signup = () => {
         ? e.target.value
         : +e.target.value,
     })
+  useEffect(() => {
+    return () => {
+      dispatch(clearErrors())
+    }
+  }, [])
+  useEffect(() => {
+    if (userSignupSuccess) {
+      if (credentials.userRole === 1) {
+        history.push(routes.candidates)
+      } else if (credentials.userRole === 0) {
+        history.push(routes.getPostedJobs)
+      } else {
+        history.push(routes.jobsRoute)
+      }
+    }
+    return () => {
+      dispatch(clearErrors())
+    }
+  }, [userSignupSuccess])
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // setErrors(validation(credentials))
-    // validation()
     dispatch(registerStart(credentials))
-    if (credentials.userRole === 1) {
-      history.push(routes.candidates)
-    } else if (credentials.userRole === 0) {
-      history.push(routes.getPostedJobs)
-    } else {
-      history.push(routes.jobsRoute)
-    }
-    // history.push('/jobs')
   }
-  console.log(credentials.userRole)
 
   return (
-    <div className='container'>
+    <div className='form_container container'>
       <div className='login'>
         <form onSubmit={handleSubmit}>
           <h2>Signup</h2>
@@ -72,7 +88,11 @@ const Signup = () => {
             value={credentials.name}
             placeholder='Enter your full name'
             handleChange={handleChange}
-          />
+          >
+            {signupFailed !== null && (
+              <p className='error'>{signupFailed && nameError}</p>
+            )}
+          </Input>
           <Input
             heading='Email Address*'
             name='email'
@@ -81,48 +101,53 @@ const Signup = () => {
             placeholder='Enter your full name'
             handleChange={handleChange}
           />
-          <div className='py-2' x-data='{ show: true }'>
-            <div className=''>
-              <div className='password__section'>
-                <Input
-                  heading='Password*'
-                  name='password'
-                  type='password'
-                  value={credentials.password}
-                  placeholder='Enter your password'
-                  handleChange={handleChange}
-                >
-                  {errors.error && <p className='error w-48'>{errors.error}</p>}
-                </Input>
-                <Input
-                  heading='Confirm Password*'
-                  name='confirmPassword'
-                  type='password'
-                  placeholder='Enter your password'
-                  handleChange={handleChange}
-                >
-                  {errors.error && <p className='error w-48'>{errors.error}</p>}
-                </Input>
-              </div>
-              <Input
-                heading='Skills'
-                name='skills'
-                type='text'
-                placeholder='Enter comma separated skills'
-                handleChange={handleChange}
-              />
-              <div className='button_wrap'>
-                <Button title='Signup' color='light' onClick={handleSubmit} />
-              </div>
-              <div className='register'>
-                <label className=''>
-                  Have an account?
-                  <Link to={routes.loginRoute} className=''>
-                    <span> Login</span>
-                  </Link>
-                </label>
-              </div>
-            </div>
+
+          <div className='password__section'>
+            <Input
+              heading='Password*'
+              name='password'
+              type='password'
+              value={credentials.password}
+              placeholder='Enter your password'
+              handleChange={handleChange}
+            >
+              {signupFailed !== null && (
+                <p className='error'>{signupFailed && passwordError}</p>
+              )}
+            </Input>
+            <Input
+              heading='Confirm Password*'
+              name='confirmPassword'
+              type='password'
+              placeholder='Enter your password'
+              handleChange={handleChange}
+            >
+              {signupFailed !== null && (
+                <p className='error'>{signupFailed && ConfirmPasswordError}</p>
+              )}
+            </Input>
+          </div>
+          <Input
+            heading='Skills'
+            name='skills'
+            type='text'
+            placeholder='Enter comma separated skills'
+            handleChange={handleChange}
+          >
+            {/* {userSignupSuccess === false && (
+                <p className='error'>Signup failed</p>
+              )} */}
+          </Input>
+          <div className='button_wrap'>
+            <Button title='Signup' color='light' />
+          </div>
+          <div className='register'>
+            <label className=''>
+              Have an account?
+              <Link to={routes.loginRoute} className=''>
+                <span> Login</span>
+              </Link>
+            </label>
           </div>
         </form>
       </div>

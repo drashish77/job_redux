@@ -19,22 +19,22 @@
   outline: none;
 }
 
-.btn-dark {
+.button-dark {
   background-color: #43afff33;
   color: #ffffff;
 }
-.btn-dark:hover {
+.button-dark:hover {
   background-color: #43afff;
   box-shadow: 0px 15px 20px #557da526;
   transform: translateY(-3px);
   color: #ffffff;
 }
 
-.btn-light {
+.button-light {
   background-color: #43afff;
   color: #ffffff;
 }
-.btn-light:hover {
+.button-light:hover {
   background-color: #43afff33;
   box-shadow: 0px 15px 20px #557da526;
   transform: translateY(-7px);

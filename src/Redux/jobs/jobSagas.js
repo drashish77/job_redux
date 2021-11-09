@@ -26,66 +26,15 @@ import {
 import types from './jobActionTypes'
 import { toast } from 'react-toastify'
 
-const fetchJOBS = async (payload) => {
-  return axios.get(`${process.env.REACT_APP_BASE_URL}/jobs?page=${payload}`)
-}
-const fetchAvailableJOBS = async (payload) => {
-  let url = `${process.env.REACT_APP_BASE_URL}/candidates/jobs?page=${payload.page}`
+import {
+  fetchAvailableJOBS,
+  fetchJOBS,
+  fetchRecruiterPostedJOBS,
+  postJOB,
+  fetchAppliedJOBS,
+  fetchApplicationsForAJOB,
+} from './jobApiCalls'
 
-  let headers = {
-    'Content-Type': 'application/json',
-    Authorization: payload.token,
-  }
-  return await axios.get(url, {
-    headers: headers,
-  })
-  // return getApiResponse(url, { method, headers })
-}
-const fetchRecruiterPostedJOBS = async (payload) => {
-  let url = `${process.env.REACT_APP_BASE_URL}/recruiters/jobs`
-
-  let headers = {
-    'Content-Type': 'application/json',
-    Authorization: payload.token,
-  }
-  return await axios.get(url, {
-    headers: headers,
-  })
-  // return getApiResponse(url, { method, headers })
-}
-const postJOB = async (body, token) => {
-  let url = `${process.env.REACT_APP_BASE_URL}/jobs/`
-
-  let headers = {
-    'Content-Type': 'application/json',
-    Authorization: token,
-  }
-  return await axios.post(url, body, {
-    headers: headers,
-  })
-  // return getApiResponse(url, { method, headers })
-}
-
-const fetchAppliedJOBS = async (token) => {
-  let url = `${process.env.REACT_APP_BASE_URL}/candidates/jobs/applied`
-  let headers = {
-    'Content-Type': 'application/json',
-    Authorization: token,
-  }
-  return await axios.get(url, {
-    headers: headers,
-  })
-}
-const fetchApplicationsForAJOB = async (jobId, token) => {
-  let url = `${process.env.REACT_APP_BASE_URL}/recruiters/jobs/${jobId}/candidates`
-  let headers = {
-    'Content-Type': 'application/json',
-    Authorization: token,
-  }
-  return await axios.get(url, {
-    headers: headers,
-  })
-}
 export function* fetchApplicationsForAJob({ payload }) {
   try {
     const response = yield call(
@@ -122,8 +71,11 @@ export function* fetchJobs({ payload }) {
 export function* fetchAvailableJobs({ payload }) {
   try {
     const response = yield call(fetchAvailableJOBS, payload)
-
-    yield put(fetchCandidateJobsSuccess(response.data))
+    console.log(response)
+    console.log(response.data.success)
+    if (response && response.data.success) {
+      yield put(fetchCandidateJobsSuccess(response.data))
+    }
   } catch (error) {
     yield put(fetchCandidateJobsFailure(error))
   }

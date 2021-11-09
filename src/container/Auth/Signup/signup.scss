@@ -1,10 +1,10 @@
 @import '../../../scss/variables/Variable.scss';
-.container {
-  margin: 50px 0;
-  button {
-    margin: 20px 0;
-  }
-}
+// .signup_container {
+//   margin: 50px 0;
+//   button {
+//     margin: 20px 0;
+//   }
+// }
 
 .password__section {
   display: flex;
@@ -60,6 +60,9 @@ input[name='userRole']:checked + label {
 }
 
 @media screen and (max-width: 768px) {
+  .login {
+    width: 60%;
+  }
   .password__section {
     flex-direction: column;
   }
@@ -73,6 +76,9 @@ input[name='userRole']:checked + label {
 }
 
 @media screen and( max-width: 500px) {
+  .login {
+    width: 95%;
+  }
   .container {
     margin: 50px 10px;
   }

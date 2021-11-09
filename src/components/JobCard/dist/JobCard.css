@@ -45,4 +45,17 @@
   .jobCard {
     margin: 10px;
   }
+  .jobCard .jobCard__bottom {
+    padding: 10px 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  .jobCard .jobCard__bottom {
+    padding: 10px 0;
+  }
+}
+@media screen and (max-width: 425px) {
+  .jobCard .jobCard__bottom {
+    padding: 10px 0;
+  }
 }

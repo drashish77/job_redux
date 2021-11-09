@@ -1,5 +1,5 @@
 @import '../../../scss/variables/Variable.scss';
-.container {
+.form_container {
   margin: 0 20px;
   margin-top: 80px;
   display: flex;
@@ -63,19 +63,14 @@ form {
     letter-spacing: 0.5px;
   }
 }
-.after__password {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 14px;
-}
+
 .register {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 @media screen and (max-width: 500px) {
-  .container {
+  .form_container {
     margin: 0 20px;
     padding: 20px 0;
   }
@@ -83,6 +78,18 @@ form {
     padding: 0px;
     width: 100%;
   }
+}
+#password {
+  position: relative;
+}
+.after__password {
+  position: absolute;
+  top: -25%;
+  right: 0%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 14px;
 }
 .forget___password {
   display: flex;

@@ -17,12 +17,14 @@ import PostAJob from './container/Jobs/recruiter/PostAJob'
 import RecruitersJobs from './container/Jobs/recruiter/RecruiterJobs'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
 import PrivateRoute from './PrivateRoute'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   return (
-    <div className='app'>
+    <div className='app '>
       <HelmetProvider>
         <Header />
+
         <ToastContainer />
         <Helmet>
           <title>JOB-portal</title>

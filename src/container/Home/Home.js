@@ -25,12 +25,12 @@ const Home2 = () => {
         <title>🏠 Job Portal</title>
         <meta name='description' content='This is job portal home page' />
       </Helmet>
-      <div className='wrapper'>
+      <div className='home_wrapper container'>
         <div className='main__section'>
-          <div className='heading'>
+          <div className='home_heading'>
             <div className='heading_inner'>
-              <h1>Welcome to</h1>
-              <h1>
+              <h1 className='main_h1'>Welcome to </h1>{' '}
+              <h1 className='main_h1'>
                 My<span>Jobs</span>
               </h1>
             </div>

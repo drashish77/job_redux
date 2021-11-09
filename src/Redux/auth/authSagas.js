@@ -14,59 +14,58 @@ import {
 
 import types from './authActionTypes'
 import { toast } from 'react-toastify'
+import { logIn, forgetPassword, register, resetPassword } from './authApiCalls'
 
-const logIn = async (email, password) => {
-  return axios.post(`${process.env.REACT_APP_BASE_URL}${routes.loginRoute}`, {
-    email,
-    password,
-  })
-  // return { token: response.data.accessToken }
-}
-
-const register = async (
-  userRole,
-  name,
-  email,
-  password,
-  confirmPassword,
-  skills
-) => {
-  await axios.post(`${process.env.REACT_APP_BASE_URL}${routes.registerRoute}`, {
-    userRole,
-    name,
-    email,
-    password,
-    confirmPassword,
-    skills,
-  })
-}
-const forgetPassword = async (email) => {
-  return axios.get(
-    `${process.env.REACT_APP_BASE_URL}${routes.resetPassword}?email=${email}`
-  )
-  // return { token: response.data.accessToken }
-}
-const resetPassword = async (password, confirmPassword, token) => {
-  return axios.post(
-    `${process.env.REACT_APP_BASE_URL}${routes.resetPassword}`,
-    {
-      password,
-      confirmPassword,
-      token,
-    }
-  )
-  // return { token: response.data.accessToken }
-}
 export function* logInWithCredentials({ payload: { email, password } }) {
   try {
     const user = yield call(logIn, email, password)
-
+    console.log(user)
     if (user && user.data.success) {
+      toast.success('Login Success!')
+
       yield put(logInSuccess(user.data.data))
+    } else {
+      yield put(logInFailure(user.data.message))
+      toast.error('Login Failed!')
     }
-    toast.success('Login Successful!')
   } catch (error) {
     yield put(logInFailure(error.response.data))
+  }
+}
+export function* registerWithCredentials({
+  payload: { userRole, name, email, password, confirmPassword, skills },
+}) {
+  try {
+    const user = yield call(
+      register,
+      userRole,
+      name,
+      email,
+      password,
+      confirmPassword,
+      skills
+    )
+    console.log(user.data.success)
+    console.log(user.data.errors)
+    if (user && user.data.success) {
+      yield put(
+        registerSuccess({
+          userRole,
+          name,
+          email,
+          password,
+          confirmPassword,
+          skills,
+        })
+      )
+      toast.success('Signup Successful!')
+    } else {
+      toast.error('Signup failed!')
+      yield put(registerFailure(user.data.errors))
+    }
+  } catch (error) {
+    toast.error('Signup failed!')
+    yield put(registerFailure(error))
   }
 }
 export function* forgetPasswordWithEmail({ payload }) {
@@ -85,38 +84,6 @@ export function* resetPasswordWithToken({
     yield put(resetPasswordSuccess(user.data?.data))
   } catch (error) {
     yield put(resetPasswordFailure(error.response.data))
-  }
-}
-
-export function* registerWithCredentials({
-  payload: { userRole, name, email, password, confirmPassword, skills },
-}) {
-  try {
-    // yield register(userRole, name, email, password, confirmPassword, skills)
-    yield call(
-      register,
-      userRole,
-      name,
-      email,
-      password,
-      confirmPassword,
-      skills
-    )
-    yield put(
-      registerSuccess({
-        userRole,
-        name,
-        email,
-        password,
-        confirmPassword,
-        skills,
-      })
-    )
-    toast.success('Signup Successful!')
-  } catch (error) {
-    toast.error('Signup failed!')
-
-    yield put(registerFailure(error))
   }
 }
 

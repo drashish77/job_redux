@@ -1,14 +1,17 @@
 import types from './authActionTypes'
 
 const INITIAL_STATE = {
+  loginFailed: null,
   currentUser: null,
   error: null,
   errorMessage: null,
   userLoginSuccess: false,
+  userSignupSuccess: false,
   resetSuccess: false,
   resetPasswordData: false,
   forgotSuccess: false,
   resetToken: null,
+  signupFailed: null,
 }
 const persistLogin = (token, userRole, email, name) => {
   localStorage.setItem('token', token)
@@ -27,6 +30,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
     case types.LOG_IN_SUCCESS: {
       let { email, token, name, userRole } = action.payload
       persistLogin(token, userRole, email, name)
+
       return {
         ...state,
         currentUser: action.payload,
@@ -38,7 +42,8 @@ const authReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         error: action.payload.errors,
-        errorMessage: action.payload.message,
+        errorMessage: action.payload,
+        userLoginSuccess: false,
       }
     }
 
@@ -46,12 +51,15 @@ const authReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         error: action.payload,
+        userSignupSuccess: true,
       }
     }
     case types.REGISTER_FAILURE:
       return {
         ...state,
         error: action.payload,
+        userSignupSuccess: false,
+        signupFailed: action.payload,
       }
     case types.LOG_OUT:
       return INITIAL_STATE
@@ -61,6 +69,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
         ...state,
         error: null,
         errorMessage: null,
+        signupFailed: null,
       }
 
     case types.FORGOT_PASSWORD_SUCCESS: {

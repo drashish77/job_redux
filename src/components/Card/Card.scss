@@ -1,12 +1,13 @@
 @import '../../scss//variables/Variable.scss';
-.card {
+.home__card {
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.1);
   margin: 20px;
   border-radius: 5px;
   background-color: #fff;
   padding: 15px;
   color: black;
-  width: 22vw;
+  width: 25%;
+  flex-grow: 1;
   h3 {
     // display: inline-block;
     // font-weight: 600;
@@ -19,8 +20,20 @@
     color: $lightBlue;
   }
 }
-@media screen and (max-width: 500px) {
-  .card {
+@media screen and (max-width: 1024px) {
+  .home__card {
+    width: 24.5%;
+    margin-bottom: 10px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .home__card {
+    width: 90vw;
+    margin-bottom: 10px;
+  }
+}
+@media screen and (max-width: 425px) {
+  .home__card {
     width: 90vw;
     margin-bottom: 10px;
   }

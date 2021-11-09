@@ -15,7 +15,6 @@ import SingleJobDetail from './OpenModal'
 import { Helmet } from 'react-helmet-async'
 
 const RecruitersJobs = () => {
-  // const [jobs, setJobs] = useState([])
   const history = useHistory()
   const dispatch = useDispatch()
   const [modalIsOpen, setModalIsOpen] = useState(false)
@@ -25,20 +24,21 @@ const RecruitersJobs = () => {
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(4)
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0)
 
-  const { postedJobs } = useSelector((state) => state.jobs)
+  const { postedJobs, totalPostedJobs } = useSelector((state) => state.jobs)
+  const { currentUser } = useSelector((state) => state.auth)
 
   let jobs = postedJobs
 
   const pages = []
-  for (let i = 1; i <= Math.ceil(postedJobs.length / itemsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(totalPostedJobs / itemsPerPage); i++) {
     pages.push(i)
   }
   const handleClick = (event) => {
     setCurrentPage(+event.target.id)
   }
-  const indexOfLastItem = currentPage * itemsPerPage
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage
-  const currentItems = jobs && jobs.slice(indexOfFirstItem, indexOfLastItem)
+  // const indexOfLastItem = currentPage * itemsPerPage
+  // const indexOfFirstItem = indexOfLastItem - itemsPerPage
+  // const currentItems = jobs && jobs.slice(indexOfFirstItem, indexOfLastItem)
   const renderPageNumbers = pages.map((number) => {
     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
       return (
@@ -79,25 +79,24 @@ const RecruitersJobs = () => {
   }
   const showAllPostedJob = () => history.push(routes.createNewJob)
 
-  const token = localStorage.getItem('token')
-  // useEffect(() => {
-  //   totalPostedJobs && setJobs(totalPostedJobs.data)
-  // }, [totalPostedJobs])
+  const token = currentUser && currentUser.token
   useEffect(() => {
     // setJobs(totalPostedJobs.data)
     dispatch(fetchRecruiterJobsBegin({ token: token }))
   }, [currentPage])
   const homeButtonHandler = () => history.push(routes.getPostedJobs)
   return (
-    <div className='jobs'>
+    <div className='jobs container'>
       <Helmet>
         <title>Jobs posted by you</title>
         <meta name='description' content='here are recruiter posted jobs' />
       </Helmet>
-      <div className='job__home_logo' onClick={homeButtonHandler}>
-        <i className='fas fa-home'></i> <span>Home</span>
+      <div className='job_heading_container'>
+        <div className='job__home_logo' onClick={homeButtonHandler}>
+          <i className='fas fa-home'></i> <span>Home</span>
+        </div>
+        <h2 className='job_heading'>Jobs posted by you</h2>
       </div>
-      <h2>Jobs posted by you</h2>
       {postedJobs && postedJobs.length === 0 ? (
         <div className='no_job_applied_wrap'>
           <div className='no_job_applied'>
@@ -108,8 +107,8 @@ const RecruitersJobs = () => {
         </div>
       ) : (
         <div className='all__jobs'>
-          {currentItems &&
-            currentItems.map((job) => {
+          {postedJobs &&
+            postedJobs.map((job) => {
               let jobId = job.id
               const viewApplicationHandler = (e) => {
                 setModalIsOpen(true)

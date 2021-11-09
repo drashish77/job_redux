@@ -17,18 +17,16 @@ const SingleJobDetail = ({ match, setModalIsOpen }) => {
   return (
     <div className=' text-blue-moderate'>
       {/* <p>Currencies: {country.currencies[0]['code']}</p> */}
-      <div className='lg:mx-24 mt-20 mb-12'>
+      <div className=''>
         <div className='header_button'>
-          <h3 className='mx-5 my-5 text-blue-moderate font-semibold text-2xl'>
-            Applicants for this job
-          </h3>
+          <h3 className=''>Applicants for this job</h3>
           <div className='modal_close_button'>
             <button className='button' onClick={() => setModalIsOpen(false)}>
               <i className='fas fa-times'></i>
             </button>
           </div>
         </div>
-        <div className='m-5'>
+        <div className=''>
           <hr />
         </div>
         <p className=''>

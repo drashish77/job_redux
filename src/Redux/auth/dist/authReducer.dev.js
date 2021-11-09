@@ -16,14 +16,17 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var INITIAL_STATE = {
+  loginFailed: null,
   currentUser: null,
   error: null,
   errorMessage: null,
   userLoginSuccess: false,
+  userSignupSuccess: false,
   resetSuccess: false,
   resetPasswordData: false,
   forgotSuccess: false,
-  resetToken: null
+  resetToken: null,
+  signupFailed: null
 };
 
 var persistLogin = function persistLogin(token, userRole, email, name) {
@@ -63,20 +66,24 @@ var authReducer = function authReducer() {
       {
         return _objectSpread({}, state, {
           error: action.payload.errors,
-          errorMessage: action.payload.message
+          errorMessage: action.payload,
+          userLoginSuccess: false
         });
       }
 
     case _authActionTypes["default"].REGISTER_SUCCESS:
       {
         return _objectSpread({}, state, {
-          error: action.payload
+          error: action.payload,
+          userSignupSuccess: true
         });
       }
 
     case _authActionTypes["default"].REGISTER_FAILURE:
       return _objectSpread({}, state, {
-        error: action.payload
+        error: action.payload,
+        userSignupSuccess: false,
+        signupFailed: action.payload
       });
 
     case _authActionTypes["default"].LOG_OUT:
@@ -85,7 +92,8 @@ var authReducer = function authReducer() {
     case _authActionTypes["default"].CLEAR_ERRORS:
       return _objectSpread({}, state, {
         error: null,
-        errorMessage: null
+        errorMessage: null,
+        signupFailed: null
       });
 
     case _authActionTypes["default"].FORGOT_PASSWORD_SUCCESS:

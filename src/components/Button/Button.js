@@ -1,15 +1,15 @@
 import './Button.scss'
 const Button = ({ title, color, onClick }) => {
   return (
-    <div className=''>
+    <div className='button_wrap_home'>
       <button
         type='submit'
         className={`button ${
           color === 'dark'
-            ? 'btn-dark'
+            ? 'button-dark'
             : color === 'extraLight'
             ? 'btn-extraLight'
-            : 'btn-light'
+            : 'button-light'
         }`}
         onClick={onClick}
       >

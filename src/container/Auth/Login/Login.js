@@ -31,11 +31,13 @@ const Login = () => {
       }
     }
   }, [history, currentUser, userLoginSuccess])
+
   useEffect(() => {
     return () => {
       dispatch(clearErrors())
     }
   }, [])
+
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(logInStart(credentials))
@@ -43,7 +45,7 @@ const Login = () => {
   }
 
   return (
-    <div className='container'>
+    <div className='form_container container'>
       <div className='login'>
         <form onSubmit={handleSubmit}>
           <h2>Login</h2>
@@ -57,49 +59,38 @@ const Login = () => {
           >
             {error && <p className='error'>{error[0]?.email}</p>}
           </Input>
-          <div className='' x-data='{ show: true }'>
-            <div className='password'>
-              <div className='after__password'>
-                <span>Password*</span>
 
+          <div className='' id='password'>
+            <Input
+              heading='Password*'
+              name='password'
+              type='password'
+              value={credentials.password}
+              placeholder='Enter your password'
+              handleChange={handleChange}
+            >
+              {/* <p className='error'>{errors && errors.error}</p> */}
+              {errors && <span className='error '>{errors[0]}</span>}
+              {errorMessage && <span className='error '>{errorMessage}</span>}
+            </Input>
+            <div className='after__password'>
+              <label className=''>
                 <Link to={routes.forgetPassword} className=''>
                   <span>Forgot your password?</span>
                 </Link>
-              </div>
-
-              <Input
-                // heading='Password*'
-                name='password'
-                type='password'
-                value={credentials.password}
-                placeholder='Enter your password'
-                handleChange={handleChange}
-              >
-                {/* <p className='error'>{errors && errors.error}</p> */}
-                {errors && <span className='error w-48'>{errors[0]}</span>}
-                {errorMessage && (
-                  <span className='error w-48'>{errorMessage}</span>
-                )}
-              </Input>
-              {/* <div className='after__password'>
-                <label className=''>
-                  <Link to={routes.forgetPassword} className=''>
-                    <span>Forgot your password?</span>
-                  </Link>
-                </label>
-              </div> */}
-              <div className='button_wrap'>
-                <Button title='Login' color='light' />
-              </div>
-              <div className='register'>
-                <label className=''>
-                  New to MyJobs?
-                  <Link to={routes.registerRoute} className=''>
-                    <span> Create new Account?</span>
-                  </Link>
-                </label>
-              </div>
+              </label>
             </div>
+          </div>
+          <div className='button_wrap'>
+            <Button title='Login' color='light' />
+          </div>
+          <div className='register'>
+            <label className=''>
+              New to MyJobs?
+              <Link to={routes.registerRoute} className=''>
+                <span> Create new Account?</span>
+              </Link>
+            </label>
           </div>
         </form>
       </div>

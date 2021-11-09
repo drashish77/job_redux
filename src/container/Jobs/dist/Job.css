@@ -2,6 +2,16 @@
   height: 200px;
 }
 
+.job_heading_container {
+  margin: 0 30px;
+}
+.job_heading_container .job__home_logo {
+  margin-bottom: 20px;
+}
+.job_heading_container .job_heading {
+  margin-bottom: 10px;
+}
+
 .jobs {
   display: flex;
   justify-content: space-between;
@@ -23,14 +33,44 @@
 .all__jobs {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .all__jobs-job {
   width: 250px;
   margin: 10px;
-  flex-grow: 1;
+}
+.all__jobs-job .jobCard {
+  min-height: 24vh;
 }
 
+@media screen and (max-width: 1920px) {
+  .job_heading_container {
+    margin: 0 120px;
+  }
+  .all__jobs-job .jobCard {
+    min-height: 18vh;
+  }
+}
+@media screen and (max-width: 1440px) {
+  .job_heading_container {
+    margin: 0 120px;
+  }
+
+  .all__jobs-job .jobCard {
+    min-height: 20vh;
+  }
+}
+@media screen and (max-width: 1368px) {
+  .job_heading_container {
+    margin: 0 30px;
+  }
+
+  .all__jobs-job .jobCard {
+    min-height: 24vh;
+  }
+}
 @media screen and (max-width: 1024px) {
   .jobs {
     margin: 10px 100px 20px;
@@ -44,24 +84,36 @@
     width: 30%;
     margin: 0 10px;
   }
+  .all__jobs-job .jobCard {
+    min-height: 18vh;
+  }
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 768px) {
   .jobs {
     margin: 10px 100px 20px;
-  }
-
-  .all__jobs {
-    display: flex;
   }
 
   .all__jobs-job {
     width: 45%;
     margin: 0 10px;
   }
+  .all__jobs-job .jobCard {
+    min-height: 13vh;
+  }
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 425px) {
+  .job_heading_container {
+    margin: 0 20px;
+  }
+  .job_heading_container .job__home_logo {
+    margin-bottom: 20px;
+  }
+  .job_heading_container .job_heading {
+    margin-bottom: 10px;
+  }
+
   .jobs {
-    margin: 20px;
+    margin: 0px;
   }
 
   .all__jobs {

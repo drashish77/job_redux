@@ -39,7 +39,7 @@ const Header = (props) => {
   const postAJobHandler = () => history.push(routes.createNewJob)
   const applyAJobHandler = () => history.push(routes.getAlreadyAppliedJobs)
   return (
-    <div>
+    <div className='container header_wrapper'>
       <div className='header' ref={menuRef}>
         <div className='header__logo' onClick={root}>
           <h2>

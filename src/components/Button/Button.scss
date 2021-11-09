@@ -20,7 +20,7 @@
   outline: none;
 }
 
-.btn-dark {
+.button-dark {
   background-color: $dark-button;
   color: $white;
   &:hover {
@@ -31,7 +31,7 @@
   }
 }
 
-.btn-light {
+.button-light {
   background-color: $skyBlueDark;
   color: $white;
   &:hover {

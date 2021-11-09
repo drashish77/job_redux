@@ -73,7 +73,6 @@ const AvailableJobs = () => {
 
   const token = localStorage.getItem('token')
 
-  // useEffect(() => setJobs(totalAvailableJobs), [totalAvailableJobs])
   useEffect(() => {
     dispatch(fetchCandidateJobsBegin({ page: currentPage, token: token }))
   }, [currentPage])
@@ -87,11 +86,13 @@ const AvailableJobs = () => {
           content='Here is the list of all the available jobs for you'
         />
       </Helmet>
-      <div className='job__home_logo'>
-        <i className='fas fa-home'></i> <span>Home</span>
+      <div className='job_heading_container container'>
+        <div className='job__home_logo'>
+          <i className='fas fa-home'></i> <span>Home</span>
+        </div>
+        <h2>Jobs for you</h2>
       </div>
-      <h2>Jobs for you</h2>
-      <div className='all__jobs'>
+      <div className='all__jobs container'>
         {availableJobs &&
           availableJobs.map((job) => {
             const body = { jobId: job.id, token: token }

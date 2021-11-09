@@ -3,6 +3,7 @@
 .home {
   background-image: linear-gradient(to right, $darkBlue, $lightBlue);
   height: 400px;
+  width: 100%;
   color: $white;
   .main__section {
     display: flex;
@@ -15,10 +16,11 @@
       flex-direction: column;
       justify-content: flex-start;
     }
-    .heading {
+    .home_heading {
       margin-top: 100px;
-      h1 {
-        line-height: 0.5;
+      .main_h1 {
+        line-height: 1;
+        font-weight: normal;
         font-size: 4rem;
       }
       span {
@@ -26,6 +28,7 @@
       }
     }
     button {
+      margin-top: 15px;
       padding: 15px 25px;
       letter-spacing: 0.5px;
       font-size: 16px;
@@ -48,9 +51,9 @@
 .card__wrap {
   display: flex;
   flex-wrap: wrap;
-  * {
-    flex-grow: 1;
-  }
+  // * {
+  //   flex-grow: 1;
+  // }
 }
 .card__heading {
   color: $lightBlue;
@@ -60,6 +63,9 @@
 .section__two,
 .section__three {
   margin: 70px 100px 0;
+}
+.section__three {
+  padding-bottom: 70px;
 }
 .clients {
   display: flex;
@@ -82,15 +88,47 @@
   font-size: 30px;
 }
 
+@media screen and (max-width: 1920px) {
+  .home {
+    .main__section {
+      button {
+        margin-top: 40px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1440px) {
+  .home {
+    height: 380px;
+    .main__section {
+      button {
+        margin-top: 40px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1368px) {
+  .home {
+    height: 350px;
+    .main__section {
+      button {
+        margin-top: 20px;
+      }
+    }
+  }
+}
 @media screen and (max-width: 1024px) {
   .home {
     height: 300px;
     .main__section {
-      .heading {
-        margin-top: 80px;
-        h1 {
+      .home_heading {
+        margin-top: 90px;
+        .main_h1 {
           font-size: 2.5rem;
         }
+      }
+      button {
+        margin-top: 40px;
       }
     }
     .section__two {
@@ -100,18 +138,20 @@
 }
 @media screen and (max-width: 768px) {
   .home {
-    height: 250px;
+    height: 230px;
     .main__section {
       margin: 0 100px;
-      .heading {
-        h1 {
-          font-size: 2rem;
+      .home_heading {
+        .main_h1 {
+          font-size: 1.6rem;
         }
       }
+
       button {
-        padding: 10px 15px;
+        padding: 8px 12px;
         letter-spacing: 0.5px;
-        font-size: 16px;
+        font-size: 14px;
+        margin-top: 10px;
       }
     }
     .img2 {
@@ -123,26 +163,37 @@
       }
     }
   }
+  .client {
+    // margin: 20px auto;
+    // justify-content: initial;
+  }
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 425px) {
   .home {
-    height: 280px;
+    height: 230px;
     .main__section {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
       margin: 0;
-      .heading {
-        margin: 40px;
-        h1 {
-          font-size: 1.5rem;
+      margin-bottom: 40px;
+      .home_heading {
+        margin: 0px 0 20px 0;
+        .main_h1 {
+          font-size: 2rem;
+          // margin-right: 2px;
         }
+      }
+      .button_wrap_home {
+        display: flex;
+        justify-content: center;
       }
       button {
         padding: 5px 10px;
         letter-spacing: 0.5px;
         font-size: 12px;
+        margin: 10px 0;
       }
     }
     .img2 {
@@ -155,29 +206,14 @@
     }
     .heading_inner {
       display: flex;
+      line-height: 1.5;
     }
 
     .section__two {
       margin: 0;
     }
   }
-  // .home {
-  //   height: 200px;
-  // }
-  // .home .main__section .left__section {
-  //   display: block;
-  //   .heading {
-  //     font-size: 20px;
-  //   }
-  // }
-  // .home .main__section {
-  //   .heading p {
-  //     font-size: 40px;
-  //   }
-  // }
-  // .right__section {
-  //   display: none;
-  // }
+
   .section__two,
   .section__three {
     margin: 50px 20px 0;
@@ -185,7 +221,7 @@
   .client {
     flex-grow: 1;
     width: 80px;
-    margin: 10px;
+    margin: 10px auto;
     font-size: 15px;
   }
   .clients .img {

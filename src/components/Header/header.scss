@@ -4,7 +4,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 70px;
+  // margin: 0 70px;
+  // padding: 10px 0;
+  height: 5rem;
+}
+.header_wrapper {
+  margin-top: 0 !important;
 }
 .header__logo {
   color: $white;
@@ -16,7 +21,7 @@
 }
 .divider {
   border-bottom: 2px solid $borderBlue;
-  margin: 0 70px;
+  // margin: 0 0px;
 }
 // flex justify-center shadow items-center text-center  Navbar__Link-toggle
 .button_active {
@@ -93,7 +98,7 @@
   align-items: center;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 425px) {
   .navbar__left-active {
     position: fixed;
     top: 10%;
@@ -109,7 +114,9 @@
     margin: 0 10px;
   }
   .header {
-    margin: 0 30px;
+    margin: 0 10px;
+
+    // margin: auto;
   }
   .burger {
     display: block;

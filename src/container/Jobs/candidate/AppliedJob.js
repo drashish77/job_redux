@@ -93,14 +93,16 @@ const Jobs = () => {
           content='here are the list of all the jobs applied by a candidate'
         />
       </Helmet>
-      <div className='job__home_logo'>
-        <span onClick={candidateJobHandler}>
-          <i className='fas fa-home'></i> <span>Home </span>
-        </span>
-        <span>{`>`}</span>
-        <span> Applied Jobs</span>
+      <div className='job_heading_container container'>
+        <div className='job__home_logo'>
+          <span onClick={candidateJobHandler}>
+            <i className='fas fa-home'></i> <span>Home </span>
+          </span>
+          <span>{`>`}</span>
+          <span> Applied Jobs</span>
+        </div>
+        <h2>Jobs applied by you</h2>
       </div>
-      <h2>Jobs applied by you</h2>
       {currentItems && currentItems.length === 0 ? (
         <div className='no_job_applied_wrap'>
           <div className='no_job_applied'>
@@ -110,7 +112,7 @@ const Jobs = () => {
           </div>
         </div>
       ) : (
-        <div className='all__jobs'>
+        <div className='all__jobs container'>
           {currentItems &&
             currentItems.map((job) => {
               return (

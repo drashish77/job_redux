@@ -40,7 +40,7 @@ const PostAJob = () => {
   //   dispatch(postNewJobBegin(body))
   // }, [])
   return (
-    <div className='postAJob'>
+    <div className='postAJob container'>
       <Helmet>
         <title>Post a Job</title>
         <meta name='description' content='here you can Post a Job' />

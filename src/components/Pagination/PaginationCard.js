@@ -8,7 +8,7 @@ const PaginationCard = ({
   renderPageNumbers,
 }) => {
   return (
-    <ul className='pageNumbers py-5'>
+    <ul className='pageNumbers'>
       <li>
         <button
           className=''
