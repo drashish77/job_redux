@@ -15,6 +15,7 @@ const Jobs = () => {
   const [itemsPerPage] = useState(20)
   const [pageNumberLimit] = useState(4)
   const { totalAppliedJobs } = useSelector((state) => state.jobs)
+  const { currentUser } = useSelector((state) => state.auth)
 
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(4)
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0)
@@ -73,8 +74,8 @@ const Jobs = () => {
   if (minPageNumberLimit >= 1) {
     pageDecrementBtn = <li onClick={handlePrevButton}> &hellip; </li>
   }
-  const token = localStorage.getItem('token')
-  const jobClickHandler = () => console.log('jobClicked')
+  const token = currentUser && currentUser.token
+  // const jobClickHandler = () => console.log('jobClicked')
 
   useEffect(() => {
     dispatch(fetchAppliedJobsBegin({ token: token }))
@@ -119,7 +120,7 @@ const Jobs = () => {
                     title={job.title}
                     description={job.description}
                     location={job.location}
-                    onClick={jobClickHandler}
+                    // onClick={jobClickHandler}
                   />
                 </div>
               )

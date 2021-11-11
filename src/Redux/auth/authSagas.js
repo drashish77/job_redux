@@ -18,7 +18,6 @@ import { logIn, forgetPassword, register, resetPassword } from './authApiCalls'
 export function* logInWithCredentials({ payload: { email, password } }) {
   try {
     const user = yield call(logIn, email, password)
-    console.log(user)
     if (user && user.data.success) {
       toast.success('Login Success!')
 
@@ -85,8 +84,10 @@ export function* resetPasswordWithToken({
     const user = yield call(resetPassword, password, confirmPassword, token)
     if (user && user.data.success) {
       yield put(resetPasswordSuccess(user.data?.data))
+      toast.success('Password Reset Successful!')
     } else {
-      console.log(user.data.message)
+      toast.error('Password Reset failed!')
+
       yield put(resetPasswordFailure(user.data.message))
     }
   } catch (error) {
