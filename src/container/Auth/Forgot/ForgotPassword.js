@@ -55,7 +55,7 @@ const ForgotPassword = () => {
               <p className='error'>{state?.errorMessage}</p>
             )}
           </Input>
-          <div className='forget___password'>
+          <div className='button_wrap'>
             <Button title='Submit' color='light' />
           </div>
         </form>

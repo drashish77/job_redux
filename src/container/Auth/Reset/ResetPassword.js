@@ -67,7 +67,9 @@ const ResetPassword = () => {
           >
             {errorMessage && <p className='error'>{errorMessage}</p>}
           </Input>
-          <Button title='Submit' color='light' />
+          <div className='button_wrap'>
+            <Button title='Submit' color='light' />
+          </div>
         </form>
       </div>
     </div>
