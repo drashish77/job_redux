@@ -6,6 +6,7 @@ import routes from '../../../config/config'
 import { useDispatch, useSelector } from 'react-redux'
 
 import {
+  clearErrors,
   clearState,
   forgetPasswordStart,
 } from '../../../Redux/auth/authActions'
@@ -22,7 +23,11 @@ const ForgotPassword = () => {
       dispatch(clearState())
     }
   }, [dispatch, history, state.forgotSuccess])
-
+  useEffect(() => {
+    return () => {
+      dispatch(clearErrors())
+    }
+  }, [dispatch])
   const handleChange = (e) => setEmail(e.target.value)
 
   const handleSubmit = (e) => {
@@ -46,7 +51,7 @@ const ForgotPassword = () => {
             placeholder='Enter your email'
             handleChange={handleChange}
           >
-            {state?.errorMessage && (
+            {state.errorMessage && (
               <p className='error'>{state?.errorMessage}</p>
             )}
           </Input>

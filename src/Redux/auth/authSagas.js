@@ -69,9 +69,13 @@ export function* registerWithCredentials({
 export function* forgetPasswordWithEmail({ payload }) {
   try {
     const user = yield call(forgetPassword, payload)
-    yield put(forgetPasswordSuccess(user.data?.data))
+    if (user && user.data.success) {
+      yield put(forgetPasswordSuccess(user.data?.data))
+    } else {
+      yield put(forgetPasswordFailure(user.data.message))
+    }
   } catch (error) {
-    yield put(forgetPasswordFailure(error.response.data))
+    yield put(forgetPasswordFailure(error))
   }
 }
 export function* resetPasswordWithToken({
@@ -79,9 +83,14 @@ export function* resetPasswordWithToken({
 }) {
   try {
     const user = yield call(resetPassword, password, confirmPassword, token)
-    yield put(resetPasswordSuccess(user.data?.data))
+    if (user && user.data.success) {
+      yield put(resetPasswordSuccess(user.data?.data))
+    } else {
+      console.log(user.data.message)
+      yield put(resetPasswordFailure(user.data.message))
+    }
   } catch (error) {
-    yield put(resetPasswordFailure(error.response.data))
+    yield put(resetPasswordFailure(error))
   }
 }
 

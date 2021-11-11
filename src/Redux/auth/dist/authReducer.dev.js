@@ -109,7 +109,8 @@ var authReducer = function authReducer() {
     case _authActionTypes["default"].FORGOT_PASSWORD_FAILURE:
       return _objectSpread({}, state, {
         error: action.payload.errors,
-        errorMessage: action.payload.message
+        errorMessage: action.payload,
+        forgotSuccess: false
       });
 
     case _authActionTypes["default"].RESET_PASSWORD_START:
@@ -128,7 +129,8 @@ var authReducer = function authReducer() {
     case _authActionTypes["default"].RESET_PASSWORD_FAILURE:
       return _objectSpread({}, state, {
         error: action.payload.errors,
-        errorMessage: action.payload.message
+        errorMessage: action.payload,
+        resetSuccess: false
       });
 
     case _authActionTypes["default"].CLEAR_STATE:

@@ -86,7 +86,8 @@ const authReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         error: action.payload.errors,
-        errorMessage: action.payload.message,
+        errorMessage: action.payload,
+        forgotSuccess: false,
       }
     case types.RESET_PASSWORD_START: {
       return {
@@ -105,7 +106,8 @@ const authReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         error: action.payload.errors,
-        errorMessage: action.payload.message,
+        errorMessage: action.payload,
+        resetSuccess: false,
       }
     case types.CLEAR_STATE:
       return {
