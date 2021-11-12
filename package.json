@@ -1,6 +1,6 @@
 {
-  "name": "job",
-  "version": "0.1.0",
+  "name": "job_redux",
+  "version": "1.1.0",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.2",
